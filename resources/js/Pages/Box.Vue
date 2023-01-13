@@ -1,9 +1,14 @@
 <script setup>
 import { Head, Link } from '@inertiajs/inertia-vue3';
 
-// defineProps({
-//     namePokemon: String,
-// });
+const props = defineProps({
+    listPokemon: Array,
+});
+console.log(props.listPokemon);
+// // longeur de item
+// let nbSlot = listPokemon.length + (4 - (listPokemon.length%4));
+let nbSlot = props.listPokemon.length + (4 - (props.listPokemon.length%4));
+
 </script>
 
 <template>
@@ -17,4 +22,9 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
         <Link :href="route('box')">box</Link>
     </nav>
     <p>box</p>
+    <ul class="grid grid-cols-4 gap-4">
+        <li v-for="n in nbSlot" :key="listPokemon" class="m-1 bg-red-100 w-60 h-60">
+            <img v-if="n<=listPokemon.length" :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${listPokemon[n-1].id_pokemon}.png`" alt="item">
+        </li>
+    </ul>
 </template>

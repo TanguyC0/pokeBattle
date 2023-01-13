@@ -15,7 +15,7 @@ return new class extends Migration
     {
         schema::create('bag', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('id_user')->unsigned();
+            $table->bigInteger('id_user')->unsigned()->nullable();
             $table->bigInteger('id_item')->unsigned();
             $table->date('date');
             $table->timestamps();

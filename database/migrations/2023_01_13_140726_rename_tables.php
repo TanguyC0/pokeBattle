@@ -13,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('box', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('id_user')->unsigned()->nullable();
-            $table->integer('id_pokemon');
-            $table->integer('level');
-            $table->timestamps();
-            $table->foreign('id_user')->references('id')->on('user_game');
-        });
+        Schema::rename('box', 'boxes');
+        Schema::rename('item', 'items');
+        Schema::rename('bag', 'bags');
     }
 
     /**
@@ -30,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('box');
+        Schema::rename('boxes', 'box');
+        Schema::rename('items', 'item');
+        Schema::rename('bags', 'bag');
     }
 };

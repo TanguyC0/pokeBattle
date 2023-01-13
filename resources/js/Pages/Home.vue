@@ -17,4 +17,5 @@ defineProps({
         <Link :href="route('box')">box</Link>
     </nav>
     <p>home {{ namePokemon }}</p>
+    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" alt="pokemon">
 </template>
