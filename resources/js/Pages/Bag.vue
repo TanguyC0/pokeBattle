@@ -1,13 +1,13 @@
 <script setup>
 import { Head, Link } from '@inertiajs/inertia-vue3';
 
-// defineProps({
-//     item: Array,
-// });
-
-// longeur de item
-let item = [1,2,2,2,1,1,1,2,2,1,2];
-let nbSlot = item.length + (4 - (item.length%4));
+const props = defineProps({
+    listitem: Array,
+});
+console.log(props.listPokemon);
+// // longeur de item
+// let nbSlot = listPokemon.length + (4 - (listPokemon.length%4));
+let nbSlot = props.listitem.length + (4 - (props.listitem.length%4));
 
 </script>
 
@@ -23,9 +23,9 @@ let nbSlot = item.length + (4 - (item.length%4));
     </nav>
     <p>box</p>
     <ul class="grid grid-cols-4 gap-4">
-        <li v-for="n in nbSlot" :key="item" class="m-1 bg-red-100 w-60 h-60">
-            <img v-if="n<=item.length" :src="`img/item${item[n-1]}.png`" alt="item">
+        <li v-for="n in nbSlot" :key="listitem" class="m-1 bg-red-100 w-60 h-60">
+            <img v-if="n<=listitem.length" :src="`img/item${listitem[n-1].id_item}.png`" alt="item">
         </li>
     </ul>
-    
+
 </template>

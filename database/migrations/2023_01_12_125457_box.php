@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('box', function (Blueprint $table) {
+        Schema::create('boxes', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('id_user')->unsigned()->nullable();
             $table->integer('id_pokemon');
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('box');
+        Schema::dropIfExists('boxes');
     }
 };
