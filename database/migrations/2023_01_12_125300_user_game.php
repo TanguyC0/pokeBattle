@@ -13,13 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('user_game', function (Blueprint $table) {
+        Schema::create('user_game', function (Blueprint $table) {
             $table->id();
             $table->boolean('is_admin')->default(false);
             $table->integer('level')->default(1);
             $table->integer('stage');
             $table->integer('max_box');
             $table->integer('money')->default(0);
+            $table->integer('exp')->default(0);
+            $table->foreign('id')->references('id')->on('users');
         });
     }
 

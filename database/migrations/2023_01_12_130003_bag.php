@@ -15,10 +15,12 @@ return new class extends Migration
     {
         schema::create('bag', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_user');
-            $table->integer('id_item');
+            $table->bigInteger('id_user')->unsigned();
+            $table->bigInteger('id_item')->unsigned();
             $table->date('date');
             $table->timestamps();
+            $table->foreign('id_user')->references('id')->on('user_game');
+            $table->foreign('id_item')->references('id')->on('item');
         });
     }
 

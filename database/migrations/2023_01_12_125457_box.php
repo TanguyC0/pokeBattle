@@ -15,10 +15,11 @@ return new class extends Migration
     {
         Schema::create('box', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_user');
+            $table->bigInteger('id_user')->unsigned();
             $table->integer('id_pokemon');
             $table->integer('level');
             $table->timestamps();
+            $table->foreign('id_user')->references('id')->on('user_game');
         });
     }
 
