@@ -12,7 +12,7 @@ let nbSlot = props.listPokemon.length + (4 - (props.listPokemon.length%4));
 </script>
 
 <template>
-    <Head title="home" />
+    <Head title="home"/>
 
     <nav>
         <Link :href="route('home')">Home</Link>
