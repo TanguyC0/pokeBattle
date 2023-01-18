@@ -30,6 +30,8 @@ Route::get('/bag/{type?}', [App\Http\Controllers\BagController::class, 'index'])
 Route::get('/team', [App\Http\Controllers\TeamController::class, 'index'])->name('team');
 Route::get('/box', [App\Http\Controllers\BoxController::class, 'index'])->name('box');
 
+Route::get('/pokemon/{xp}/{id}', [App\Http\Controllers\PokemonController::class, 'xpUP'])->name('pokemon');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
