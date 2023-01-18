@@ -17,7 +17,11 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('id_user')->unsigned()->nullable();
             $table->integer('id_pokemon');
-            $table->integer('level');
+            $table->integer('level')->default(1);
+            $table->integer('xp')->default(0);
+            $table->integer('hp')->default(1);
+            $table->integer('attack')->default(1);
+            $table->integer('defense')->default(1);
             $table->timestamps();
             $table->foreign('id_user')->references('id')->on('user_game');
         });
