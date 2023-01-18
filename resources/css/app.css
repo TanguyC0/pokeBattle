@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: "Ketchum";
+    src: url(../css/font/Ketchum.otf);
+    font-family: "unown";
+    src: url(../css/font/unown.ttf);
+};
+@font-face {
+    font-family: "pokemon X and Y";
+    src: url(../css/font/Pokemon\ X\ and\ Y.ttf);
+};
+@font-face {
+    font-family: "pokemon" ;
+    src: url(../css/font/Pokemon\ Solid.ttf);
+};
