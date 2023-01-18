@@ -21,7 +21,12 @@ class BoxController extends Controller
                                     'name' => $posts['name'], 
                                     'type' => [$posts['types'][0]['type']['name'], isset($posts['types'][1]['type']['name']) ? $posts['types'][1]['type']['name'] : ''],
                                     'level' => $value['level'],
-                                    'image' => $posts['sprites']['other']['official-artwork']['front_default']
+                                    'image' => $posts['sprites']['other']['official-artwork']['front_default'],
+                                    'hp' => $value['hp'],
+                                    'attack' => $value['attack'],
+                                    'defense' => $value['defense'],
+                                    'xp' => $value['xp'],
+                                    'xpMax' => ($value['level'] * 100)+ceil($value['level'] ** 2 * 10.5),
                                 )
                             );
         }

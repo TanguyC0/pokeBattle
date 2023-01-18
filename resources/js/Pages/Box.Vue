@@ -50,7 +50,7 @@ export default {
                 <p>name {{ listPokemon[pick].name }}</p>
                 <p>type {{ listPokemon[pick].type }}</p>
                 <p>level {{ listPokemon[pick].level }}</p>
-                <p>exp {{ listPokemon[pick].exp }}</p>
+                <p>exp {{ listPokemon[pick].xp }} / {{ listPokemon[pick].xpMax }}</p>
                 <p>hp {{ listPokemon[pick].hp }}</p>
                 <p>attack {{ listPokemon[pick].attack }}</p>
                 <p>defense {{ listPokemon[pick].defense }}</p>
