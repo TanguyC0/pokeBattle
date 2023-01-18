@@ -26,9 +26,11 @@ Route::get('/dashboard', function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/aventure', [App\Http\Controllers\AventureController::class, 'index'])->name('aventure');
-Route::get('/bag', [App\Http\Controllers\BagController::class, 'index'])->name('bag');
+Route::get('/bag/{type?}', [App\Http\Controllers\BagController::class, 'index'])->name('bag');
 Route::get('/team', [App\Http\Controllers\TeamController::class, 'index'])->name('team');
 Route::get('/box', [App\Http\Controllers\BoxController::class, 'index'])->name('box');
+
+Route::get('/pokemon/{xp}/{id}', [App\Http\Controllers\PokemonController::class, 'xpUP'])->name('pokemon');
 
 
 Route::middleware('auth')->group(function () {
