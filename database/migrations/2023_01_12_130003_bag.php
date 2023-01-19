@@ -19,7 +19,7 @@ return new class extends Migration
             $table->bigInteger('id_item')->unsigned();
             $table->date('date');
             $table->timestamps();
-            $table->foreign('id_user')->references('id')->on('user_game');
+            $table->foreign('id_user')->references('id')->on('user_games');
             $table->foreign('id_item')->references('id')->on('items');
         });
     }
