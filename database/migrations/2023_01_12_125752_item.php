@@ -27,6 +27,32 @@ return new class extends Migration
             $table->json('building');
             
         });
+
+        //INSERT INTO items(name,description,`type`,power,grade,sell,buy,building) VALUES('pokeball','pokeball','catch',10,'commun',10,10,'null');
+        DB::table('items')->insert(
+            array(
+                'name' => 'pokeball',
+                'description' => 'pokeball',
+                'type' => 'catch',
+                'power' => 10,
+                'grade' => 'commun',
+                'sell' => 10,
+                'buy' => 10,
+                'building' => 'null'
+            )
+        );
+        DB::table('items')->insert(
+            array(
+                'name' => 'honorball',
+                'description' => 'pokeball',
+                'type' => 'catch',
+                'power' => 10,
+                'grade' => 'commun',
+                'sell' => 10,
+                'buy' => 10,
+                'building' => 'null'
+            )
+        );
     }
 
     /**

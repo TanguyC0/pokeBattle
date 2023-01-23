@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\bag;
 use App\Models\box;
+use App\Models\stages;
 
 class AventureController extends Controller
 {
@@ -23,33 +24,40 @@ class AventureController extends Controller
         $value = rand(1, 15);
         if ($value <= 5) {
             // $choix = rand(1, 2);
-            $choix = 1;
+            // $choix = 1;
+            $choix = $this->choose(0,1);
 
             Bag::insert([
                 'id_item' => $choix,
                 'date' => date('Y-m-d'),
             ]);
 
-            return Inertia::render('Aventure', [
+            $datalist = [
                 'status' => 0,
                 'message' => 'Vous avez trouvé un coffre',
                 'img' => '../img/item'.$choix.'.png',
-            ]);
+            ];
+
         } elseif ($value <= 10) {
-            $choix = [1, 4, 7][rand(0, 2)];
-            return Inertia::render('Aventure', [
+            // $choix = [1, 4, 7][rand(0, 2)];
+            $choix = $this->choose(1,1);
+
+            $datalist = [
                 'status' => 1,
                 'message' => 'Vous avez trouvé un pokemon',
                 'img' => 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/'.$choix.'.png',
                 'id' => $choix,
-            ]);
-        } elseif ($value <= 15) {
-            return Inertia::render('Aventure', [
+            ];
+
+        } else {
+            $datalist = [
                 'status' => 2,
                 'message' => 'Vous n\'avez rien trouvé',
                 'img' => '',
-            ]);
-        } 
+            ];
+        }
+
+        return Inertia::render('Aventure', $datalist);
     }
 
     public function catch($id)
@@ -70,7 +78,7 @@ class AventureController extends Controller
         {
             Bag::where('id_item', 1)->first()->delete();
 
-            if ($value <= 9) {
+            if ($value <= 5) {
                 Box::insert([
                     'id_pokemon' => $id,
                     'level' => 1,
@@ -79,12 +87,14 @@ class AventureController extends Controller
                     'defense' => 100,
                     'xp' => 0,
                 ]);
+
                 $datalist = [
                     'status' => 3,
                     'message' => 'Vous avez attrapé le pokemon',
                     'img' => 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/'.$id.'.png',
                     'id' => $id,
                 ];
+
             } elseif ($value <= 10) {
                 $datalist = [
                     'status' => 4,
@@ -96,5 +106,22 @@ class AventureController extends Controller
         }
 
         return Inertia::render('Aventure', $datalist);
+    }
+
+    public function choose( int $pack, int $stage){ // 0 for item, 1 for pokemon
+
+        $list = Stages::find($stage);
+        switch ($pack) {
+            case 0:
+                return json_decode($list->items, true)[rand(0, count(json_decode($list->items, true))-1)];
+                break;
+            case 1:
+                return json_decode($list->pokemons, true)[rand(0, count(json_decode($list->pokemons, true))-1)];
+                break;
+        }
+
+        // transforme en array
+        // $list = json_decode($list->items, true);
+
     }
 }
