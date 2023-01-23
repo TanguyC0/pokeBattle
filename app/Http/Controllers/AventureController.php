@@ -42,11 +42,22 @@ class AventureController extends Controller
             // $choix = [1, 4, 7][rand(0, 2)];
             $choix = $this->choose(1,1);
 
+            // $item = Bag::join('items', 'items.id', '=', 'bags.id_item')->where('type', 'catch')->groupBy('bags.id_item');
+            // $itemList = [];
+            // foreach($item as $key => $value)
+            // {
+            //     // add new array in itemList
+            //     array_push($itemList, array('id' => $value['id_item'], 'name' => $value['name'], 'count' => $value['count']));
+            // }
+
+
+
             $datalist = [
                 'status' => 1,
                 'message' => 'Vous avez trouvé un pokemon',
                 'img' => 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/'.$choix.'.png',
                 'id' => $choix,
+                // 'item' => $itemList,
             ];
 
         } else {

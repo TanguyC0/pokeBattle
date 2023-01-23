@@ -13,7 +13,7 @@ class BoxController extends Controller
     public function index()
     {
 
-        $list = array();
+        $list = [];
         $data = Box::all();
         
         foreach ($data as $key => $value) {

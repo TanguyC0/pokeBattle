@@ -7,6 +7,7 @@ defineProps({
     message: String,
     img: String,
     id: Number,
+    pokeballs: Array,
 });
 </script>
 
@@ -49,6 +50,12 @@ defineProps({
         <Link :href="route('aventure.walk','1')" class=" mt-5 text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">walk</Link>
         <p>{{ message }}</p>
         <img v-if="status != 2" :src="`${ img }`" alt="" class="m-1 bg-red-100 w-60 h-60">
+
+        <!-- <b-dropdown v-if="status == 1" text="catch2" class=" mt-5 text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+            <b-dropdown-item v-for="pokeball in pokeballs" :key="pokeball['id']">
+                {{ pokeball['name'] }}
+            </b-dropdown-item>
+        </b-dropdown> -->
         <Link v-if="status == 1" :href="route('aventure.catch',`${id}`)" class=" mt-5 text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">catch</Link>
 
     </div>
