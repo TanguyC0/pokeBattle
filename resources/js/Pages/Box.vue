@@ -16,10 +16,6 @@ let hp =  props.listPokemon[pick].hp;
 let xp = (props.listPokemon[pick].xp / props.listPokemon[pick].xpMax);
 let attack = props.listPokemon[pick].attack;
 let defense = props.listPokemon[pick].defense ; 
-
-
-
-
 </script>
 <script>
 export default {
