@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('attack')->default(1);
             $table->integer('defense')->default(1);
             $table->timestamps();
-            $table->foreign('id_user')->references('id')->on('user_game');
+            $table->foreign('id_user')->references('id')->on('user_games');
         });
     }
 

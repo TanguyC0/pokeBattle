@@ -5,13 +5,8 @@ const props = defineProps({
     listPokemon: Array,
 });
 
-// console.log(props.listPokemon);
-// // longeur de item
-// let nbSlot = listPokemon.length + (4 - (listPokemon.length%4));
 let nbSlot = props.listPokemon.length + (4 - (props.listPokemon.length%4));
-// let pick = 0;
-// let grid = 'grid-cols-4 gap-4';
-// let list = 'grid-cols-1 gap-1';
+
 
 </script>
 <script>
