@@ -19,20 +19,6 @@ export default {
             pick: 0   
         }
     },
-
-    // data:() => ({
-    //     searchQuery:"data",
-    //     data: [
-    //         name, type, level, hp, xp, attack, defense
-    //     ]
-
-    // }),
-
-    // methods: {
-    //     toggleGrid () {
-    //     this.grid= this.grid === 'grid-cols4 gap-4' ? 'grid-cols-1 gap-1' : 'grid-cols4 gap-4'
-    // }
-//}
 };
 </script>
 

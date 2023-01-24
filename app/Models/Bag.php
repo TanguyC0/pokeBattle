@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Bag extends Model
 {
     use HasFactory;
+
+    public $timestamps = false;
+
 }

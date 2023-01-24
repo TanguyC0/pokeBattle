@@ -7,30 +7,42 @@ use Inertia\Inertia;
 use App\Models\bag;
 use App\Models\box;
 use App\Models\stages;
+use App\Models\user_games;
 
 class AventureController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Aventure', [
-            'status' => 2,
-            'message' => 'Bienvenue dans l\'aventure',
-            'img' => '',
-        ]);
+        return Inertia::render('Aventure', $this->message);
     }
 
     public function walk($stage = 1)
     {
-        $value = rand(1, 15);
-        if ($value <= 5) {
-            // $choix = rand(1, 2);
-            // $choix = 1;
-            $choix = $this->choose(0,1);
+        $datalist = [
+            'status' => 2,
+            'message' => 'Vous n\'avez rien trouvé',
+            'img' => '',
+        ];
 
-            Bag::insert([
-                'id_item' => $choix,
-                'date' => date('Y-m-d'),
-            ]);
+        $value = rand(1, 15);
+        if ($value <= 5) { //item
+            $choix = $this->choose(0,$stage);
+
+
+            // si objet existe, incrémenté count, si non, cree l'objet
+            $item = bag::where('id_item', $choix)->first();
+            if($item)
+            {
+                $item->count = $item->count + 1;
+                $item->save();
+            }
+            else
+            {
+                $item = new bag;
+                $item->id_item = $choix;
+                $item->count = 1;
+                $item->save();
+            }
 
             $datalist = [
                 'status' => 0,
@@ -38,46 +50,42 @@ class AventureController extends Controller
                 'img' => '../img/item'.$choix.'.png',
             ];
 
-        } elseif ($value <= 10) {
-            // $choix = [1, 4, 7][rand(0, 2)];
-            $choix = $this->choose(1,1);
+        } elseif ($value <= 10) { //pokemon
+            $choix = $this->choose(1,$stage);
 
-            // $item = Bag::join('items', 'items.id', '=', 'bags.id_item')->where('type', 'catch')->groupBy('bags.id_item');
-            // $itemList = [];
-            // foreach($item as $key => $value)
-            // {
-            //     // add new array in itemList
-            //     array_push($itemList, array('id' => $value['id_item'], 'name' => $value['name'], 'count' => $value['count']));
-            // }
+            if(Box::count() < 20)
+            {
 
+                $item = bag::join('items', 'items.id', '=', 'bags.id_item')->where('type', 'catch')->get();
+                $itemList = [];
+                foreach ($item as $key => $value) {
+                    $itemList[] = [
+                        'id' => $value->id_item,
+                        'name' => $value->name,
+                        'count' => $value->count,
+                        'img' => '../img/item'.$value->id_item.'.png',
+                    ];
+                }
 
+                $datalist = [
+                    'status' => 1,
+                    'message' => 'Vous avez trouvé un pokemon',
+                    'img' => 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/'.$choix.'.png',
+                    'id' => $choix,
+                    'items' => $itemList,
+                ];
+            }
 
-            $datalist = [
-                'status' => 1,
-                'message' => 'Vous avez trouvé un pokemon',
-                'img' => 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/'.$choix.'.png',
-                'id' => $choix,
-                // 'item' => $itemList,
-            ];
-
-        } else {
-            $datalist = [
-                'status' => 2,
-                'message' => 'Vous n\'avez rien trouvé',
-                'img' => '',
-            ];
         }
 
         return Inertia::render('Aventure', $datalist);
     }
 
-    public function catch($id)
+    public function catch($id, $idItem)
     {
-        $value = rand(1, 10);
-        $ball = Bag::join('items', 'items.id', '=', 'bags.id_item')
-        ->where('type', 'catch');
+        $ball = Bag::where('id_item', $idItem)->get();
 
-        if ($ball->count() == 0) {
+        if ($ball->count() == 0 || $ball[0]->count == 0) {
             $datalist = [
                 'status' => 4,
                 'message' => 'Vous n\'avez pas de ball',
@@ -87,7 +95,8 @@ class AventureController extends Controller
         }
         else
         {
-            Bag::where('id_item', 1)->first()->delete();
+            $value = rand(1, 10);
+            Bag::where('id_item', $idItem)->decrement('count');
 
             if ($value <= 5) {
                 Box::insert([
@@ -130,9 +139,5 @@ class AventureController extends Controller
                 return json_decode($list->pokemons, true)[rand(0, count(json_decode($list->pokemons, true))-1)];
                 break;
         }
-
-        // transforme en array
-        // $list = json_decode($list->items, true);
-
     }
 }

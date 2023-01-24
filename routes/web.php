@@ -31,7 +31,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // });
 Route::get('/aventure', [App\Http\Controllers\AventureController::class, 'index'])->name('aventure.index');
 Route::get('/aventure/{stage?}', [App\Http\Controllers\AventureController::class, 'walk'])->name('aventure.walk');
-Route::get('/aventure/catch/{id}', [App\Http\Controllers\AventureController::class, 'catch'])->name('aventure.catch');
+Route::get('/aventure/catch/{id}/{idItem}', [App\Http\Controllers\AventureController::class, 'catch'])->name('aventure.catch');
 
 
 Route::get('/bag/{type?}', [App\Http\Controllers\BagController::class, 'index'])->name('bag');
