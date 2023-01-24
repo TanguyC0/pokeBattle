@@ -40,12 +40,12 @@ export default {
 
         <Link :href="route('aventure.walk','1')" class=" mt-5 text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">walk</Link>
         <p>{{ message }}</p>
-        <img v-if="status != 2" :src="`${ img }`" alt="" class="m-1 bg-red-100 w-60 h-60">
+        <img v-if="status != 0" :src="`${ img }`" alt="" class="m-1 bg-red-100 w-60 h-60">
 
-        <select v-if="status == 1" name="item" id="item" @change="use = $event.target.value">
+        <select v-if="status == 2" name="item" id="item" @change="use = $event.target.value">
             <option v-for="pokeball in items" :key="pokeball.id" :value="pokeball.id">{{ pokeball.name }} ({{ pokeball.count }})</option>
         </select>
-        <Link v-if="status == 1" :href="route('aventure.catch',[`${id}`,`${use}`])" class=" mt-5 text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">catch</Link>
+        <Link v-if="status == 2" :href="route('aventure.catch',[`${id}`,`${use}`])" class=" mt-5 text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">catch</Link>
 
     </div>
 
