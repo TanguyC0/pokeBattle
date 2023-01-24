@@ -4,15 +4,13 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
 const props = defineProps({
     listitem: Array,
 });
-console.log(props.listPokemon);
-// // longeur de item
-// let nbSlot = listPokemon.length + (4 - (listPokemon.length%4));
+console.log(props.listitem);
 let nbSlot = props.listitem.length + (4 - (props.listitem.length%4));
 
 </script>
 
 <template>
-    <Head title="home" />
+    <Head title="bag" />
 
     <Link :href="route('home')" class="m-5 bg-blue-500">Home</Link>
     
@@ -28,6 +26,7 @@ let nbSlot = props.listitem.length + (4 - (props.listitem.length%4));
                 <template v-for="n in nbSlot">
                     <li class="m-1 p-5 bg-red-100 w-60 h-60">
                         <img v-if="n<=listitem.length" :src="`../img/item${listitem[n-1].id_item}.png`" alt="item">
+                        <em v-if="n<=listitem.length">count : {{ listitem[n-1].count }}</em>
                     </li>
                 </template>
             </ul>

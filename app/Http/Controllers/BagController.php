@@ -15,6 +15,7 @@ class BagController extends Controller
         $list = DB::table('bags')->join('items', 'bags.id_item', '=', 'items.id')
         ->select('bags.*', 'items.name')
         ->where('type' , 'like', $type)
+        ->where('count' , '>', 0)
         ->get();
         // dd($list);
 

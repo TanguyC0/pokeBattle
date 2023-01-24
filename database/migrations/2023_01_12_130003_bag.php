@@ -17,8 +17,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('id_user')->unsigned()->nullable();
             $table->bigInteger('id_item')->unsigned();
-            $table->date('date');
-            $table->timestamps();
+            $table->Integer('count')->default(0);
             $table->foreign('id_user')->references('id')->on('user_games');
             $table->foreign('id_item')->references('id')->on('items');
         });
