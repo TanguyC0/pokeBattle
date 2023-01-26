@@ -11,13 +11,11 @@ module.exports = {
     ],
 
     theme: {
-        extend: {
-            fontFamily: {
-                ketchum: ["Ketchum"],
-                pokemon: ["pokemon"],
-                unown: ["unown"],
-                pokemonXY: ["Pokemon X and Y"],
-            },
+        fontFamily: {
+            ketchum: ["Ketchum"],
+            pokemon: ["pokemon"],
+            unown: ["unown"],
+            pokemonXY: ["PokemonXY"],
         },
         screens: {
             sm: "480px",
