@@ -2,10 +2,11 @@
 
 const props = defineProps(['dataUser', 'color']);
 
+
 </script>
 
 <template>
-    <div :class="`border-2 border-${color}-500 w-1/4 h-12 relative border bg-gray-200 rounded`">
+    <div :class="`border-2 border-${color}-500 w-1/5 h-12 relative bg-gray-200 rounded`">
         <div class="absolute w-full text-center p-3 h-12 z-10 font-xl text-black">
             <slot/>
         </div>
