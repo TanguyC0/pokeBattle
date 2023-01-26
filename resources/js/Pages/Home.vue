@@ -1,6 +1,8 @@
 <script setup>
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import { onMounted } from 'vue';
+import ButtonMenu from '@/Components/ButtonMenu.vue';
+import Jauge from '@/Components/Jauge.vue';
 
 import { initAccordions, 
     initCarousels, 
@@ -13,6 +15,7 @@ import { initAccordions,
     initPopovers, 
     initTabs, 
     initTooltips} from 'flowbite';
+import { purple, yellow } from 'tailwindcss/colors';
 
 onMounted(() => {
     initAccordions();
@@ -45,34 +48,12 @@ let lien = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pok
         <header class="flex flex-row w-full h-1/4 opacity-90 py-3">
 
             <div class="flex flex-row w-full items-center justify-evenly ">
-                <div class="w-1/4 h-12 relative border bg-gray-200 rounded">
-                    <div class="absolute w-full text-center p-3 h-12 z-10 font-xl text-black">
-                        Level:{{ dataUser.level}}
-                    </div>
-                    <div class=" absolute h-12 bg-gradient-to-r from-blue-200 via-blue-300 to-blue-400   
-                        rounded-l p-0.5" :style="`width: ${dataUser.xp}%`">
-                    </div>
-                </div>
+                <Jauge :dataUser="dataUser.xp" :color="'blue'">Level:{{ dataUser.level}}</Jauge>
+                <Jauge :dataUser="100" :color="'yellow'">Money: {{ dataUser.money}} $</Jauge>
+                <Jauge :dataUser="(dataUser.box/dataUser.max_box)*100" :color="'purple'">Box: {{dataUser.box}}/{{ dataUser.max_box }}</Jauge>
+            </div> 
 
-                <div class="w-1/4 h-12 relative bg-gray-200 rounded-lg">
-                    <div class="money absolute w-full text-center p-3 h-12 z-10 font-xl text-black">
-                        Money: {{ dataUser.money}} $ 
-                    </div>
-                    <div class=" absolute h-12 bg-gradient-to-r from-yellow-200 via-yellow-300 to-yellow-400 
-                        rounded-lg p-0.5 shadow-lg" :style="`width: ${100}%`">
-                    </div>
-                </div>
-
-                <div class="border-2 border-purple-500 w-1/4 h-12 relative bg-gray-200 rounded">
-                    <div class="absolute w-full text-center p-3 h-12 z-10 font-xl text-black">
-                        Box: {{dataUser.box}}/{{ dataUser.max_box }} 
-                    </div>
-                    <div class="absolute h-11 bg-gradient-to-r from-purple-200 via-purple-300 to-purple-400 
-                        rounded-l p-0.5" :style="`width: ${(dataUser.box/dataUser.max_box)*100}%`">
-                    </div>
-                </div>
-            </div>
-
+            
             <div class="flex flex-row justify-end mr-3 mt-3">
                 <Link :href="route('dashboard')" type="button" class="mr-3 text-sm bg-gray-800 
                     rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
@@ -88,25 +69,10 @@ let lien = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pok
             
                 <nav class="flex flex-col gap-16 items-start font-unowm w-1/4 h-96">
 
-                        <Link :href="route('aventure.index')" class="  text-white bg-gradient-to-r
-                        from-blue-200 via-blue-300 to-blue-400 hover:bg-gradient-to-br focus:ring-4 
-                        focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 rounded-lg 
-                        text-sm px-5 py-2.5 text-center  border-2">Adventure</Link>
-
-                        <Link :href="route('bag')" class="text-white  w-20 h-10 bg-gradient-to-r
-                        from-blue-200 via-blue-300 to-blue-400 hover:bg-gradient-to-br focus:ring-4
-                        focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 rounded-lg
-                        text-sm px-5  py-2.5 text-center ">Bag</Link>
-
-                        <Link :href="route('team')" class="text-white w-20 h-10 bg-gradient-to-r
-                        from-blue-200 via-blue-300 to-blue-400 hover:bg-gradient-to-br focus:ring-4
-                        focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 rounded-lg
-                        text-sm px-5  py-2.5 text-center ">Team</Link>
-
-                        <Link :href="route('box')" class="text-white w-20 h-10 bg-gradient-to-r
-                        from-blue-200 via-blue-300 to-blue-400 hover:bg-gradient-to-br focus:ring-4
-                        focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50
-                        rounded-lg text-sm px-5  py-2.5 text-center ">Box</Link>
+                        <ButtonMenu :href="route('aventure.index')" >Adventure</ButtonMenu>
+                        <ButtonMenu :href="route('bag')">Bag</ButtonMenu>
+                        <ButtonMenu :href="route('team')">Team</ButtonMenu>
+                        <ButtonMenu :href="route('box')">Box</ButtonMenu>
                 </nav>
 
 <!-- Profil user menu-->
@@ -114,7 +80,7 @@ let lien = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pok
                     <img :src="`${ lien }`" alt="pokemon" class="align-center justify-center h-60
                 ">
                 <!-- </div> -->
-                <div class="flex flex-col pokemon items-end  w-1/4">
+                <nav class="flex flex-col pokemon items-end  w-1/4">
 
                     <Link href="#" class="text-white bg-gradient-to-r from-red-400 via-red-500 
                         to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none 
@@ -133,7 +99,7 @@ let lien = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pok
                         to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none
                         focus:ring-red-300 shadow-lg shadow-red-500/50 font-medium rounded-lg text-sm
                         px-5 py-2.5 text-center mr-2 mb-2 myfont">Event</Link>
-                </div>
+                </nav>
             
         </main>
     </div>
