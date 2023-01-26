@@ -28,6 +28,13 @@ Route::get('/box', [App\Http\Controllers\BoxController::class, 'index'])->name('
 
 Route::get('/pokemon/{xp}/{id}', [App\Http\Controllers\PokemonController::class, 'xpUP'])->name('pokemon');
 
+Route::middleware('adm')->group(function () {
+    Route::get('/admin/aventure', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.aventure');
+    Route::get('/admin/aventure/{id}', [App\Http\Controllers\AdminController::class, 'edit'])->name('admin.aventure.edit');
+    Route::post('/admin/aventure/{id}', [App\Http\Controllers\AdminController::class, 'update'])->name('admin.aventure.update');
+    Route::get('/admin/aventure/create', [App\Http\Controllers\AdminController::class, 'create'])->name('admin.aventure.create');
+});
+
 // ------------------------- dashboard and login (auto generate) -------------------------
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

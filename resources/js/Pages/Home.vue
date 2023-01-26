@@ -60,7 +60,7 @@ xp 19/123
                 </div>
         </div>
         <div class="flex flex-row justify-end mr-3 mt-3">
-        <Link :href="route('dashboard')" type="button" class="mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
+        <Link :href="route('register')" type="button" class="mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
             <img class="w-14 h-14 rounded-full" src="" alt="user photo">
         </Link>
         </div>
