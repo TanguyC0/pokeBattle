@@ -43,7 +43,7 @@ let lien = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pok
     <Head title="home"/>
 
 
-    <div class ="w-full max-h-screen min-h-screen h-screen align-center justify-center bg-cover">
+    <div class ="w-full max-h-screen min-h-screen h-screen">
         <Header :dataUser="dataUser"/>
         <main class="flex flex-row justify-around h-4/5 w-full ">
 
