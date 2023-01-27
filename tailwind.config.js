@@ -11,9 +11,11 @@ module.exports = {
     ],
 
     theme: {
+        extend:{
         fontFamily: {
             ketchum: ["Ketchum"],
-            pokemon: ["pokemon"],
+            pokemon: ["pokemon",...defaultTheme.fontFamily.sans,],
+            
             unown: ["unown"],
             pokemonXY: ["PokemonXY"],
         },
@@ -26,4 +28,5 @@ module.exports = {
     },
 
     plugins: [require("@tailwindcss/forms"), require("flowbite/plugin")],
+}
 };

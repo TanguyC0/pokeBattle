@@ -86,7 +86,7 @@ let lien = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pok
         <main class="flex flex-row justify-evenly h-100vh w-full ">
 
             
-                <nav class="flex flex-col gap-16 items-start font-unowm w-1/4 h-96">
+                <nav class="flex flex-col gap-16 items-start font-pokemon w-1/4 h-96">
 
                         <Link :href="route('aventure.index')" class="  text-white bg-gradient-to-r
                         from-blue-200 via-blue-300 to-blue-400 hover:bg-gradient-to-br focus:ring-4 
@@ -114,7 +114,7 @@ let lien = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pok
                     <img :src="`${ lien }`" alt="pokemon" class="align-center justify-center h-60
                 ">
                 <!-- </div> -->
-                <div class="flex flex-col pokemon items-end  w-1/4">
+                <div class="flex flex-col font-pokemon items-end  w-1/4">
 
                     <Link href="#" class="text-white bg-gradient-to-r from-red-400 via-red-500 
                         to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none 
@@ -139,7 +139,7 @@ let lien = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pok
     </div>
 
 </template>
-<style> 
+<!-- <style> 
 @font-face {
    font-family: ketchum;
    src: url(../../css/font/Ketchum.otf);
@@ -149,6 +149,6 @@ let lien = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pok
    src: url(../../css/font/pokemonXY.ttf)
 }
 *{
-    font-family:pokemonXY;
+    font-family:pokemon;
     }
-</style>
+</style> -->
