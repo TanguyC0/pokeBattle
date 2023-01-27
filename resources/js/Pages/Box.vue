@@ -50,12 +50,12 @@ export default {
                 <section class="rounded-lg bg-white text-red-500 w-2/6 p-8 h-full">
                     <h3 class="text-center">Detail</h3>
                     <template v-if="listPokemon.length > 0">
-                        <p class="inline-flex items-center text-xl font-semibold  text-white hover:underline">Type: {{listPokemon[pick].type }}</p>
-                        <p class="inline-flex items-center text-xl first-letter:font-normal text-white hover:underline">Level: {{listPokemon[pick].level }}</p>
-                        <p class="inline-flex items-center text-xl font-normal text-white hover:underline">Exp.: {{listPokemon[pick].xp}}</p>
-                        <p class="inline-flex items-center text-xl font-normal text-white hover:underline">Hp: {{listPokemon[pick].hp}}</p>
-                        <p class="inline-flex items-center text-xl font-normal text-white hover:underline">Attack: {{listPokemon[pick].attack}}</p>
-                        <p class="inline-flex items-center text-xl font-normal text-white hover:underline">Defense: {{listPokemon[pick].defense}}</p>
+                        <p class=" items-center text-xl  hover:underline">Type: {{listPokemon[pick].type }}</p>
+                        <p class=" items-center text-xl  hover:underline">Level: {{listPokemon[pick].level }}</p>
+                        <p class=" items-center text-xl  hover:underline">Exp.: {{listPokemon[pick].xp}}</p>
+                        <p class=" items-center text-xl   hover:underline">Hp: {{listPokemon[pick].hp}}</p>
+                        <p class=" items-center text-xl   hover:underline">Attack: {{listPokemon[pick].attack}}</p>
+                        <p class=" items-center text-xl hover:underline">Defense: {{listPokemon[pick].defense}}</p>
                     </template>
                 </section>
             </div>
