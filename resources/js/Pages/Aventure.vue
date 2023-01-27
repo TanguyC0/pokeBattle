@@ -1,5 +1,6 @@
 <script setup>
 import { Head, Link } from '@inertiajs/inertia-vue3';
+import ButtonMenu from '@/Components/ButtonMenu.vue';
 
 const props = defineProps({
     // dataUser: Array,
@@ -24,7 +25,7 @@ export default {
 <template>
     <Head title="aventure" />
 
-    <Link :href="route('home')" class="m-5 w-20 h-40 hover:underline">Home</Link>
+    <!-- <Link :href="route('home')" class="m-5 w-20 h-40 hover:underline">Home</Link>
     
     <main class="m-10 p-10 bg-slate-300 flex flex-col border rounded-lg">
         <h2 class="text-3xl p-3">aventure</h2>
@@ -42,7 +43,23 @@ export default {
                 <p>{{ message }}</p>
             </div>
         </section>
-    </main>
+    </main> -->
+
+    <div class ="w-full max-h-screen min-h-screen h-screen">
+        <Link :href="route('home')" class="m-5 w-20 h-40 hover:underline">Home</Link>
+        <main class="flex flex-row justify-around h-4/5 w-full ">
+            <section class="bg-red-500">
+                <ul class="grid grid-cols-2 gap-4 wrap ">
+                    <li v-for="n in 6" class="h-40 w-40 bg-white"></li>
+                </ul>
+            </section>
+            <section class="bg-blue-500 w-96">
+                <div class="bg-[url('/img/map/map.jpg')] bg- w-full h-full">
+
+                </div>
+            </section>
+        </main>
+    </div>
 
 </template>
 
