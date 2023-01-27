@@ -7,11 +7,8 @@ const props = defineProps({
     listPokemon: Array,
 });
 console.log(props.listPokemon);
-// let nbSlot = props.listPokemon.length + (4 - (props.listPokemon.length%4));
-let nbSlot = 20;
-// let pick = 0;
-// let grid = 'grid-cols-4 gap-4';
-// let list = 'grid-cols-1 gap-1';
+let nbSlot = props.listPokemon.length + (4 - (props.listPokemon.length%4));
+
 
 </script>
 <script>
@@ -37,8 +34,6 @@ export default {
             <h2 class="text-3xl flex">Box</h2>
             <div class="flex justify-evenly w-full h-4/5 mt-14">
                 <nav>
-                    <!-- <button class="mr-2 w-20 h-10 bg-gradient-to-r from-blue-200 via-blue-300 to-blue-400 focus:ring-blue-300 shadow-lg shadow-blue-500/50  font-medium hover:bg-gradient-to-br  text-center  rounded-lg" @click="toggleGrid">Grid</button>
-                    <button class="ml-2 w-20 h-10 bg-gradient-to-r from-blue-200 via-blue-300 to-blue-400 focus:ring-blue-300 shadow-lg shadow-blue-500/50  font-medium hover:bg-gradient-to-br text-center border rounded-lg">Filter</button> -->
                     <ButtonMenu>grid</ButtonMenu>
                     <ButtonMenu>filter</ButtonMenu>
                 </nav>
