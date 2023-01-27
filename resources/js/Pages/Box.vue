@@ -36,7 +36,7 @@ export default {
         <main class="flex flex-col items-center h-4/5 mx-10 bg-red-600 bg-opacity-30 rounded-2xl border-4">
             <h2 class="text-3xl flex">Box</h2>
             <div class="flex justify-evenly w-full h-4/5 mt-14">
-                <nav class="">
+                <nav>
                     <!-- <button class="mr-2 w-20 h-10 bg-gradient-to-r from-blue-200 via-blue-300 to-blue-400 focus:ring-blue-300 shadow-lg shadow-blue-500/50  font-medium hover:bg-gradient-to-br  text-center  rounded-lg" @click="toggleGrid">Grid</button>
                     <button class="ml-2 w-20 h-10 bg-gradient-to-r from-blue-200 via-blue-300 to-blue-400 focus:ring-blue-300 shadow-lg shadow-blue-500/50  font-medium hover:bg-gradient-to-br text-center border rounded-lg">Filter</button> -->
                     <ButtonMenu>grid</ButtonMenu>
