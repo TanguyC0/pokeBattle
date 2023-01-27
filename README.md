@@ -1,66 +1,101 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Bienvenue sur PokeBattle! 
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+*English Below* 
+__________________________________________________
+## Cadre
+Ce travail a été réalisé dans le cadre de la formation Becode-WebDev 2023, projet libre et langages au choix. 
+### Langages
+- Laravel,
+- Vue.Js: composition,
+- Tailwind,
+- SQL,
 
-## About Laravel
+### Technologies
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Inertia,
+- Vite, 
+- Flowbite,
+- Node,
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+#### Projet
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+##### Resume
 
-## Learning Laravel
+Notre projet s'inspire du type de jeu gacha sur browser et est basé sur l'univers de Pokémon. Le joueur vit donc une aventure de plusieurs paliers, chaque palier contenant différents niveaux. Chaque niveau peut proposer trois types d'action: combattre, attraper un monstre ou ramasser de l'équipement. L'interface utilisateur offre toutes les possibilités au joueur pour optimiser au maximum son équip; e afin d'assurer sa victoire au prochain combat. Des évènements ponctuels et de durée variable permettent de capturer un pokémon ou de ramasser du butin rares. 
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+![](\public\img\background\bginterieur.png "Ready to fiht?") 
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+##### Fonctionalités
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+###### -  Boite
+Dans boite on peut retrouver un pannel des pokémons attrapés que le joueur peut choisir d'afficher en liste pour plus de détails ou en tableau pour une vue plus globale. Il peut aussi choisir de filtrer sa recherhce par type de pokémons. La partie droite de l'affichage lui permet de consulter plus amplement les informations du pokémon sélectionné.
+###### - Equipe
+La page équipe permet au joueur de sémectionner parmis son pannel de pokémons les 6 monstres qu'il désirera faire combattre lors de l'aventure.
+###### - Sac
+L'inventaire du dresseur qui lui permet d'afficher les objets collectés à droite tandis qu'à gauche 4 boutons offfrent la possiblité de trier ces objets par catégorie: soin, pokéball et craft.
 
-## Laravel Sponsors
+###### -  Aventure
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Divisée en deux parties, la page aventure présente à gauche l'actuelle composition d'équipe du joeuur et à droite, la carte de l'aventure avec la position en temps réel du joueur, ainsi que les niveaux précédents et suivants du palier. L'équipe apparait sous forme d'un tableau avec l'ilage du pokémon et sa vie, un simple click sur l'image ramène dés lors le joueur sur la page "Equipe" lui permettant de modifier la composition de son équipe ou de simplement consulter toutes les informations disponibles sur son monstre.
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
 
-## Contributing
+Réalisé par [Tanguy](https://github.com/TanguyC) et [Aurélie](https://github.com/Elhya13)
+***
+# Welcome on PokeBattle!
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Working environemennt 
+This project had been realised during the BeCode-WebDev 2023 training, it's a "no-restrain" project and used technologies.
 
-## Code of Conduct
+### Languages
+- Laravel,
+- Vue.Js: composition,
+- Tailwind,
+- SQL,
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Technologies
 
-## Security Vulnerabilities
+- Inertia,
+- Vite, 
+- Flowbite,
+- Node,
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+#### Project
 
-## License
+##### Resume
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Our project is inspired from gacha games on browser and based upon the Pokemon universe. The player is merged in an adventure of serveral stages, each stage composed by differents levels. Each level can offer three types of action: fight; catch a monster or loot some equipement.The user interface is offering all possibilities to the player to optimise its team at its maximum to ensure his/her win in the next battle. Punctuals events with variables duration allow to capture or loot some rare loot.
+![](\public\img\background\bginterieur.png "Ready to fiht?") 
+
+#### Fonctionalities
+
+###### -  Box
+The Box is a page that displays a panel of all the pokemons caught, in a list or in a grid. In the list displayed mode the name of the pokemon is visible. You have one button for switching between both and another button for filtering the pokemons.The left side of the screen shows the panel in summary, while the right side shows the data from the selected summary giving more information about the health, the type, a bigger picture and also the possibility to release the pokemon and heal him. 
+###### - Team
+The Team page allows the player to select 6 Pokemons from his panel and prepare them for the fight. The left part shows the selected 6 and the right part, the box panel. 
+###### - Bag
+The Bag modal opens the inventory of the player and lets him see all the items collected on the right meanwhile, on the left, 4 buttons offer the possibility to the user to sort these items by category; heal, catch and craft. 
+
+
+###### -  Adventure
+
+This page is divided in two sides: the actual team selected by the player on the left and on the right, the road map of the Adventure, showing which stage you are, the previous and next ones.
+
+The team will be displayed under a table form with the images of your pokemons and their health. One easy click on the image will take you to the Team modals, to show the data about the selected pokemon or to simply modify the player's build.
+
+
+
+Realised by[Tanguy](https://github.com/TanguyC) & [Aurélie](https://github.com/Elhya13)
+
+
+
+
+
+
+
+
+
+
+
+
+
