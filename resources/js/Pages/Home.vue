@@ -71,7 +71,7 @@ let lien = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pok
     </div>
 
 </template>
-<style> 
+<!-- <style> 
 @font-face {
    font-family: ketchum;
    src: url(../../css/font/Ketchum.otf);
@@ -81,6 +81,6 @@ let lien = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pok
    src: url(../../css/font/pokemonXY.ttf)
 }
 *{
-    font-family:pokemonXY;
+    font-family:pokemon;
     }
-</style>
+</style> -->

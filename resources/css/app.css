@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @layer base {
+@layer base {
 @font-face {
         font-family: "ketchum";
         src: url(../../css/font/ketchum/Ketchum.otf);
@@ -16,15 +16,15 @@
         src: url(../../css/font/pokemon.ttf);
 };
 @font-face{
-        font-family: pokemonXY;
-        src: url(../../css/font/pokemonXY.ttf);
+        font-family: "pokemonXY";
+        src: local("pokemonXY"), url(../../css/font/pokemonXY.ttf);
     };
 
 
 *{
     font-family:pokemonXY;
     }
-}; */
+};
 
 
 
