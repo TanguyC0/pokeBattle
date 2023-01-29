@@ -21,10 +21,6 @@ let active = ref([true, false, false, false, false, false]);
 console.log(props.location);
 
 const inStage = (zone, str, stage) => {
-    let color = "blue";
-    if (zone.id == stage) {
-        color = "pink";
-    }
     return str.replace('@',JSON.parse(zone.position).x).replace('@',JSON.parse(zone.position).y);
 }
 
@@ -73,7 +69,7 @@ const switchZone = (id) => {
                     <!-- vue -->
                     <div class="flex flex-col">
                         <div class="m-1 h-64 w-64  bg-white border border-gray-300 rounded-lg shadow hover:bg-gray-200 text-center">
-                            <img v-if="status != 0" :src="`${ img }`" alt="">
+                            <img :src="`${ img }`" alt="">
                         </div>
                         
                     </div>

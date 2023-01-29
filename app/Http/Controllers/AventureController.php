@@ -34,11 +34,11 @@ class AventureController extends Controller
     public function walk($stage = 1)
     {
         $value = rand(1, 15);
-        if ($value <= 5) //item
+        if ($value <= 4) //item
         { 
             $this->addItem($stage);
         } 
-        elseif ($value <= 10) //pokemon
+        elseif ($value <= 8) //pokemon
         { 
             $this->choosePokemon($stage);
         }
@@ -169,14 +169,14 @@ class AventureController extends Controller
             case 1:
                 $this->message['status'] = 0;
                 $this->message['message'] = $listMessage[$num];
-                $this->message['img'] = '';
+                $this->message['img'] = '/img/'.['male','female'][rand(0,1)].'-character.png';
                 $this->message['id'] = $choix;
                 $this->message['items'] = $itemList;
                 break;
             case 2:
                 $this->message['status'] = 1;
                 $this->message['message'] = $listMessage[$num];
-                $this->message['img'] = '../img/item'.$choix.'.png';
+                $this->message['img'] = '../img/items/item'.$choix.'.png';
                 $this->message['id'] = $choix;
                 $this->message['items'] = $itemList;
 
