@@ -35,7 +35,7 @@ defineProps({
 });
 
 let xp = 50;
-let lien = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png";
+let lien = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${Math.floor(Math.random() * 500)+1}.png`;
 </script>
 
 <template>
