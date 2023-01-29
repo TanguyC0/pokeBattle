@@ -8,6 +8,7 @@ use App\Models\bag;
 use App\Models\box;
 use App\Models\stages;
 use App\Models\user_games;
+use App\Models\items;
 
 class AventureController extends Controller
 {
@@ -31,89 +32,67 @@ class AventureController extends Controller
 
     public function walk($stage = 1)
     {
-        $this->setMessage(1);
-
         $value = rand(1, 15);
-        if ($value <= 5) { //item
-            $choix = $this->choose(0,$stage);
-
-
-            // si objet existe, incrémenté count, si non, cree l'objet
-            $item = bag::where('id_item', $choix)->first();
-            if($item)
-            {
-                $item->count = $item->count + 1;
-                $item->save();
-            }
-            else
-            {
-                $item = new bag;
-                $item->id_item = $choix;
-                $item->count = 1;
-                $item->save();
-            }
-
-            $this->setMessage(2,$choix );
-
-        } elseif ($value <= 10) { //pokemon
-            $choix = $this->choose(1,$stage);
-
-            if(Box::count() < 20)
-            {
-
-                $item = bag::join('items', 'items.id', '=', 'bags.id_item')->where('type', 'catch')->where('count', '>', 0)->get();
-                $itemList = [];
-                if ($item->count() > 0){
-                foreach ($item as $key => $value) {
-                    $itemList[] = [
-                        'id' => $value->id_item,
-                        'name' => $value->name,
-                        'count' => $value->count,
-                        'img' => '../img/item'.$value->id_item.'.png',
-                    ];
-                }
-                }
-
-                $this->setMessage(3,$choix,$itemList);
-            }
-
+        if ($value <= 5) //item
+        { 
+            $this->addItem($stage);
+        } 
+        elseif ($value <= 10) //pokemon
+        { 
+            $this->choosePokemon($stage);
+        }
+        else
+        {
+            $this->setMessage(1);
         }
 
         return Inertia::render('Aventure', $this->message);
     }
 
-    public function catch($id, $idItem)
+    public function addItem($stage)
     {
-        $ball = Bag::where('id_item', $idItem)->get();
+        $choix = $this->choose(0,$stage);
 
-        if ($ball->count() == 0 || $ball[0]->count == 0) {
-
-            $this->setMessage(6,$id);
+        // si objet existe, incrémenté count, si non, cree l'objet
+        $item = bag::where('id_item', $choix)->first();
+        if($item)
+        {
+            $item->count = $item->count + 1;
+            $item->save();
         }
         else
         {
-            $value = rand(1, 10);
-            Bag::where('id_item', $idItem)->decrement('count');
-
-            if ($value <= 5) {
-                Box::insert([
-                    'id_pokemon' => $id,
-                    'level' => 1,
-                    'hp' => 100,
-                    'attack' => 100,
-                    'defense' => 100,
-                    'xp' => 0,
-                ]);
-
-                $this->setMessage(4,$id);
-
-            } elseif ($value <= 10) {
-
-                $this->setMessage(5,$id);
-            }
+            $item = new bag;
+            $item->id_item = $choix;
+            $item->count = 1;
+            $item->save();
         }
 
-        return Inertia::render('Aventure', $this->message);
+        $this->setMessage(2,$choix );
+    }
+
+    public function choosePokemon($stage)
+    {
+        $choix = $this->choose(1,$stage);
+
+        if(Box::count() < 20)
+        {
+
+            $item = bag::join('items', 'items.id', '=', 'bags.id_item')->where('type', 'catch')->where('count', '>', 0)->get();
+            $itemList = [];
+            if ($item->count() > 0){
+            foreach ($item as $key => $value) {
+                $itemList[] = [
+                    'id' => $value->id_item,
+                    'name' => $value->name,
+                    'count' => $value->count,
+                    'img' => '../img/item'.$value->id_item.'.png',
+                    ];
+                }
+            }
+
+            $this->setMessage(3,$choix,$itemList);
+        }
     }
 
     public function choose( int $pack, int $stage){ // 0 for item, 1 for pokemon
@@ -127,6 +106,47 @@ class AventureController extends Controller
                 return json_decode($list->pokemons, true)[rand(0, count(json_decode($list->pokemons, true))-1)];
                 break;
         }
+    }
+
+    public function catch($id, $idItem)
+    {
+        $ball = Bag::where('id_item', $idItem)->get();
+
+        if ($ball->count() == 0 || $ball[0]->count == 0) {
+
+            $this->setMessage(6,$id);
+        }
+        else
+        {
+            
+            Bag::where('id_item', $idItem)->decrement('count');
+
+            $power = Items::where('id', $idItem)->select('power')->get();
+
+            $limit_random_array_values = range(0, 100);
+            shuffle($limit_random_array_values);
+            $random_array_value = array_slice($limit_random_array_values ,0,$power[0]->power);
+
+            $value = rand(0, 100);
+            if (in_array($value, $random_array_value)) {
+                Box::insert([
+                    'id_pokemon' => $id,
+                    'level' => 1,
+                    'hp' => 100,
+                    'attack' => 100,
+                    'defense' => 100,
+                    'xp' => 0,
+                ]);
+
+                $this->setMessage(4,$id);
+
+            } else {
+
+                $this->setMessage(5,$id);
+            }
+        }
+
+        return Inertia::render('Aventure', $this->message);
     }
 
     //set message
