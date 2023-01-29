@@ -1,5 +1,6 @@
 <script setup>
-import { Head, Link } from '@inertiajs/inertia-vue3';
+import { Head, Link} from '@inertiajs/inertia-vue3';
+import { defineProps, ref } from 'vue';
 import ButtonMenu from '@/Components/ButtonMenu.vue';
 
 const props = defineProps({
@@ -11,8 +12,10 @@ const props = defineProps({
     items: Array,
 });
 
+const use = props.status == 2 ? ref(props.items[0].id) : 0;
+
 </script>
-<script>
+<!-- <script>
 export default {
     data() {
         return {
@@ -20,7 +23,7 @@ export default {
         }
     },
 };
-</script>
+</script> -->
 
 <template>
     <Head title="aventure" />

@@ -61,7 +61,7 @@ class AventureController extends Controller
             if(Box::count() < 20)
             {
 
-                $item = bag::join('items', 'items.id', '=', 'bags.id_item')->where('type', 'catch')->get();
+                $item = bag::join('items', 'items.id', '=', 'bags.id_item')->where('type', 'catch')->where('count', '>', 0)->get();
                 $itemList = [];
                 foreach ($item as $key => $value) {
                     $itemList[] = [
