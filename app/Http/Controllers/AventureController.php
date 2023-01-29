@@ -133,9 +133,9 @@ class AventureController extends Controller
                 Box::insert([
                     'id_pokemon' => $id,
                     'level' => 1,
-                    'hp' => 100,
-                    'attack' => 100,
-                    'defense' => 100,
+                    'hp' => rand(5, 20),
+                    'attack' => rand(5, 20),
+                    'defense' => rand(5, 20),
                     'xp' => 0,
                 ]);
 

@@ -2,7 +2,7 @@
 import { defineProps, ref } from 'vue';
 const props = defineProps(['dataUser', 'color']);
 
-console.log(props.color);
+// console.log(dataUser);
 
 const getColor = (color, str) => {
 

@@ -50,7 +50,7 @@ const switchZone = (id) => {
             <section class="bg-red-600 bg-opacity-30 rounded-2xl border-4 w-2/5 p-5 flex flex-col">
                 <!-- carte -->
                 <div class="bg-[url('/img/map/map.jpg')] bg-no-repeat bg-contain h-3/5">
-                    <div v-for="zone in location" class="w-5 h-5 rounded-full border-2 relative bg-yellow-500" :class="inStage(zone, 'top-[@px] left-[@px]', stage), {'bg-pink-500' : active[zone.id-1]} " @click="stage = zone.id, switchZone(zone.id)"></div>
+                    <div v-for="zone in location" class="w-5 h-5 rounded-full border-2 relative z-10 bg-yellow-500" :class="inStage(zone, 'top-[@px] left-[@px]', stage), {'bg-pink-500' : active[zone.id-1]} " @click="stage = zone.id, switchZone(zone.id)"></div>
                 </div>
 
                 <section class="flex justify-center m-2">

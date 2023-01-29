@@ -34,7 +34,6 @@ defineProps({
     dataUser: Array,
 });
 
-let xp = 50;
 let lien = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${Math.floor(Math.random() * 500)+1}.png`;
 </script>
 
@@ -43,7 +42,7 @@ let lien = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pok
 
 
     <div class ="w-full max-h-screen min-h-screen h-screen">
-        <Header :dataUser="dataUser"/>
+        <Header />
         <main class="flex flex-row justify-around h-4/5 w-full ">
 
             
