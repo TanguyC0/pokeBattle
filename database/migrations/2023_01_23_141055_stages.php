@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('name');
             $table->json('pokemons');
             $table->json('items');
+            // champs for position in the map (x,y)
+            $table->json('position')->nullable();
         });
 
         // insert data
@@ -26,7 +28,8 @@ return new class extends Migration
             array(
                 'name' => 'stage1',
                 'pokemons' => '[1,4,7,10]',
-                'items' => '[1,2]'
+                'items' => '[1,2]',
+                'position' => '{"x": 0, "y": 0}',
             )
         );
     }

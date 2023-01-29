@@ -21,6 +21,7 @@ class AventureController extends Controller
             'img' => '',
             'id' => 0,
             'items' => [],
+            'location' => Stages::select('position','id')->get(),
         ];
     }
 
