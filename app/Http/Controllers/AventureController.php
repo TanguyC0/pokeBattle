@@ -63,6 +63,7 @@ class AventureController extends Controller
 
                 $item = bag::join('items', 'items.id', '=', 'bags.id_item')->where('type', 'catch')->where('count', '>', 0)->get();
                 $itemList = [];
+                if ($item->count() > 0){
                 foreach ($item as $key => $value) {
                     $itemList[] = [
                         'id' => $value->id_item,
@@ -70,6 +71,7 @@ class AventureController extends Controller
                         'count' => $value->count,
                         'img' => '../img/item'.$value->id_item.'.png',
                     ];
+                }
                 }
 
                 $this->setMessage(3,$choix,$itemList);
