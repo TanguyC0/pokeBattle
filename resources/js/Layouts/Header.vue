@@ -4,7 +4,7 @@ import Jauge from '@/Components/Jauge.vue';
 // import axios from 'axios';
 import { defineProps, ref } from 'vue';
 
-// const props = defineProps(['dataUser']);
+const props = defineProps(['dataUser']);
 
 
 </script>
