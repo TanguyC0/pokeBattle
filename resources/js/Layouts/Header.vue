@@ -1,17 +1,35 @@
 <script setup>
 import { Link } from '@inertiajs/inertia-vue3';
 import Jauge from '@/Components/Jauge.vue';
-// import axios from 'axios';
-import { defineProps, ref } from 'vue';
+</script>
+<script>
+import axios from 'axios';
 
-const props = defineProps(['dataUser']);
-
-
+export default {
+    data() {
+        return {
+            dataUser: []
+        };
+    },
+    methods: {
+        async getData() {
+            try {
+                const response = await axios.get('/api/user');
+                this.dataUser = response.data;
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    },
+    mounted() {
+        this.getData();
+    }
+};
 </script>
 
 <template>
     <header class="flex flex-row w-full h-1/5 opacity-90 p-3">
-
+        <Link :href="route('home')" class="m-5 w-20 h-40 hover:underline">Home</Link>
         <div class="flex flex-row w-full items-center justify-evenly ">
             <Jauge :dataUser="dataUser.xp" :color="'blue'">Level:{{ dataUser.level}}</Jauge>
             <Jauge :dataUser="100" :color="'yellow'">Money: {{ dataUser.money}} $</Jauge>

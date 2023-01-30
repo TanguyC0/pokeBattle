@@ -1,6 +1,7 @@
 <script setup>
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import ButtonMenu from '@/Components/ButtonMenu.vue';
+import Header from '@/Layouts/Header.vue';
 
 // defineProps({
 //     namePokemon: String,
@@ -13,8 +14,7 @@ let nbSlot = 6;
 <template>
     <Head title="team" />
     <div class ="w-full max-h-screen min-h-screen h-screen">
-        <Link :href="route('home')" class="m-5 w-20 h-40 hover:underline">Home</Link>
-        <!-- <Header :dataUser="dataUser"/> -->
+        <Header />
         <main class="flex flex-col items-center h-4/5 mx-10 bg-red-600 bg-opacity-30 rounded-2xl border-4">
             <h2 class="text-3xl flex">Team</h2>
             <div class="flex justify-evenly w-full h-4/5 mt-14">

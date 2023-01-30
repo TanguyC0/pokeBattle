@@ -2,6 +2,7 @@
 import { Head, Link} from '@inertiajs/inertia-vue3';
 import { defineProps, ref } from 'vue';
 import ButtonMenu from '@/Components/ButtonMenu.vue';
+import Header from '@/Layouts/Header.vue';
 
 const props = defineProps({
     // dataUser: Array,
@@ -35,7 +36,7 @@ const switchZone = (id) => {
     <Head title="aventure" />
 
     <div class ="w-full max-h-screen min-h-screen h-screen">
-        <Link :href="route('home')" class="m-5 w-20 h-40 hover:underline">Home</Link>
+        <Header />
         <main class="flex flex-row justify-around h-4/5 w-full ">
 
             <section class="bg-red-600 bg-opacity-30 rounded-2xl border-4 p-5">
