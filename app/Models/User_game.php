@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class User_game extends Model
 {
     use HasFactory;
+    
+    protected $fillable = ['id'];
+    public $timestamps = false;
 }
