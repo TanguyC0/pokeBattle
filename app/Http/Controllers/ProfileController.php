@@ -95,5 +95,29 @@ class ProfileController extends Controller
 
         return $list;
     }
+
+    public function setFavorite(Request $request)
+    {
+        $id = $request->user()->id;
+        $data = User_game::where('id', $id)->first();
+        $data->favorite = $request->input('id');
+        $data->save();
+
+        return $request->input('id');
+    }
     
+    public function getFavorite($id)
+    {
+        if($id != 0){
+            $data = (User_game::where('id', $id)->first())->favorite;
+            if($data == null){
+                $data = rand(1, 300);
+            }
+        }else{
+            // random number 1 ->300
+            $data = rand(1, 300);
+        }
+
+        return $data;
+    }
 }

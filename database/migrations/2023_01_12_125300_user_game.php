@@ -24,6 +24,7 @@ return new class extends Migration
             $table->integer('money')->default(0);
             $table->integer('exp')->default(0);
             $table->json('team')->nullable();
+            $table->integer('favorite')->nullable();
             $table->foreign('id')->references('id')->on('users');
         });
     }

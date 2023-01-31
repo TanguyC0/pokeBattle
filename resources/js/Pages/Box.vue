@@ -1,24 +1,28 @@
 <script setup> // for Ext API Aka Composition
 import { Head, Link} from '@inertiajs/inertia-vue3';
+import { ref } from 'vue';
 import Header from '@/Layouts/Header.vue';
 import ButtonMenu from '@/Components/ButtonMenu.vue';
+import axios from 'axios';
 
 const props = defineProps({
     listPokemon: Array,
 });
-console.log(props.listPokemon);
+
+const pick = ref(0);
+
 let nbSlot = props.listPokemon.length + (4 - (props.listPokemon.length%4));
 
+function chooseFavorite(poke){
 
-</script>
-<script>
-export default {
-    data() {
-        return {
-            pick: 0   
-        }
-    },
-};
+    axios.post('/api/favorite', {
+        id: poke.id
+    }).then(response => {
+console.log(response.data);
+});
+
+}
+
 </script>
 
 <template>
@@ -35,6 +39,8 @@ export default {
                 <nav>
                     <ButtonMenu>grid</ButtonMenu>
                     <ButtonMenu>filter</ButtonMenu>
+                    <ButtonMenu @click="chooseFavorite(listPokemon[pick])" >fav</ButtonMenu>
+                    <ButtonMenu>sell</ButtonMenu>
                 </nav>
                 <section class="border p-8 rounded-lg overflow-y-scroll">
                     <ul class="grid grid-cols-4 gap-4 wrap ">

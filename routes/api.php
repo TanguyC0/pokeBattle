@@ -18,5 +18,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('web')->get('/user', [App\Http\Controllers\ProfileController::class, 'jauge']);
-
+Route::middleware('web')->group(function () {
+    Route::get('/user', [App\Http\Controllers\ProfileController::class, 'jauge']);
+    Route::post('/favorite', [App\Http\Controllers\ProfileController::class, 'setFavorite']);
+});

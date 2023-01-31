@@ -30,11 +30,13 @@ onMounted(() => {
     initTooltips();
 });
 
-defineProps({
-    dataUser: Array,
+const props = defineProps({
+    fav: Array,
 });
 
-let lien = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${Math.floor(Math.random() * 500)+1}.png`;
+console.log(props);
+
+let lien = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${props.fav}.png`;
 </script>
 
 <template>
