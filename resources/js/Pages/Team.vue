@@ -3,9 +3,9 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
 import ButtonMenu from '@/Components/ButtonMenu.vue';
 import Header from '@/Layouts/Header.vue';
 
-// defineProps({
-//     namePokemon: String,
-// });
+defineProps({
+    listPokemon: Array,
+});
 
 let nbSlot = 6;
 
@@ -34,7 +34,7 @@ let nbSlot = 6;
                         <template v-for="n in nbSlot">
                             <li class="h-32 w-32 hover:bg-violet-300 bg-white border border-gray-300 rounded-lg shadow  active:bg-violet-800 focus:outline-none focus:ring focus:ring-violet-500 "
                                 @mouseover="" >
-                                <!-- <img v-if="n<=listPokemon.length" :src="`${listPokemon[n-1].image}`" alt="item" class="w-full justify-center"> -->
+                                <img v-if="n<=listPokemon.length" :src="`${listPokemon[n-1].image}`" alt="item" class="w-full justify-center">
                             </li>
                         </template>
                     </ul>

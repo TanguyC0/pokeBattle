@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use App\Models\box;
 
 class PokemonController extends Controller
@@ -36,5 +37,31 @@ class PokemonController extends Controller
         $data->attack = $data->attack + 5;
         $data->defense = $data->defense + 5;
         return $data;
+    }
+
+    public function findPokemonUser($id)
+    {
+        $data = Box::all()->where('id_user', $id);
+        $list = [];
+            
+        foreach ($data as $key => $value) {
+            $response = Http::get('https://pokeapi.co/api/v2/pokemon/'.$value['id_pokemon']);
+            $posts = $response->json();
+            array_push($list, array( 'id'=> $value['id_pokemon'],
+                                    'name' => $posts['name'], 
+                                    'type' => [$posts['types'][0]['type']['name'], isset($posts['types'][1]['type']['name']) ? $posts['types'][1]['type']['name'] : ''],
+                                    'level' => $value['level'],
+                                    'image' => $posts['sprites']['other']['official-artwork']['front_default'],
+                                    'hp' => $value['hp'],
+                                    'attack' => $value['attack'],
+                                    'defense' => $value['defense'],
+                                    'xp' => $value['xp'],
+                                    'xpMax' => ($value['level'] * 100)+ceil($value['level'] ** 2 * 10.5),
+                                )
+                            );
+        }
+
+        return $list;
+
     }
 }
