@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\box;
 use App\Models\User_game;
+use App\Models\Bag;
+use App\Models\Items;
 
 class TeamController extends Controller
 {
@@ -16,10 +18,13 @@ class TeamController extends Controller
         if($request->user())
         {
             $id = $request->user()->id;
+
+            //box
             $pokemon = new PokemonController();
             $box = $pokemon->findPokemonUser(Box::all()->where('id_user', $id));
+
+            //team
             $user = json_decode((User_game::where('id', $id)->get())[0]->team);
-            // dd($user);
             if(count($user)>0)
             {
                 $team = $pokemon->findPokemonUser(Box::where('id_user', $id)->whereIn('id', $user)->get());
@@ -29,8 +34,13 @@ class TeamController extends Controller
                 $team = [3];
             }
 
+            //bag
+
+            $bag = Bag::join('items', 'bags.id_item', '=', 'items.id')->where('id_user', $id)->where('type', 'heal')->get();
+
+
         }
-        return Inertia::render('Team', ['listPokemon' => $box, 'team' => $team]);
+        return Inertia::render('Team', ['listPokemon' => $box, 'team' => $team, 'bag' => $bag]);
     }
 
     // function for switch pokemon in team

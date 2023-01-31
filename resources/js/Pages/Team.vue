@@ -8,6 +8,7 @@ import { ref } from 'vue';
 const props = defineProps({
     listPokemon: Array,
     team: Array,
+    bag: Array,
 });
 
 const pickTeam = ref(0);
@@ -80,6 +81,7 @@ function used(pokemon, team, place){
                     <ButtonMenu>pokemon</ButtonMenu>
                     <ButtonMenu>item</ButtonMenu>
                     <ButtonMenu @click="switchPokemon(pickTeam,listPokemon[pick].idTable,team)">take in team</ButtonMenu>
+                    <ButtonMenu>use</ButtonMenu>
                 </nav>
             </div>
         </main>
