@@ -17,13 +17,13 @@ return new class extends Migration
             $table->id();
             $table->boolean('is_admin')->default(false);
             $table->boolean('is_banned')->default(false);
-            $table->int('image')->default(1);
+            $table->integer('image')->default(1);
             $table->integer('level')->default(1);
             $table->integer('stage')->default(1);
             $table->integer('max_box')->default(10);
             $table->integer('money')->default(0);
             $table->integer('exp')->default(0);
-            $table->json('team')->default('[]');
+            $table->json('team')->nullable();
             $table->foreign('id')->references('id')->on('users');
         });
     }
