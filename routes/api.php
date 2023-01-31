@@ -21,4 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware('web')->group(function () {
     Route::get('/user', [App\Http\Controllers\ProfileController::class, 'jauge']);
     Route::post('/favorite', [App\Http\Controllers\ProfileController::class, 'setFavorite']);
+    Route::post('/updateTeam', [App\Http\Controllers\TeamController::class, 'switchPokemon']);
 });

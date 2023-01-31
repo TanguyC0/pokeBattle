@@ -39,15 +39,15 @@ class PokemonController extends Controller
         return $data;
     }
 
-    public function findPokemonUser($id)
+    public function findPokemonUser($data)
     {
-        $data = Box::all()->where('id_user', $id);
         $list = [];
             
         foreach ($data as $key => $value) {
             $response = Http::get('https://pokeapi.co/api/v2/pokemon/'.$value['id_pokemon']);
             $posts = $response->json();
-            array_push($list, array( 'id'=> $value['id_pokemon'],
+            array_push($list, array('idTable' => $value['id'],
+                                    'id'=> $value['id_pokemon'],
                                     'name' => $posts['name'], 
                                     'type' => [$posts['types'][0]['type']['name'], isset($posts['types'][1]['type']['name']) ? $posts['types'][1]['type']['name'] : ''],
                                     'level' => $value['level'],
@@ -64,4 +64,5 @@ class PokemonController extends Controller
         return $list;
 
     }
+
 }

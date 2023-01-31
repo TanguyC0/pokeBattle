@@ -17,7 +17,7 @@ class BoxController extends Controller
         {
             $id = $request->user()->id;
             $pokemon = new PokemonController();
-            $list = $pokemon->findPokemonUser($id);
+            $list = $pokemon->findPokemonUser(Box::all()->where('id_user', $id));
         }
         // dd($list);
         return Inertia::render('Box', ['listPokemon' => $list]);

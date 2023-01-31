@@ -2,12 +2,35 @@
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import ButtonMenu from '@/Components/ButtonMenu.vue';
 import Header from '@/Layouts/Header.vue';
+import axios from 'axios';
+import { ref } from 'vue';
 
 defineProps({
     listPokemon: Array,
+    team: Array,
 });
 
+const pickTeam = ref(0);
+const pick = ref(0);
 let nbSlot = 6;
+
+function switchPokemon(place, pokemon, team){
+    
+    // Vérifier que la liste `team` n'est pas vide
+    if(team.length > 0){
+        // Chercher si un objet avec la propriété `idTable` égale à `pokemon` existe déjà dans la liste `team`
+        let existingPokemon = team.find(poke => poke.idTable === pokemon);
+        
+        // Si un objet existe, envoyer une requête POST à l'API
+        if(existingPokemon == null){
+            axios.post('/api/updateTeam', {
+                place: place,
+                pokemon: pokemon
+            })
+        }
+    }
+    
+}
 
 </script>
 
@@ -21,10 +44,10 @@ let nbSlot = 6;
                 <section class="border p-8 rounded-lg">
                     <h3 class="text-center text-3xl mb-8">Your team</h3>
                     <ul class="grid grid-cols-3 gap-4 wrap ">
-                        <template v-for="n in nbSlot">
-                            <li class="h-32 w-32 hover:bg-violet-300 bg-white border border-gray-300 rounded-lg shadow  active:bg-violet-800 focus:outline-none focus:ring focus:ring-violet-500 "
+                        <template v-for="n in 6">
+                            <li @click="pickTeam = n-1" class="h-32 w-32 hover:bg-violet-300 bg-white border border-gray-300 rounded-lg shadow  active:bg-violet-800 focus:outline-none focus:ring focus:ring-violet-500 "
                                 @mouseover="" >
-                                <!-- <img v-if="n<=listPokemon.length" :src="`${listPokemon[n-1].image}`" alt="item" class="w-full justify-center"> -->
+                                <img v-if="n<=team.length" :src="`${team[n-1].image}`" alt="item" class="w-full justify-center">
                             </li>
                         </template>
                     </ul>
@@ -32,7 +55,7 @@ let nbSlot = 6;
                 <section class="border p-8 rounded-lg overflow-y-scroll">
                     <ul class="grid grid-cols-4 gap-4 wrap ">
                         <template v-for="n in nbSlot">
-                            <li class="h-32 w-32 hover:bg-violet-300 bg-white border border-gray-300 rounded-lg shadow  active:bg-violet-800 focus:outline-none focus:ring focus:ring-violet-500 "
+                            <li @click="pick = n-1" class="h-32 w-32 hover:bg-violet-300 bg-white border border-gray-300 rounded-lg shadow  active:bg-violet-800 focus:outline-none focus:ring focus:ring-violet-500 "
                                 @mouseover="" >
                                 <img v-if="n<=listPokemon.length" :src="`${listPokemon[n-1].image}`" alt="item" class="w-full justify-center">
                             </li>
@@ -42,6 +65,7 @@ let nbSlot = 6;
                 <nav>
                     <ButtonMenu>pokemon</ButtonMenu>
                     <ButtonMenu>item</ButtonMenu>
+                    <ButtonMenu @click="switchPokemon(pickTeam,listPokemon[pick].idTable,team)">take in team</ButtonMenu>
                 </nav>
             </div>
         </main>

@@ -47,6 +47,7 @@ class RegisteredUserController extends Controller
         
         $user_game = User_game::create([
             'id' => $user->id,
+            'team' => json_encode([0,0,0,0,0,0]),
         ]);
 
         $request->session()->regenerate();
