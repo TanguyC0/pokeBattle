@@ -43,7 +43,7 @@ export default {
                 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300"
                 id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
                 data-dropdown-placement="bottom">
-                <img class="w-14 h-14 rounded-full" src="" alt="user photo">
+                <img class="w-14 h-14 rounded-full" :src="`/img/profil/${dataUser.pdp}.png`" alt="user photo">
             </Link>
         </div>
 

@@ -66,24 +66,30 @@ class ProfileController extends Controller
 
     public function jauge(Request $request)
     {
-        $id = $request->user()->id;
+        // verifier si l'utilisateur existe
+        $id = null;
+        if($request->user())
+            $id = $request->user()->id;
 
-        if (isset($id) === false || $id === 0) {
+        if (User_game::where('id', $id)->doesntExist() || $id == null) {
             $list = [
                 'xp' => 50,
                 'money' => 0,
                 'level' => 1,
                 'max_box' => 10,
                 'box' => 5,
+                'pdp' => 1,
             ];
         } else {
             $data = User_game::where('id', $id)->first();
+
             $list = [
                 'xp' => $data->exp,
                 'money' => $data->money,
                 'level' => $data->level,
                 'max_box' => $data->max_box,
                 'box' => 10,
+                'pdp' => $data->image,
             ];
         }
 
