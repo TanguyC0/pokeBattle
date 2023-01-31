@@ -5,14 +5,14 @@ import Header from '@/Layouts/Header.vue';
 import axios from 'axios';
 import { ref } from 'vue';
 
-defineProps({
+const props = defineProps({
     listPokemon: Array,
     team: Array,
 });
 
 const pickTeam = ref(0);
 const pick = ref(0);
-let nbSlot = 6;
+let nbSlot = props.listPokemon.length;
 
 function switchPokemon(place, pokemon, team){
     
@@ -30,6 +30,20 @@ function switchPokemon(place, pokemon, team){
         }
     }
     
+}
+
+function used(pokemon, team, place){
+
+    if (pick.value == place){
+        return "bg-violet-300";
+    }
+    if(team.length > 0){
+        let existingPokemon = team.find(poke => poke.idTable === pokemon);
+        if(existingPokemon != null){
+            return "bg-red-500";
+        }
+    }
+    return "";
 }
 
 </script>
@@ -56,7 +70,7 @@ function switchPokemon(place, pokemon, team){
                     <ul class="grid grid-cols-4 gap-4 wrap ">
                         <template v-for="n in nbSlot">
                             <li @click="pick = n-1" class="h-32 w-32 hover:bg-violet-300 bg-white border border-gray-300 rounded-lg shadow  active:bg-violet-800 focus:outline-none focus:ring focus:ring-violet-500 "
-                                @mouseover="" >
+                            :class="used(listPokemon[n-1].idTable,team,n-1)">
                                 <img v-if="n<=listPokemon.length" :src="`${listPokemon[n-1].image}`" alt="item" class="w-full justify-center">
                             </li>
                         </template>
