@@ -31,31 +31,41 @@ class AventureController extends Controller
         return Inertia::render('Aventure', $this->message);
     }
 
-    public function walk($stage = 1)
+    public function walk(Request $request, $stage = 1)
     {
-        $value = rand(1, 15);
-        if ($value <= 4) //item
-        { 
-            $this->addItem($stage);
-        } 
-        elseif ($value <= 8) //pokemon
-        { 
-            $this->choosePokemon($stage);
+        if($request->user())
+        {
+            $id = $request->user()->id;
+            
+
+            $value = rand(1, 15);
+            if ($value <= 4) //item
+            { 
+                $this->addItem($id,$stage);
+            } 
+            elseif ($value <= 8) //pokemon
+            { 
+                $this->choosePokemon($id,$stage);
+            }
+            else
+            {
+                $this->setMessage(1);
+            }
         }
         else
         {
-            $this->setMessage(1);
+            $this->setMessage(7);
         }
 
         return Inertia::render('Aventure', $this->message);
     }
 
-    public function addItem($stage)
+    public function addItem($id,$stage)
     {
         $choix = $this->choose(0,$stage);
 
         // si objet existe, incrémenté count, si non, cree l'objet
-        $item = bag::where('id_item', $choix)->first();
+        $item = bag::where('id_item', $choix)->where('id_user', $id)->first();
         if($item)
         {
             $item->count = $item->count + 1;
@@ -64,6 +74,7 @@ class AventureController extends Controller
         else
         {
             $item = new bag;
+            $item->id_user = $id;
             $item->id_item = $choix;
             $item->count = 1;
             $item->save();
@@ -72,14 +83,17 @@ class AventureController extends Controller
         $this->setMessage(2,$choix );
     }
 
-    public function choosePokemon($stage)
+    public function choosePokemon($id,$stage)
     {
         $choix = $this->choose(1,$stage);
 
-        if(Box::count() < 20)
+        if(Box::where('id_user', $id)->count() < 10)
         {
 
-            $item = bag::join('items', 'items.id', '=', 'bags.id_item')->where('type', 'catch')->where('count', '>', 0)->get();
+            $item = bag::join('items', 'items.id', '=', 'bags.id_item')->where('type', 'catch')
+                                                                        ->where('count', '>', 0)
+                                                                        ->where('id_user', $id)
+                                                                        ->get();
             $itemList = [];
             if ($item->count() > 0){
             foreach ($item as $key => $value) {
@@ -109,9 +123,10 @@ class AventureController extends Controller
         }
     }
 
-    public function catch($id, $idItem)
+    public function catch(Request $request ,$id, $idItem)
     {
-        $ball = Bag::where('id_item', $idItem)->get();
+        $idUser = $request->user()->id;
+        $ball = Bag::where('id_item', $idItem)->where('id_user',$idUser)->get();
 
         if ($ball->count() == 0 || $ball[0]->count == 0) {
 
@@ -120,7 +135,7 @@ class AventureController extends Controller
         else
         {
             
-            Bag::where('id_item', $idItem)->decrement('count');
+            Bag::where('id_item', $idItem)->where('id_user',$idUser)->decrement('count');
 
             $power = Items::where('id', $idItem)->select('power')->get();
 
@@ -132,6 +147,7 @@ class AventureController extends Controller
             if (in_array($value, $random_array_value)) {
                 Box::insert([
                     'id_pokemon' => $id,
+                    'id_user' => $idUser,
                     'level' => 1,
                     'hp' => rand(5, 20),
                     'attack' => rand(5, 20),
@@ -161,6 +177,7 @@ class AventureController extends Controller
             'Vous avez attrapé le pokemon', //4
             'Vous n\'avez pas attrapé le pokemon', //5
             'Vous n\'avez pas de ball', //6
+            'vous n\'existe pas', //7
         ];
 
         switch($num)
@@ -200,6 +217,13 @@ class AventureController extends Controller
                 $this->message['status'] = 3;
                 $this->message['message'] = $listMessage[$num];
                 $this->message['img'] = '';
+                $this->message['id'] = $choix;
+                $this->message['items'] = $itemList;
+                break;
+            case 7:
+                $this->message['status'] = 0;
+                $this->message['message'] = $listMessage[$num];
+                $this->message['img'] = '/img/PokeGhost.png';
                 $this->message['id'] = $choix;
                 $this->message['items'] = $itemList;
                 break;
