@@ -12,6 +12,7 @@ const props = defineProps({
     id: Number,
     items: Array,
     location: Object,
+    team: Array,
 });
 
 const use = props.status == 2 ? ref(props.items[0].id) : 0;
@@ -42,7 +43,11 @@ const switchZone = (id) => {
             <section class="bg-red-600 bg-opacity-30 rounded-2xl border-4 p-5">
                 <h2 class="text-center text-5xl mb-10">TEAM</h2>
                 <ul class="grid grid-cols-2 gap-4 wrap ">
-                    <li v-for="n in 6" class="h-40 w-40 bg-white"></li>
+                    <template v-for="n in 6">
+                    <li class="h-40 w-40 bg-white">
+                        <!-- <img :src="`${team[n-1].image}`" alt=""> -->
+                    </li>
+                </template>
                 </ul>
             </section>
 

@@ -7,7 +7,7 @@ use Inertia\Inertia;
 use App\Models\bag;
 use App\Models\box;
 use App\Models\stages;
-use App\Models\user_games;
+use App\Models\User_game;
 use App\Models\items;
 
 class AventureController extends Controller
@@ -22,14 +22,20 @@ class AventureController extends Controller
             'id' => 0,
             'items' => [],
             'location' => Stages::select('position','id')->get(),
+            'team' => [],
         ];
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $this->setMessage(0);
+        if($request->user())
+        {
+            $id = $request->user()->id;
+        }
+        $this->setMessage($id,0);
         return Inertia::render('Aventure', $this->message);
     }
+
 
     public function walk(Request $request, $stage = 1)
     {
@@ -49,12 +55,12 @@ class AventureController extends Controller
             }
             else
             {
-                $this->setMessage(1);
+                $this->setMessage($id,1);
             }
         }
         else
         {
-            $this->setMessage(7);
+            $this->setMessage($id,7);
         }
 
         return Inertia::render('Aventure', $this->message);
@@ -80,7 +86,7 @@ class AventureController extends Controller
             $item->save();
         }
 
-        $this->setMessage(2,$choix );
+        $this->setMessage($idUser,2,$choix );
     }
 
     public function choosePokemon($id,$stage)
@@ -106,7 +112,7 @@ class AventureController extends Controller
                 }
             }
 
-            $this->setMessage(3,$choix,$itemList);
+            $this->setMessage($idUser,3,$choix,$itemList);
         }
     }
 
@@ -130,7 +136,7 @@ class AventureController extends Controller
 
         if ($ball->count() == 0 || $ball[0]->count == 0) {
 
-            $this->setMessage(6,$id);
+            $this->setMessage($idUser,6,$id);
         }
         else
         {
@@ -155,11 +161,11 @@ class AventureController extends Controller
                     'xp' => 0,
                 ]);
 
-                $this->setMessage(4,$id);
+                $this->setMessage($idUser,4,$id);
 
             } else {
 
-                $this->setMessage(5,$id);
+                $this->setMessage($idUser,5,$id);
             }
         }
 
@@ -167,7 +173,7 @@ class AventureController extends Controller
     }
 
     //set message
-    public function setMessage($num, $choix = 0, $itemList = [])
+    public function setMessage($user,$num, $choix = 0, $itemList = [])
     {
         $listMessage = [
             'Bienvenue dans l\'aventure', //0
@@ -228,5 +234,7 @@ class AventureController extends Controller
                 $this->message['items'] = $itemList;
                 break;
         }
+        $pokemon = new PokemonController();
+        $this->message['team'] = $pokemon->findPokemonUser(Box::where('id_user', $user)->whereIn('id', json_decode((User_game::where('id', $user)->get())[0]->team))->get());
     }
 }

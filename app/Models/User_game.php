@@ -9,6 +9,17 @@ class User_game extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['id','team'];
+    protected $fillable = [ 'id', 
+                            'is_admin', 
+                            'is_banned', 
+                            'image', 
+                            'level',
+                            'stage', 
+                            'max_box', 
+                            'money', 
+                            'exp', 
+                            'team', 
+                            'favorite'];
+                            
     public $timestamps = false;
 }

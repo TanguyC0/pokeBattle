@@ -35,15 +35,17 @@ class TeamController extends Controller
             if(count($user)>0)
             {
                 $team = $pokemon->findPokemonUser(Box::where('id_user', $id)->whereIn('id', $user)->get());
+                $bag = Bag::join('items', 'bags.id_item', '=', 'items.id')->where('id_user', $id)->get();
             }
             else
             {
-                $team = [3];
+                $team = [];
+                $bag = [];
             }
 
             //bag
 
-            $bag = Bag::join('items', 'bags.id_item', '=', 'items.id')->where('id_user', $id)->where('type', 'heal')->get();
+            
 
 
         }
