@@ -20,7 +20,7 @@ const stage = ref(1);
 
 let active = ref([true, false, false, false, false, false]);
 
-console.log(props.location);
+console.log(props.team);
 
 const inStage = (zone, str, stage) => {
     return str.replace('@',JSON.parse(zone.position).x).replace('@',JSON.parse(zone.position).y);
@@ -45,7 +45,7 @@ const switchZone = (id) => {
                 <ul class="grid grid-cols-2 gap-4 wrap ">
                     <template v-for="n in 6">
                     <li class="h-40 w-40 bg-white">
-                        <!-- <img :src="`${team[n-1].image}`" alt=""> -->
+                        <img v-if="n<=team.length" :src="`${team[n-1].image}`" alt="">
                     </li>
                 </template>
                 </ul>
