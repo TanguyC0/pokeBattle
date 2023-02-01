@@ -9,6 +9,6 @@ class User_game extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['id'];
+    protected $fillable = ['id','team'];
     public $timestamps = false;
 }

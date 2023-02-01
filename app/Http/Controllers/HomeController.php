@@ -19,8 +19,15 @@ class HomeController extends Controller
         {
             $id = $request->user()->id;
         }
-        
-        $fav = $profil->getFavorite($id);
+        $idFav = $profil->getFavorite($id);
+        if($idFav == 0)
+        {
+            $fav = '../img/PokeGhost.png';
+        }
+        else
+        {
+            $fav = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/'.$idFav.'.png';
+        }
 
     
         // dd($data);

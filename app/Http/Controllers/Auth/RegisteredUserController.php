@@ -44,10 +44,9 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        
         $user_game = User_game::create([
             'id' => $user->id,
-            'team' => json_encode([0,0,0,0,0,0]),
+            'team' => json_encode([0,0,0,0,0,0])
         ]);
 
         $request->session()->regenerate();

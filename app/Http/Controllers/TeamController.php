@@ -13,8 +13,10 @@ class TeamController extends Controller
 {
     public function index(Request $request)
     {
-        $id = 0;
-        $list = [];
+
+        $box = [];
+        $team = [];
+        $bag = [];
         if($request->user())
         {
             $id = $request->user()->id;
@@ -22,6 +24,11 @@ class TeamController extends Controller
             //box
             $pokemon = new PokemonController();
             $box = $pokemon->findPokemonUser(Box::all()->where('id_user', $id));
+            // dd($box);
+            // if(count($box)<=0)
+            // {
+            //     $box = [];
+            // }
 
             //team
             $user = json_decode((User_game::where('id', $id)->get())[0]->team);

@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('max_box')->default(10);
             $table->integer('money')->default(0);
             $table->integer('exp')->default(0);
-            $table->json('team')->nullable();
+            $table->json('team');
             $table->integer('favorite')->nullable();
             $table->foreign('id')->references('id')->on('users');
         });

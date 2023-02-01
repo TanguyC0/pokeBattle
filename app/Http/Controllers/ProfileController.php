@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
 use App\Models\User_game;
+use App\Models\box;
 //use session
 use Illuminate\Support\Facades\Session;
 
@@ -82,13 +83,14 @@ class ProfileController extends Controller
             ];
         } else {
             $data = User_game::where('id', $id)->first();
+            $infbox = Box::where('id_user', $id)->count();
 
             $list = [
                 'xp' => $data->exp,
                 'money' => $data->money,
                 'level' => $data->level,
                 'max_box' => $data->max_box,
-                'box' => 10,
+                'box' => $infbox,
                 'pdp' => $data->image,
             ];
         }
@@ -111,11 +113,11 @@ class ProfileController extends Controller
         if($id != 0){
             $data = (User_game::where('id', $id)->first())->favorite;
             if($data == null){
-                $data = rand(1, 300);
+                $data = 0;
             }
         }else{
             // random number 1 ->300
-            $data = rand(1, 300);
+            $data = 0;
         }
 
         return $data;

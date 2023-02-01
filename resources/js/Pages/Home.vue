@@ -36,7 +36,6 @@ const props = defineProps({
 
 console.log(props);
 
-let lien = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${props.fav}.png`;
 </script>
 
 <template>
@@ -58,7 +57,7 @@ let lien = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pok
 
 <!-- Profil user menu-->
                 <!-- <div class="flex flex-row ml-7 "> -->
-                    <img :src="`${ lien }`" alt="pokemon" class="align-center justify-center h-96 mt-24">
+                    <img :src="`${ fav }`" alt="pokemon" class="align-center justify-center h-96 mt-24">
                 <!-- </div> -->
                 <nav class="flex flex-col gap-12 items-end font-unowm w-1/4 h-full">
 
