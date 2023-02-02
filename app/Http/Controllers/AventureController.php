@@ -28,6 +28,7 @@ class AventureController extends Controller
 
     public function index(Request $request)
     {
+        $id = 0;
         if($request->user())
         {
             $id = $request->user()->id;
@@ -234,7 +235,12 @@ class AventureController extends Controller
                 $this->message['items'] = $itemList;
                 break;
         }
-        $pokemon = new PokemonController();
-        $this->message['team'] = $pokemon->findPokemonUser(Box::where('id_user', $user)->whereIn('id', json_decode((User_game::where('id', $user)->get())[0]->team))->get());
+
+        if ($user != 0)
+        {
+            $pokemon = new PokemonController();
+            $this->message['team'] = $pokemon->findPokemonUser(Box::where('id_user', $user)->whereIn('id', json_decode((User_game::where('id', $user)->get())[0]->team))->get());
+        }
+        
     }
 }
