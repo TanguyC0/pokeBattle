@@ -60,7 +60,7 @@ class AventureController extends Controller
         }
         else
         {
-            $this->setMessage($id,7);
+            $this->setMessage(0,7);
         }
 
         return Inertia::render('Aventure', $this->message);
@@ -86,7 +86,7 @@ class AventureController extends Controller
             $item->save();
         }
 
-        $this->setMessage($idUser,2,$choix );
+        $this->setMessage($id,2,$choix );
     }
 
     public function choosePokemon($id,$stage)
@@ -112,7 +112,7 @@ class AventureController extends Controller
                 }
             }
 
-            $this->setMessage($idUser,3,$choix,$itemList);
+            $this->setMessage($id,3,$choix,$itemList);
         }
     }
 
