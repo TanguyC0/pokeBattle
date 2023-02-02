@@ -86,16 +86,3 @@ The team will be displayed under a table form with the images of your pokemons a
 
 
 Realised by[Tanguy](https://github.com/TanguyC) & [Aurélie](https://github.com/Elhya13)
-
-
-
-
-
-
-
-
-
-
-
-
-
