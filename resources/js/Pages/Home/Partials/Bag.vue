@@ -1,15 +1,43 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import NormalButton from '@/Components/Buttons/NormalButton.vue';
 import LinkButton from '@/Components/Buttons/LinkButton.vue';
 import MainModal from '@/Components/Modals/MainModal.vue';
 
-const props = defineProps(['open']);
 
-const listitem = ref([]);
-let nbSlot = listitem.value.length + (4 - (listitem.value.length%4));
-// let nbSlot = 16;
+const props = {
+open: {
+    type: Boolean,
+    required: true
+    }
+};
+</script>
+<script>
+import axios from 'axios';
 
+export default {
+    data() {
+        return {
+            listitem: [],
+            nbSlot: 0,
+        };
+    },
+    methods: {
+        async getData() {
+            try {
+                const response = await axios.get('/api/bag');
+                this.listitem = response.data;
+                this.nbSlot = Math.ceil(this.listitem.length / 4) * 4;
+
+            } catch (error) {
+                console.error(error);
+            }
+        },
+    },
+    mounted() {
+        this.getData();
+    }
+};
 </script>
 
 <template>
@@ -22,11 +50,12 @@ let nbSlot = listitem.value.length + (4 - (listitem.value.length%4));
         <section class="border p-8 rounded-lg overflow-y-scroll">
             <ul class="grid grid-cols-4 gap-4 wrap ">
                 <template v-for="n in nbSlot">
-                    <li class="h-32 w-32 hover:bg-violet-300 bg-white border border-gray-300 rounded-lg shadow  active:bg-violet-800 focus:outline-none focus:ring focus:ring-violet-500 relative"
-                        @click="pick= n-1" @mouseover="" >
-                        <img v-if="n<=listitem.length" :src="`../img/items/item${listitem[n-1].id_item}.png`" alt="item" class="absolute">
-                        <em v-if="n<=listitem.length" class="absolute bg-red-300 w-8 h-8 rounded-full flex items-center justify-center">{{ listitem[n-1].count }}</em>
+                    <li v-if="n<=listitem.length" class="h-32 w-32 hover:bg-violet-300 bg-white border border-gray-300 rounded-lg shadow  active:bg-violet-800 focus:outline-none focus:ring focus:ring-violet-500 relative"
+                        @click="pick= n-1">
+                        <img :src="`../img/items/item${listitem[n-1].id_item}.png`" alt="item" class="absolute">
+                        <em class="absolute bg-red-300 w-8 h-8 rounded-full flex items-center justify-center">{{ listitem[n-1].count }}</em>
                     </li>
+                    <li v-else class="h-32 w-32"></li>
                 </template>
             </ul>
         </section>
