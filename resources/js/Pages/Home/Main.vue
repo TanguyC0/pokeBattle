@@ -39,10 +39,27 @@ const props = defineProps({
 });
 
 const open = ref('home');
+const imgfav = ref("");
+
 
 const close = () => {
     open.value = 'home';
 }
+
+function setFav(fav) {
+    imgfav.value = fav != 0?`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${fav}.png`:'../img/PokeGhost.png';
+}
+const update = () => {
+    console.log(imgfav.value);
+    imgfav.value = imgfav.value;
+}
+setFav(props.fav);
+
+onMounted(() => {
+  setInterval(() => {
+    update();
+  }, 1000);
+});
 </script>
 
 <template>
@@ -60,7 +77,7 @@ const close = () => {
                     <NormalButton @click="open = 'box'">Box</NormalButton>
                 </nav>
 
-                <img :src="`${ fav }`" alt="pokemon" class="h-96">
+                <img :src="imgfav" alt="pokemon" class="h-96">
 
                 <nav class="flex flex-col gap-12 items-end font-unowm w-1/4 h-full">
                     <NormalButton :href="'#'" :color="'red'">Event 1</NormalButton>
@@ -70,7 +87,7 @@ const close = () => {
             </section>
 
             <Bag v-if="open == 'bag'" :open="close"></Bag>
-            <Team v-if="open == 'team'" :open="close"></Team>
+            <Team v-if="open == 'team'" :open="close" :setFav="setFav"></Team>
             <Box v-if="open == 'box'" :open="close"></Box>
             
         </main>

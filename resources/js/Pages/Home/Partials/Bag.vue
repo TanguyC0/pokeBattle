@@ -5,12 +5,12 @@ import LinkButton from '@/Components/Buttons/LinkButton.vue';
 import MainModal from '@/Components/Modals/MainModal.vue';
 
 
-const props = {
-open: {
-    type: Boolean,
-    required: true
-    }
-};
+const props = defineProps({
+    open: {
+        type: Function,
+        required: true
+    },
+});
 
 </script>
 <script>
