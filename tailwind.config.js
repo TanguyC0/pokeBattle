@@ -12,21 +12,21 @@ module.exports = {
 
     theme: {
         extend:{
-        fontFamily: {
-            ketchum: ["Ketchum"],
-            pokemon: ["pokemon",...defaultTheme.fontFamily.sans,],
-            
-            unown: ["unown"],
-            pokemonXY: ["PokemonXY"],
+            fontFamily: {
+                ketchum: ["Ketchum",'sans-serif'],
+                pokemon: ["pokemon",'sans-serif'],
+                unown: ["unown",'sans-serif'],
+                pokemonXY: ["PokemonXY",'sans-serif'],
+            },
+            screens: {
+                'portrait': {
+                    'raw': '(orientation: portrait)'
+                },
+                'landscape': {
+                    'raw': '(orientation: landscape)'
+                },
+            },
         },
-        screens: {
-            sm: "480px",
-            md: "768px",
-            lg: "976px",
-            xl: "1440px",
-        },
+        plugins: [require("@tailwindcss/forms"), require("flowbite/plugin")],
     },
-
-    plugins: [require("@tailwindcss/forms"), require("flowbite/plugin")],
-}
 };

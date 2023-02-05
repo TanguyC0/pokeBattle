@@ -15,7 +15,7 @@
         @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
         @inertiaHead
     </head>
-    <body class="bg-[url('/img/background/bgnature.png')] backdrop-blur-sm">
+    <body class="bg-[url('/img/background/bgnature.png')] backdrop-blur-sm font-pokemonXY">
         @inertia
     </body>
 </html>

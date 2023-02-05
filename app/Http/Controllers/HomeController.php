@@ -32,7 +32,7 @@ class HomeController extends Controller
     
         // dd($data);
 
-        return Inertia::render('Home', [
+        return Inertia::render('Home/Main', [
             'fav' => $fav,
         ]);
     }
