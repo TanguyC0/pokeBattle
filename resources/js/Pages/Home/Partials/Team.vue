@@ -9,11 +9,13 @@ const props = defineProps(['open']);
 const team = ref([]);
 const listPokemon = ref([]);
 const bag = ref([]);
-let nbSlot = listPokemon.value.length + (4 - (listPokemon.value.length%4));
-let nbSlotBag = bag.value.length + (4 - (bag.value.length%4));
-let pick = ref(0);
-let pickTeam = ref(0);
-let display = ref('pokemon');
+// let nbSlot = Math.ceil(this.listPokemon.length / 4) * 4;
+// let nbSlotBag = Math.ceil(this.bag.length / 4) * 4;
+const nbSlot = ref(1);
+const nbSlotBag = ref(1);
+const pick = ref(0);
+const pickTeam = ref(0);
+const display = ref('pokemon');
 
 function switchPokemon(place, pokemon, team){
     
@@ -63,14 +65,14 @@ function used(pokemon, team, place){
             {{ display }}
             <ul class="grid grid-cols-4 gap-4 wrap ">
                 <template v-if="display == 'pokemon'" v-for="n in nbSlot">
-                    <li @click="pick = n-1" class="h-32 w-32 hover:bg-violet-300 bg-white border border-gray-300 rounded-lg shadow  active:bg-violet-800 focus:outline-none focus:ring focus:ring-violet-500 "
-                    > <!--:class="used(listPokemon[n-1].idTable,team,n-1)"-->
-                        <!-- <img v-if="n<=listPokemon.length" :src="`${listPokemon[n-1].image}`" alt="item" class="w-full justify-center"> -->
+                    <li @click="pick = n-1" class="h-32 w-32 hover:bg-violet-300 bg-white border border-gray-300 rounded-lg shadow  active:bg-violet-800 focus:outline-none focus:ring focus:ring-violet-500 ">
+                    <!--:class="used(listPokemon[n-1].idTable,team,n-1)"-->
+                        <img v-if="n<=listPokemon.length" :src="`${listPokemon[n-1].image}`" alt="item" class="w-full justify-center">
                     </li>
                 </template>
                 <template v-if="display == 'item'" v-for="n in nbSlotBag">
-                    <li @click="pick = n-1" class="h-32 w-32 hover:bg-violet-300 bg-white border border-gray-300 rounded-lg shadow  active:bg-violet-800 focus:outline-none focus:ring focus:ring-violet-500 "
-                    :class="used(listPokemon[n-1].idTable,team,n-1)">
+                    <li @click="pick = n-1" class="h-32 w-32 hover:bg-violet-300 bg-white border border-gray-300 rounded-lg shadow  active:bg-violet-800 focus:outline-none focus:ring focus:ring-violet-500 ">
+                    <!-- :class="used(listPokemon[n-1].idTable,team,n-1)" -->
                         <img v-if="n<=listPokemon.length" :src="`img/items/item${bag[n-1].id_item}.png`" alt="item" class="w-full justify-center">
                     </li>
                 </template>
