@@ -11,6 +11,7 @@ open: {
     required: true
     }
 };
+
 </script>
 <script>
 import axios from 'axios';
@@ -20,12 +21,17 @@ export default {
         return {
             listitem: [],
             nbSlot: 0,
+            type: 'all'
         };
     },
     methods: {
         async getData() {
             try {
-                const response = await axios.get('/api/bag');
+                const response = await axios.get('/api/bag', {
+                    params: {
+                        type: this.type
+                    }
+                });
                 this.listitem = response.data;
                 this.nbSlot = Math.ceil(this.listitem.length / 4) * 4;
 
@@ -33,19 +39,24 @@ export default {
                 console.error(error);
             }
         },
+        newType(type) {
+            this.type = type;
+            this.getData();
+        }
     },
     mounted() {
         this.getData();
     }
+
 };
 </script>
 
 <template>
     <MainModal :open="open" :name="'Bag'">
         <nav>
-            <LinkButton :href="route('bag')">all</LinkButton>
-            <LinkButton :href="route('bag','heal')">heal</LinkButton>
-            <LinkButton :href="route('bag','catch')">catch</LinkButton>
+            <NormalButton @click="newType('all')">all</NormalButton>
+            <NormalButton @click="newType('heal')">heal</NormalButton>
+            <NormalButton @click="newType('catch')">catch</NormalButton>
         </nav>
         <section class="border p-8 rounded-lg overflow-y-scroll">
             <ul class="grid grid-cols-4 gap-4 wrap ">

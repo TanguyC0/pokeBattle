@@ -17,7 +17,7 @@ class BagController extends Controller
             $id = $request->user()->id;
 
             $type = $request->input('type');
-            if($type == null)
+            if($type == 'all')
             {
                 $type = "%";
             }
