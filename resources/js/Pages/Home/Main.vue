@@ -65,35 +65,31 @@ onMounted(() => {
 <template>
     <Head title="home"/>
     <div class ="w-full max-h-screen min-h-screen h-screen">
-        <div class="w-screen h-screen text-red-500 bg-black landscape:hidden"> TOURNE L'ECRAN FIEU!
-        </div>
-        <div class="portrait:hidden">
-        <Header />
-        <main class="h-4/5 w-full relative">
+            <Header />
+            <main class="h-4/5 w-full relative">
 
-            <section class="flex flex-row justify-around items-center h-full w-full absolute">
-                <nav class="flex flex-col gap-6 items-start font-unowm w-1/4 h-full">
-                    <LinkButton :href="route('aventure.index')">Adventure</LinkButton>
-                    <NormalButton @click="open = 'bag'">Bag</NormalButton>
-                    <NormalButton @click="open = 'team'">Team</NormalButton>
-                    <NormalButton @click="open = 'box'">Box</NormalButton>
-                </nav>
+                <section class="flex flex-row justify-around items-center h-full w-full absolute">
+                    <nav class="flex flex-col gap-6 items-start font-unowm w-1/4 h-full">
+                        <LinkButton :href="route('aventure.index')">Adventure</LinkButton>
+                        <NormalButton @click="open = 'bag'">Bag</NormalButton>
+                        <NormalButton @click="open = 'team'">Team</NormalButton>
+                        <NormalButton @click="open = 'box'">Box</NormalButton>
+                    </nav>
 
-                <img :src="imgfav" alt="pokemon" class="h-96">
+                    <img :src="imgfav" alt="pokemon" class="h-96">
 
-                <nav class="flex flex-col gap-12 items-end font-unowm w-1/4 h-full">
-                    <NormalButton :href="'#'" :color="'red'">Event 1</NormalButton>
-                    <NormalButton :href="'#'" :color="'slate'">Event 2</NormalButton>
-                    <NormalButton :href="'#'" :color="'slate'">Event 3</NormalButton>
-                </nav>
-            </section>
+                    <nav class="flex flex-col gap-12 items-end font-unowm w-1/4 h-full">
+                        <NormalButton :href="'#'" :color="'red'">Event 1</NormalButton>
+                        <NormalButton :href="'#'" :color="'slate'">Event 2</NormalButton>
+                        <NormalButton :href="'#'" :color="'slate'">Event 3</NormalButton>
+                    </nav>
+                </section>
 
-            <Bag v-if="open == 'bag'" :open="close"></Bag>
-            <Team v-if="open == 'team'" :open="close" :setFav="setFav"></Team>
-            <Box v-if="open == 'box'" :open="close"></Box>
-            
-        </main>
-    </div>
+                <Bag v-if="open == 'bag'" :open="close"></Bag>
+                <Team v-if="open == 'team'" :open="close" :setFav="setFav"></Team>
+                <Box v-if="open == 'box'" :open="close"></Box>
+                
+            </main>
     </div>
 
 </template>
