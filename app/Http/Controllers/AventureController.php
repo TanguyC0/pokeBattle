@@ -34,15 +34,17 @@ class AventureController extends Controller
             $id = $request->user()->id;
         }
         $this->setMessage($id,0);
-        return Inertia::render('Aventure', $this->message);
+        return Inertia::render('Aventure', ['data' => $this->message]);
     }
 
 
-    public function walk(Request $request, $stage = 1)
+    public function walk(Request $request)
     {
         if($request->user())
         {
             $id = $request->user()->id;
+
+            $stage = $request->input('stage');
             
 
             $value = rand(1, 15);
@@ -64,7 +66,7 @@ class AventureController extends Controller
             $this->setMessage(0,7);
         }
 
-        return Inertia::render('Aventure', $this->message);
+        return $this->message;
     }
 
     public function addItem($id,$stage)
@@ -130,9 +132,14 @@ class AventureController extends Controller
         }
     }
 
-    public function catch(Request $request ,$id, $idItem)
+    public function catch(Request $request)
     {
         $idUser = $request->user()->id;
+
+        $id = $request->input('id');
+        $idItem = $request->input('idItem');
+
+
         $ball = Bag::where('id_item', $idItem)->where('id_user',$idUser)->get();
 
         if ($ball->count() == 0 || $ball[0]->count == 0) {
@@ -170,7 +177,7 @@ class AventureController extends Controller
             }
         }
 
-        return Inertia::render('Aventure', $this->message);
+        return $this->message;
     }
 
     //set message

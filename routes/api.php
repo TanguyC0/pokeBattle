@@ -25,4 +25,6 @@ Route::middleware('web')->group(function () {
     Route::get('/bag', [App\Http\Controllers\BagController::class, 'index']);
     Route::get('/box', [App\Http\Controllers\BoxController::class, 'index']);
     Route::get('/team', [App\Http\Controllers\TeamController::class, 'index']);
+    Route::post('/aventure/walk', [App\Http\Controllers\AventureController::class, 'walk']);
+    Route::post('/aventure/catch', [App\Http\Controllers\AventureController::class, 'catch']);
 });

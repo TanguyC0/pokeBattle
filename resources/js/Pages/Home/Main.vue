@@ -35,7 +35,7 @@ onMounted(() => {
 });
 
 const props = defineProps({
-    fav: Array,
+    fav: Number,
 });
 
 const open = ref('home');

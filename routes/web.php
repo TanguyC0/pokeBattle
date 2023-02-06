@@ -22,10 +22,6 @@ Route::get('/aventure', [App\Http\Controllers\AventureController::class, 'index'
 Route::get('/aventure/{stage?}', [App\Http\Controllers\AventureController::class, 'walk'])->name('aventure.walk');
 Route::get('/aventure/catch/{id}/{idItem}', [App\Http\Controllers\AventureController::class, 'catch'])->name('aventure.catch');
 
-Route::get('/bag/{type?}', [App\Http\Controllers\BagController::class, 'index'])->name('bag');
-Route::get('/team', [App\Http\Controllers\TeamController::class, 'index'])->name('team');
-Route::get('/box', [App\Http\Controllers\BoxController::class, 'index'])->name('box');
-
 Route::get('/pokemon/{xp}/{id}', [App\Http\Controllers\PokemonController::class, 'xpUP'])->name('pokemon');
 
 Route::middleware('adm')->group(function () {
