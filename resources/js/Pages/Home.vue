@@ -4,83 +4,34 @@ import { onMounted } from 'vue';
 import ButtonMenu from '@/Components/ButtonMenu.vue';
 import Header from '@/Layouts/Header.vue';
 
-import { initAccordions, 
+import {
     initCarousels, 
-    initCollapses, 
-    initDials, 
-    initDismisses, 
-    initDrawers, 
     initDropdowns, 
     initModals, 
-    initPopovers, 
-    initTabs, 
-    initTooltips} from 'flowbite';
+   } from 'flowbite';
 
 onMounted(() => {
-    initAccordions();
     initCarousels();
-    initCollapses();
-    initDials();
-    initDismisses();
-    initDrawers();
     initDropdowns();
     initModals();
-    initPopovers();
-    initTabs();
-    initTooltips();
 });
 
 const props = defineProps({
     fav: Array,
 });
 
-console.log(props);
+
 
 </script>
 
 <template>
     <Head title="home"/>
-
-
-    <div class ="w-full max-h-screen min-h-screen h-screen">
+    <div class="w-screen h-screen text-red-500 bg-black landscape:hidden"> TOURNE L'ECRAN FIEU!
+    </div>
+    <div class="">
         <Header />
-        <main class="flex flex-row justify-around h-4/5 w-full ">
-
-            
-                <nav class="flex flex-col gap-6 items-start font-unowm w-1/4 h-full">
-
-                        <ButtonMenu :href="route('aventure.index')" >Adventure</ButtonMenu>
-                        <ButtonMenu :href="route('bag')">Bag</ButtonMenu>
-                        <ButtonMenu :href="route('team')">Team</ButtonMenu>
-                        <ButtonMenu :href="route('box')">Box</ButtonMenu>
-                </nav>
-
-<!-- Profil user menu-->
-                <!-- <div class="flex flex-row ml-7 "> -->
-                    <img :src="`${ fav }`" alt="pokemon" class="align-center justify-center h-96 mt-24">
-                <!-- </div> -->
-                <nav class="flex flex-col gap-12 items-end font-unowm w-1/4 h-full">
-
-                    <ButtonMenu :href="'#'">Event 1</ButtonMenu>
-                    <ButtonMenu :href="'#'">Event 2</ButtonMenu>
-                    <ButtonMenu :href="'#'">Event 3</ButtonMenu>
-
-                </nav>
-            
-        </main>
+        <main class="flex flex-row justify-around h-4/5 w-full"></main>
     </div>
 
+
 </template>
-<!-- <style> 
-@font-face {
-   font-family: ketchum;
-   src: url(../../css/font/Ketchum.otf);
-   font-family: pokemon;
-   src: url(../../css/font/pokemon.ttf);
-   font-family: pokemonXY;
-   src: url(../../css/font/pokemonXY.ttf)
-}
-*{
-    font-family:pokemon;
-    }
-</style> -->

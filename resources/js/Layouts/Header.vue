@@ -29,7 +29,7 @@ export default {
 
 <template>
     <header class="flex flex-row w-full h-1/5 opacity-90 p-3">
-        <Link :href="route('home')" class="m-5 w-20 h-40 hover:underline">Home</Link>
+        <!-- <Link :href="route('home')" class="m-5 w-20 h-40 hover:underline">Home</Link> -->
         <div class="flex flex-row w-full items-center justify-evenly ">
             <Jauge :dataUser="dataUser.xp" :color="'blue'">Level:{{ dataUser.level}}</Jauge>
             <Jauge :dataUser="100" :color="'yellow'">Money: {{ dataUser.money}} $</Jauge>
@@ -38,9 +38,9 @@ export default {
         </div> 
 
 
-        <div class="flex flex-row justify-start items-center w-32">
+        <div class="flex flex-row justify-start items-center ">
             <Link :href="route('dashboard')" type="button" class="flex w-14 h-14 bg-gray-800 
-                rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300"
+                rounded-full focus:ring-4 focus:ring-gray-300"
                 id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
                 data-dropdown-placement="bottom">
                 <img class="w-14 h-14 rounded-full" :src="`/img/profil/${dataUser.pdp}.png`" alt="user photo">
