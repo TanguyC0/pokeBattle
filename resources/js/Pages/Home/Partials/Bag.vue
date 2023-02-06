@@ -52,13 +52,13 @@ export default {
 </script>
 
 <template>
-    <MainModal :open="open" :name="'Bag'">
-        <nav>
-            <NormalButton @click="newType('all')">all</NormalButton>
-            <NormalButton @click="newType('heal')">heal</NormalButton>
-            <NormalButton @click="newType('catch')">catch</NormalButton>
+    <MainModal :open="open" :name="'Bag'" class="flex flex-row h-full w-full justify-evenly">
+        <nav class="flex flex-col">
+            <NormalButton class="w-full h-3/4 m-2" @click="newType('all')">All</NormalButton>
+            <NormalButton class="w-full h-3/4 m-2" @click="newType('heal')">Heal</NormalButton>
+            <NormalButton class="w-full h-3/4 m-2" @click="newType('catch')">Catch</NormalButton>
         </nav>
-        <section class="border p-8 rounded-lg overflow-y-scroll">
+        <section class="flex align-end border h-3/4 w-3/4 p-8 rounded-lg overflow-y-scroll">
             <ul class="grid grid-cols-4 gap-4 wrap ">
                 <template v-for="n in nbSlot">
                     <li v-if="n<=listitem.length" class="h-32 w-32 hover:bg-violet-300 bg-white border border-gray-300 rounded-lg shadow  active:bg-violet-800 focus:outline-none focus:ring focus:ring-violet-500 relative"
