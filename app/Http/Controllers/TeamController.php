@@ -49,7 +49,7 @@ class TeamController extends Controller
 
 
         }
-        return Inertia::render('Team', ['listPokemon' => $box, 'team' => $team, 'bag' => $bag]);
+        return ['pokemon' => $box, 'team' => $team, 'bag' => $bag];
     }
 
     // function for switch pokemon in team

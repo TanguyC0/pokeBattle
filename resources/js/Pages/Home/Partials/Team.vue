@@ -6,13 +6,6 @@ import axios from 'axios';
 
 const props = defineProps(['open']);
 
-const team = ref([]);
-const listPokemon = ref([]);
-const bag = ref([]);
-// let nbSlot = Math.ceil(this.listPokemon.length / 4) * 4;
-// let nbSlotBag = Math.ceil(this.bag.length / 4) * 4;
-const nbSlot = ref(1);
-const nbSlotBag = ref(1);
 const pick = ref(0);
 const pickTeam = ref(0);
 const display = ref('pokemon');
@@ -32,13 +25,13 @@ function switchPokemon(place, pokemon, team){
     
 }
 
-function used(pokemon, team, place){
+function used(place,team,pokemon){
 
     if (pick.value == place){
         return "bg-violet-300";
     }
     if(team.length > 0){
-        let existingPokemon = team.find(poke => poke.idTable === pokemon);
+        let existingPokemon = team.find(poke => poke.idTable === pokemon[place].idTable);
         if(existingPokemon != null){
             return "bg-red-500";
         }
@@ -46,6 +39,40 @@ function used(pokemon, team, place){
     return "";
 }
 
+</script>
+<script>
+// import axios from 'axios';
+
+export default {
+    data() {
+        return {
+            pokemon: [],
+            bag: [],
+            team: [],
+            nbSlotP: 0,
+            nbSlotB: 0,
+        };
+    },
+    methods: {
+        async getData() {
+            try {
+                const response = await axios.get('/api/team');
+                this.pokemon = response.data.pokemon;
+                this.nbSlotP = Math.ceil(this.pokemon.length / 4) * 4;
+                this.bag = response.data.bag;
+                this.nbSlotB = Math.ceil(this.bag.length / 4) * 4;
+                this.team = response.data.team;
+
+            } catch (error) {
+                console.error(error);
+            }
+        },
+    },
+    mounted() {
+        this.getData();
+    }
+
+};
 </script>
 
 <template>
@@ -64,24 +91,25 @@ function used(pokemon, team, place){
         <section class="border p-8 rounded-lg overflow-y-scroll">
             {{ display }}
             <ul class="grid grid-cols-4 gap-4 wrap ">
-                <template v-if="display == 'pokemon'" v-for="n in nbSlot">
-                    <li @click="pick = n-1" class="h-32 w-32 hover:bg-violet-300 bg-white border border-gray-300 rounded-lg shadow  active:bg-violet-800 focus:outline-none focus:ring focus:ring-violet-500 ">
-                    <!--:class="used(listPokemon[n-1].idTable,team,n-1)"-->
-                        <img v-if="n<=listPokemon.length" :src="`${listPokemon[n-1].image}`" alt="item" class="w-full justify-center">
+                <template v-if="display == 'pokemon'" v-for="n in nbSlotP">
+                    <li v-if="n<=pokemon.length" @click="pick = n-1" class="h-32 w-32 hover:bg-violet-300 bg-white border border-gray-300 rounded-lg shadow  active:bg-violet-800 focus:outline-none focus:ring focus:ring-violet-500 "
+                    :class="used(n-1,team,pokemon)">
+                        <img :src="`${pokemon[n-1].image}`" alt="item" class="w-full justify-center">
                     </li>
+                    <li v-else class="h-32 w-32 hover:bg-violet-300 bg-white border border-gray-300 rounded-lg shadow  active:bg-violet-800 focus:outline-none focus:ring focus:ring-violet-500 "></li>
                 </template>
-                <template v-if="display == 'item'" v-for="n in nbSlotBag">
-                    <li @click="pick = n-1" class="h-32 w-32 hover:bg-violet-300 bg-white border border-gray-300 rounded-lg shadow  active:bg-violet-800 focus:outline-none focus:ring focus:ring-violet-500 ">
+                <template v-if="display == 'item'" v-for="n in nbSlotB">
+                    <li @click="pick = n-1" class="h-32 w-32 hover:bg-violet-300 bg-white border border-gray-300 rounded-lg shadow  active:bg-violet-800 focus:outline-none focus:ring focus:ring-violet-500 " :class="{'bg-violet-300': pick==n-1}">
                     <!-- :class="used(listPokemon[n-1].idTable,team,n-1)" -->
-                        <img v-if="n<=listPokemon.length" :src="`img/items/item${bag[n-1].id_item}.png`" alt="item" class="w-full justify-center">
+                        <img v-if="n<=bag.length" :src="`img/items/item${bag[n-1].id_item}.png`" alt="item" class="w-full justify-center">
                     </li>
                 </template>
             </ul>
         </section>
         <nav>
-            <NormalButton @click="display = 'pokemon'">pokemon</NormalButton>
-            <NormalButton @click="display = 'item'">item</NormalButton>
-            <NormalButton v-if="display == 'pokemon'" @click="switchPokemon(pickTeam,listPokemon[pick].idTable,team)">take in team</NormalButton>
+            <NormalButton @click="display = 'pokemon', pick = 0">pokemon</NormalButton>
+            <NormalButton @click="display = 'item', pick = 0">item</NormalButton>
+            <NormalButton v-if="display == 'pokemon'" @click="switchPokemon(pickTeam,pokemon[pick].idTable,team)">take in team</NormalButton>
             <NormalButton v-if="display == 'item'">use</NormalButton>
         </nav>
     </MainModal>

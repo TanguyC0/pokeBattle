@@ -50,7 +50,7 @@ function setFav(fav) {
     imgfav.value = fav != 0?`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${fav}.png`:'../img/PokeGhost.png';
 }
 const update = () => {
-    console.log(imgfav.value);
+    // console.log(imgfav.value);
     imgfav.value = imgfav.value;
 }
 setFav(props.fav);

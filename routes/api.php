@@ -24,4 +24,5 @@ Route::middleware('web')->group(function () {
     Route::post('/updateTeam', [App\Http\Controllers\TeamController::class, 'switchPokemon']);
     Route::get('/bag', [App\Http\Controllers\BagController::class, 'index']);
     Route::get('/box', [App\Http\Controllers\BoxController::class, 'index']);
+    Route::get('/team', [App\Http\Controllers\TeamController::class, 'index']);
 });
