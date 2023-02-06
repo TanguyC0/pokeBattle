@@ -11,13 +11,7 @@ module.exports = {
     ],
 
     theme: {
-        extend:{
-            fontFamily: {
-                ketchum: ["Ketchum",'sans-serif'],
-                pokemon: ["pokemon",'sans-serif'],
-                unown: ["unown",'sans-serif'],
-                pokemonXY: ["PokemonXY",'sans-serif'],
-            },
+        extend: {
             screens: {
                 'tall': {
                     'raw': `only screen and (max-height: 960px) and (max-width: 480px)`
@@ -35,4 +29,13 @@ module.exports = {
         },
         plugins: [require("@tailwindcss/forms"), require("flowbite/plugin")],
     },
-};
+    plugins: [require("@tailwindcss/forms"), require("flowbite/plugin")],
+}
+
+
+// fontFamily: {
+//     ketchum: ["Ketchum"],
+//     pokemon: ["pokemon",...defaultTheme.fontFamily.sans,],
+//     unown: ["unown"],
+//     pokemonXY: ["PokemonXY"],
+// },

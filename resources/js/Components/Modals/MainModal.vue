@@ -7,10 +7,10 @@
 <template>
     <section class="flex flex-col items-center h-5/6 w-11/12 mx-[4.1666665%] bg-red-600 bg-opacity-40 rounded-2xl border-4 absolute">
         <header class="flex w-full items-center px-2">
-            <h2 class="text-3xl grow text-center">{{name}}</h2>
-            <em @click="open" class="text-black text-4xl font-bold grow-0 cursor-pointer">x</em>
+            <h2 class="flex text-3xl grow text-center">{{name}}</h2>
+            <em @click="open" class="flex text-black text-4xl font-bold grow-0 cursor-pointer">x</em>
         </header>
-        <div class="flex justify-evenly w-full h-4/5 mt-14">
+        <div class="flex w-full h-4/5 mt-3">
             <slot/>
         </div>
     </section>
