@@ -19,8 +19,6 @@ use Inertia\Inertia;
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/aventure', [App\Http\Controllers\AventureController::class, 'index'])->name('aventure.index');
-Route::get('/aventure/{stage?}', [App\Http\Controllers\AventureController::class, 'walk'])->name('aventure.walk');
-Route::get('/aventure/catch/{id}/{idItem}', [App\Http\Controllers\AventureController::class, 'catch'])->name('aventure.catch');
 
 Route::get('/pokemon/{xp}/{id}', [App\Http\Controllers\PokemonController::class, 'xpUP'])->name('pokemon');
 
