@@ -29,7 +29,7 @@ export default {
 
 <template>
     <header class="flex flex-row w-full h-1/5 opacity-90 p-3">
-        <!-- <Link :href="route('home')" class="m-5 w-20 h-40 hover:underline">Home</Link> -->
+        <Link :href="route('home')" class="m-5 w-20 h-40 hover:underline">Home</Link>
         <div class="flex flex-row w-full items-center justify-evenly ">
             <Jauge :dataUser="dataUser.xp" :color="'blue'">Level:{{ dataUser.level}}</Jauge>
             <Jauge :dataUser="100" :color="'yellow'">Money: {{ dataUser.money}} $</Jauge>
