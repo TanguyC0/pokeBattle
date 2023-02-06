@@ -35,7 +35,6 @@ module.exports = {
 // fontFamily: {
 //     ketchum: ["Ketchum"],
 //     pokemon: ["pokemon",...defaultTheme.fontFamily.sans,],
-    
 //     unown: ["unown"],
 //     pokemonXY: ["PokemonXY"],
 // },

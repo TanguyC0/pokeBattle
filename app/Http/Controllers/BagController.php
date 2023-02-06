@@ -9,12 +9,18 @@ use Illuminate\Support\Facades\DB;
 
 class BagController extends Controller
 {
-    public function index(Request $request, string $type = "%")
+    public function index(Request $request)
     {
         $list = [];
         if($request->user())
         {
             $id = $request->user()->id;
+
+            $type = $request->input('type');
+            if($type == 'all')
+            {
+                $type = "%";
+            }
 
             // $list = Bag::where('grade' , '=', 'commun')->get();
             $list = DB::table('bags')->join('items', 'bags.id_item', '=', 'items.id')
@@ -26,7 +32,8 @@ class BagController extends Controller
             // dd($list);
         }
 
-        return Inertia::render('Bag', ['listitem' => $list]);
+        // return Inertia::render('Bag', ['listitem' => $list]);
+        return $list;
     }
 
 
