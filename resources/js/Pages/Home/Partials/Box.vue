@@ -50,13 +50,13 @@ export default {
 
 <template>
     <MainModal :open="open" :name="'Box'">
-        <nav>
-            <NormalButton>grid</NormalButton>
-            <NormalButton>filter</NormalButton>
-            <NormalButton @click="chooseFavorite(listPokemon[pick])" >fav</NormalButton>
-            <NormalButton>sell</NormalButton>
+        <nav class="flex-col justify-evenly content-evenly m-2">
+            <NormalButton class="w-3/4 h-1/4 m-2">Grid</NormalButton>
+            <NormalButton class="w-3/4 h-1/4 m-2 p-2">Filter</NormalButton>
+            <NormalButton class="w-3/4 h-1/4 m-2" @click="chooseFavorite(listPokemon[pick])" >Fav</NormalButton>
+            <NormalButton class="w-3/4 h-1/4 m-2 p-2">Sell</NormalButton>
         </nav>
-        <section class="border p-8 rounded-lg overflow-y-scroll">
+        <section class=" h-full w-2/3 border p-6 rounded-lg overflow-y-scroll my-5">
             <ul class="grid grid-cols-4 gap-4 wrap ">
                 <template v-for="n in nbSlot">
                     <li class="h-32 w-32 hover:bg-violet-300 bg-white border border-gray-300 rounded-lg shadow  active:bg-violet-800 focus:outline-none focus:ring focus:ring-violet-500 "
@@ -66,7 +66,7 @@ export default {
                 </template>
             </ul>
         </section>
-        <section class="rounded-lg bg-white text-red-500 w-2/6 p-8 h-full">
+        <section class="rounded-lg bg-white text-red-500 w-2/6 p-8 h-full m-5">
             <h3 class="text-center">Detail</h3>
             <template v-if="listPokemon.length > 0">
                 <p class=" items-center text-xl hover:underline">Type: {{listPokemon[pick].type }}</p>
