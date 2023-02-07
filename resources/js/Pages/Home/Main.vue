@@ -65,13 +65,13 @@ onMounted(() => {
 <template>
     <Head title="home"/>
     <div class ="w-full max-h-screen min-h-screen h-screen">
-        <div class="w-screen h-screen text-red-500 bg-black landscape:hidden"> TOURNE L'ECRAN FIEU!
+        <!-- <div class="w-screen h-screen text-red-500 bg-black landscape:hidden"> TOURNE L'ECRAN FIEU!
         </div>
-        <div class="portrait:hidden">
+        <div class="portrait:hidden"> -->
         <Header />
         <main class="h-4/5 w-full relative">
 
-            <section class="flex flex-row justify-around items-center h-full w-full absolute">
+            <section class="flex flex-row justify-around items-center h-3/4 w-full absolute">
                 <nav class="flex flex-col gap-6 items-start font-unowm w-1/4 h-full">
                     <LinkButton :href="route('aventure.index')">Adventure</LinkButton>
                     <NormalButton @click="open = 'bag'">Bag</NormalButton>
@@ -93,7 +93,7 @@ onMounted(() => {
             <Box v-if="open == 'box'" :open="close"></Box>
             
         </main>
-    </div>
+    <!-- </div>-->
     </div>
 
 </template>

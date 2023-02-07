@@ -24,7 +24,8 @@ module.exports = {
                 },
                 'landscape': {
                     'raw': '(orientation: landscape)'
-                }
+                },
+                'md': {'min': '360px', 'max': '640px'},
             }
         },
         plugins: [require("@tailwindcss/forms"), require("flowbite/plugin")],
