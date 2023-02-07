@@ -26,29 +26,30 @@ class AventureController extends Controller
         ];
     }
 
+    // for start the adventure
     public function index(Request $request)
     {
-        $id = 0;
+        $idUser = 0;
         if($request->user())
         {
-            $id = $request->user()->id;
-            $this->setMessage($id,0);
+            $idUser = $request->user()->id;
+            $this->setMessage($idUser,0);
         }
         else
         {
-            $this->setMessage($id,7);
+            $this->setMessage($idUser,7);
         }
         
         return Inertia::render('Aventure', ['data' => $this->message]);
     }
 
-
+    // for walk in the adventure (api)
     public function walk(Request $request)
     {
-        $id = 0;
+        $idUser = 0;
         if($request->user())
         {
-            $id = $request->user()->id;
+            $idUser = $request->user()->id;
 
             $stage = $request->input('stage');
             
@@ -56,31 +57,33 @@ class AventureController extends Controller
             $value = rand(1, 15);
             if ($value <= 4) //item
             { 
-                $this->addItem($id,$stage);
+                $this->addItem($idUser,$stage);
             } 
             elseif ($value <= 8) //pokemon
             { 
-                $this->choosePokemon($id,$stage);
+                $this->choosePokemon($idUser,$stage);
             }
             else
             {
-                $this->setMessage($id,1);
+                $this->setMessage($idUser,1);
             }
         }
         else
         {
-            $this->setMessage($id,7);
+            $this->setMessage($idUser,7);
         }
 
         return $this->message;
     }
 
-    public function addItem($id,$stage)
+    // when you found a item during walk
+    public function addItem($idUser,$stage)
     {
         $choix = $this->choose(0,$stage);
 
         // si objet existe, incrémenté count, si non, cree l'objet
-        $item = bag::where('id_item', $choix)->where('id_user', $id)->first();
+        $item = bag::where('id_item', $choix)->where('id_user', $idUser)->first();
+
         if($item)
         {
             $item->count = $item->count + 1;
@@ -89,7 +92,7 @@ class AventureController extends Controller
         else
         {
             $item = new bag;
-            $item->id_user = $id;
+            $item->id_user = $idUser;
             $item->id_item = $choix;
             $item->count = 1;
             $item->save();
@@ -98,16 +101,18 @@ class AventureController extends Controller
         $this->setMessage($id,2,$choix );
     }
 
-    public function choosePokemon($id,$stage)
+    // when you found a pokemon during walk
+    public function choosePokemon($idUser,$stage)
     {
         $choix = $this->choose(1,$stage);
 
-        if(Box::where('id_user', $id)->count() < 10)
+        // verify if the box is full
+        if(Box::where('id_user', $idUser)->count() < 10)
         {
 
             $item = bag::join('items', 'items.id', '=', 'bags.id_item')->where('type', 'catch')
                                                                         ->where('count', '>', 0)
-                                                                        ->where('id_user', $id)
+                                                                        ->where('id_user', $idUser)
                                                                         ->get();
             $itemList = [];
             if ($item->count() > 0){
@@ -121,10 +126,11 @@ class AventureController extends Controller
                 }
             }
 
-            $this->setMessage($id,3,$choix,$itemList);
+            $this->setMessage($idUser,3,$choix,$itemList);
         }
     }
 
+    //choose a random item or pokemon
     public function choose( int $pack, int $stage){ // 0 for item, 1 for pokemon
 
         $list = Stages::find($stage);
@@ -138,6 +144,7 @@ class AventureController extends Controller
         }
     }
 
+    // for catch a pokemon (api)
     public function catch(Request $request)
     {
         $idUser = 0;
@@ -194,7 +201,7 @@ class AventureController extends Controller
     }
 
     //set message
-    public function setMessage($user,$num, $choix = 0, $itemList = [])
+    public function setMessage($idUser,$num, $choix = 0, $itemList = [])
     {
         $listMessage = [
             'Bienvenue dans l\'aventure', //0
@@ -212,54 +219,40 @@ class AventureController extends Controller
             case 0:
             case 1:
                 $this->message['status'] = 0;
-                $this->message['message'] = $listMessage[$num];
                 $this->message['img'] = '/img/'.['male','female'][rand(0,1)].'-character.png';
-                $this->message['id'] = $choix;
-                $this->message['items'] = $itemList;
                 break;
             case 2:
                 $this->message['status'] = 1;
-                $this->message['message'] = $listMessage[$num];
                 $this->message['img'] = '../img/items/item'.$choix.'.png';
-                $this->message['id'] = $choix;
-                $this->message['items'] = $itemList;
 
                 break;
             case 3:
                 $this->message['status'] = 2;
-                $this->message['message'] = $listMessage[$num];
                 $this->message['img'] = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/'.$choix.'.png';
-                $this->message['id'] = $choix;
-                $this->message['items'] = $itemList;
                 break;
             case 4:
             case 5:
                 $this->message['status'] = 3;
-                $this->message['message'] = $listMessage[$num];
                 $this->message['img'] = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/'.$choix.'.png';
-                $this->message['id'] = $choix;
-                $this->message['items'] = $itemList;
                 break;
             case 6:
                 $this->message['status'] = 3;
-                $this->message['message'] = $listMessage[$num];
                 $this->message['img'] = '';
-                $this->message['id'] = $choix;
-                $this->message['items'] = $itemList;
                 break;
             case 7:
                 $this->message['status'] = 0;
-                $this->message['message'] = $listMessage[$num];
                 $this->message['img'] = '/img/PokeGhost.png';
-                $this->message['id'] = $choix;
-                $this->message['items'] = $itemList;
                 break;
         }
+        
+        $this->message['message'] = $listMessage[$num];
+        $this->message['id'] = $choix;
+        $this->message['items'] = $itemList;
 
-        if ($user != 0)
+        if ($idUser != 0)
         {
             $pokemon = new PokemonController();
-            $this->message['team'] = $pokemon->findPokemonUser(Box::where('id_user', $user)->whereIn('id', json_decode((User_game::where('id', $user)->get())[0]->team))->get());
+            $this->message['team'] = $pokemon->findPokemonUser(Box::where('id_user', $idUser)->whereIn('id', json_decode((User_game::where('id', $idUser)->get())[0]->team))->get());
         }
         
     }
