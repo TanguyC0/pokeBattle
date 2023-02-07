@@ -38,7 +38,7 @@ function walk(){
         team: message.value.team,
         items: [],
     }
-    const reponse = axios.post('/api/aventure/walk', {
+    axios.post('/api/aventure/walk', {
         stage: stage.value,
     }).then((response) => {
         message.value = response.data;
@@ -58,7 +58,7 @@ function catchP(){
         items: message.value.items,
         id: message.value.id,
     }
-    const reponse = axios.post('/api/aventure/catch', {
+    axios.post('/api/aventure/catch', {
         id: message.value.id,
         idItem: use.value,
     }).then((response) => {
@@ -99,6 +99,7 @@ function catchP(){
                         <div class="flex flex-row justify-around ">
                             <SmallButton v-if="message.status != -1" color="red" @click="walk">Walk</SmallButton>
                             <SmallButton v-if="message.status == 2" color="green" @click="catchP">Catch</SmallButton>
+                            <SmallButton v-if="message.status == 4" color="blue" >Fight</SmallButton>
                             <!-- <Link :href="route('aventure.walk',`${stage}`)" class="flex w-25 h-12 text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mx-3 my-2">Walk</Link> -->
                             <!-- <Link v-if="status == 2" :href="route('aventure.catch',[`${id}`,`${use}`])" class=" flex w-25 h-12 text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mx-3 my-2">Catch</Link> -->
                         </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Http;
 use App\Models\bag;
 use App\Models\box;
 use App\Models\stages;
@@ -414,7 +415,7 @@ class AventureController extends Controller
         1 = item
         2 = pokemon trouvé
         3 = apres catch, réussi ou non
-        4 = combat lancé
+        4 = combat trouvé
         5 = apres combat, gagné ou perdu
         */
 
@@ -428,7 +429,7 @@ class AventureController extends Controller
                 break;
             case 2:
                 $this->message['status'] = 1;
-                $this->message['img'] = '../img/items/item'.$choix.'.png';
+                $this->message['img'] = '/img/items/item'.$choix.'.png';
 
                 break;
             case 3:
@@ -450,7 +451,7 @@ class AventureController extends Controller
                 break;
             case 8:
                 $this->message['status'] = 4;
-                $this->message['img'] = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/'.$choix.'.png';
+                $this->message['img'] = '/img/vs.png';
                 break;
             case 9:
             case 10:
@@ -503,14 +504,18 @@ class AventureController extends Controller
             $stage = $request->input('stage');
             
 
-            $value = rand(1, 15);
-            if ($value <= 4) //item
+            $value = rand(1, 20);
+            if ($value <= 5) //item
             { 
                 $this->addItem($idUser,$stage);
             } 
-            elseif ($value <= 8) //pokemon
+            elseif ($value <= 10) //pokemon
             { 
                 $this->choosePokemon($idUser,$stage);
+            }
+            elseif ($value <= 15) //fight
+            {
+                $this->setMessage($idUser,8);
             }
             else
             {
@@ -547,7 +552,7 @@ class AventureController extends Controller
             $item->save();
         }
 
-        $this->setMessage($id,2,$choix );
+        $this->setMessage($idUser,2,$choix );
     }
 
     // when you found a pokemon during walk
@@ -681,15 +686,39 @@ class AventureController extends Controller
             $attack = 10;
             $defense = 10;
             $attack_type = 'normal';
-            $defend_type = ['normal'];
 
-            do {
-                $damage = $this->calculate_damage($attack, $defense, $this->calculateTypeModifier($attack_type, $defend_type));
-                $pv = $pv - $damage;
-                if ($pv > 0) {
-                    $damage = $this->calculate_damage($attack, $defense, $this->calculateTypeModifier($attack_type, $defend_type));
+            $typePLAYER = [];
+            $typeNPC = [];
+            while ($pv > 0) {
+                if($typePLAYER == [])
+                {
+                    $response = Http::get('https://pokeapi.co/api/v2/pokemon/'.$userPokemon[0]->id_pokemon);
+                    $posts = $response->json();
+                    $typePLAYER = [$posts['types'][0]['type']['name'], isset($posts['types'][1]['type']['name']) ? $posts['types'][1]['type']['name'] : ''];
                 }
-            } while ($pv > 0);
+                if($typeNPC == [])
+                {
+                    $response = Http::get('https://pokeapi.co/api/v2/pokemon/1');
+                    $posts = $response->json();
+                    $typeNPC = [$posts['types'][0]['type']['name'], isset($posts['types'][1]['type']['name']) ? $posts['types'][1]['type']['name'] : ''];
+                }
+
+                if($userPokemon[0]->hp < 0)
+                {
+                    $damage = $this->calculate_damage($attack, $defense, $this->calculateTypeModifier($attack_type, $typeNPC));
+                    $pv = $pv - $damage;
+                    if ($pv <= 0) {
+                        $typeNPC = [];
+                    }
+                }
+                if ($pv > 0) {
+                    $damage = $this->calculate_damage($attack, $defense, $this->calculateTypeModifier($attack_type, $typePLAYER));
+                    $userPokemon[0]->hp = $userPokemon[0]->hp - $damage;
+                    if ($userPokemon[0]->hp <= 0) {
+                        $typePLAYER = [];
+                    }
+                }
+            }
 
 
             
