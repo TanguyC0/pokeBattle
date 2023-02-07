@@ -50,13 +50,14 @@ export default {
 
 <template>
     <MainModal :open="open" :name="'Box'">
-        <nav class="flex-col justify-evenly content-evenly m-2">
-            <NormalButton class="w-3/4 h-1/4 m-2">Grid</NormalButton>
-            <NormalButton class="w-3/4 h-1/4 m-2 p-2">Filter</NormalButton>
-            <NormalButton class="w-3/4 h-1/4 m-2" @click="chooseFavorite(listPokemon[pick])" >Fav</NormalButton>
-            <NormalButton class="w-3/4 h-1/4 m-2 p-2">Sell</NormalButton>
+
+        <nav class="flex-col content-evenly w-1/4 m-2">
+            <NormalButton class="p-4 w-full h-1/4 m-2">Grid</NormalButton>
+            <NormalButton class="p-4 w-full h-1/4 my-3 m-2">Filter</NormalButton>
+            <NormalButton class="p-4 w-full h-1/4 my-3 m-2" @click="chooseFavorite(listPokemon[pick])" >Fav</NormalButton>
+            <NormalButton class="p-4 w-full h-1/4 m-2">Sell</NormalButton>
         </nav>
-        <section class=" h-full w-2/3 border p-6 rounded-lg overflow-y-scroll my-5">
+        <section class=" h-full w-1/3 border p-6 rounded-lg overflow-y-scroll my-5 ml-2">
             <ul class="grid grid-cols-4 gap-4 wrap ">
                 <template v-for="n in nbSlot">
                     <li class="h-32 w-32 hover:bg-violet-300 bg-white border border-gray-300 rounded-lg shadow  active:bg-violet-800 focus:outline-none focus:ring focus:ring-violet-500 "
@@ -66,7 +67,7 @@ export default {
                 </template>
             </ul>
         </section>
-        <section class="rounded-lg bg-white text-red-500 w-2/6 p-8 h-full m-5">
+        <section class="rounded-lg bg-white text-red-500 w-1/3 p-8 h-full m-5">
             <h3 class="text-center">Detail</h3>
             <template v-if="listPokemon.length > 0">
                 <p class=" items-center text-xl hover:underline">Type: {{listPokemon[pick].type }}</p>
@@ -78,4 +79,5 @@ export default {
             </template>
         </section>
     </MainModal>
+
 </template>

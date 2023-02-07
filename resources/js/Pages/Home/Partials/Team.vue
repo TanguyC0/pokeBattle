@@ -88,7 +88,7 @@ export default {
                 </template>
             </ul>
         </section>
-        <section class="border p-3 rounded-lg overflow-y-scroll w-1/3 m-1 mx-3">
+        <section class="border p-3 rounded-lg overflow-y-scroll w-1/3 h-full m-1 mx-3">
             {{ display }}
             <ul class="grid grid-cols-4 gap-4 wrap ">
                 <template v-if="display == 'pokemon'" v-for="n in nbSlotP">
@@ -106,9 +106,9 @@ export default {
                 </template>
             </ul>
         </section>
-        <nav class="flex flex-col justify-evenly content-evenly">
-            <NormalButton class="w-full h-1/4" @click="display = 'pokemon', pick = 0">Pokemon</NormalButton>
-            <NormalButton class="w-full h-1/4 my-4" @click="display = 'item', pick = 0">Item</NormalButton>
+        <nav class="flex flex-col justify-evenly content-evenly h-full">
+            <NormalButton class="w-full h-1/4 " @click="display = 'pokemon', pick = 0">Pokemon</NormalButton>
+            <NormalButton class="w-full h-1/4 my-8" @click="display = 'item', pick = 0">Item</NormalButton>
             <NormalButton class="w-full h-1/4 p-2" v-if="display == 'pokemon'" @click="switchPokemon(pickTeam,pokemon[pick].idTable,team)">Take in team</NormalButton>
             <NormalButton class="w-full h-1/4" v-if="display == 'item'">Use</NormalButton>
         </nav>

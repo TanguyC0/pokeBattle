@@ -68,7 +68,7 @@ onMounted(() => {
             <Header />
             <main class="h-4/5 w-full relative">
 
-                <section class="flex flex-row justify-around items-center h-full w-full absolute">
+                <section class="flex flex-row justify-around items-center h-4/5 w-full absolute">
                     <nav class="flex flex-col gap-6 items-start font-unowm w-1/4 h-full">
                         <LinkButton :href="route('aventure.index')">Adventure</LinkButton>
                         <NormalButton @click="open = 'bag'">Bag</NormalButton>

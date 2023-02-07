@@ -51,14 +51,14 @@ export default {
 };
 </script>
 
-<template class="justify-evenly">
+<template>
     <MainModal :open="open" :name="'Bag'">
-        <nav class="flex flex-col w-1/3">
-            <NormalButton class="w-3/4 h-1/4 m-2" @click="newType('all')">All</NormalButton>
-            <NormalButton class="w-3/4 h-1/4 m-2" @click="newType('heal')">Heal</NormalButton>
-            <NormalButton class="w-3/4 h-1/4 m-2" @click="newType('catch')">Catch</NormalButton>
+        <nav class="flex flex-col h-full w-1/3">
+            <NormalButton class="p-2 w-3/4 h-1/4" @click="newType('all')">All</NormalButton>
+            <NormalButton class="p-2 w-3/4 h-1/4 my-4" @click="newType('heal')">Heal</NormalButton>
+            <NormalButton class="p-2 w-3/4 h-1/4" @click="newType('catch')">Catch</NormalButton>
         </nav>
-        <section class="flex border h-3/4 w-1/2 p-8 mt-5 rounded-lg overflow-y-scroll">
+        <section class="flex border h-full w-1/2 p-8 rounded-lg overflow-y-scroll">
             <ul class="grid grid-cols-4 gap-4 wrap ">
                 <template v-for="n in nbSlot">
                     <li v-if="n<=listitem.length" class="h-32 w-32 hover:bg-violet-300 bg-white border border-gray-300 rounded-lg shadow  active:bg-violet-800 focus:outline-none focus:ring focus:ring-violet-500 relative"
