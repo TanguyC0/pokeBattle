@@ -713,7 +713,7 @@ class AventureController extends Controller
 
     function calculate_damage($attack, $defense, $modifier) {
 
-        return ceil(((((2 * Niveau / 5 + 2) * $attack / $defense) / 50) + 2) * $modifier * random(0.85,1.15))
+        return ceil(((((2 * Niveau / 5 + 2) * $attack / $defense) / 50) + 2) * $modifier * random(0.85,1.15));
     }
 }
 
