@@ -17,8 +17,9 @@ return new class extends Migration
         Schema::create('stages', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->json('pokemons');
-            $table->json('items');
+            $table->json('pokemons')->nullable();
+            $table->json('items')->nullable();
+            $table->jscon('fight')->nullable();
             // champs for position in the map (x,y)
             $table->json('position')->nullable();
         });
@@ -29,6 +30,7 @@ return new class extends Migration
                 'name' => 'stage1',
                 'pokemons' => '[1,4,7,10]',
                 'items' => '[1,2]',
+                'fight' => '{"pokemon": [1], "level": [1,5], "nb_pokemon": [1,1], "xp": [1,5], "money": [1,5]}',
                 'position' => '{"x": 0, "y": 0}',
             )
         );
