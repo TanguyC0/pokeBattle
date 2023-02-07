@@ -32,14 +32,20 @@ class AventureController extends Controller
         if($request->user())
         {
             $id = $request->user()->id;
+            $this->setMessage($id,0);
         }
-        $this->setMessage($id,0);
+        else
+        {
+            $this->setMessage($id,7);
+        }
+        
         return Inertia::render('Aventure', ['data' => $this->message]);
     }
 
 
     public function walk(Request $request)
     {
+        $id = 0;
         if($request->user())
         {
             $id = $request->user()->id;
@@ -63,7 +69,7 @@ class AventureController extends Controller
         }
         else
         {
-            $this->setMessage(0,7);
+            $this->setMessage($id,7);
         }
 
         return $this->message;
@@ -134,47 +140,54 @@ class AventureController extends Controller
 
     public function catch(Request $request)
     {
-        $idUser = $request->user()->id;
+        $idUser = 0;
+        if($request->user())
+        {
+            $idUser = $request->user()->id;
 
-        $id = $request->input('id');
-        $idItem = $request->input('idItem');
+            $id = $request->input('id');
+            $idItem = $request->input('idItem');
 
+            $ball = Bag::where('id_item', $idItem)->where('id_user',$idUser)->get();
 
-        $ball = Bag::where('id_item', $idItem)->where('id_user',$idUser)->get();
+            if ($ball->count() == 0 || $ball[0]->count == 0) {
 
-        if ($ball->count() == 0 || $ball[0]->count == 0) {
+                $this->setMessage($idUser,6,$id);
+            }
+            else
+            {
+                
+                Bag::where('id_item', $idItem)->where('id_user',$idUser)->decrement('count');
 
-            $this->setMessage($idUser,6,$id);
+                $power = Items::where('id', $idItem)->select('power')->get();
+
+                $limit_random_array_values = range(0, 100);
+                shuffle($limit_random_array_values);
+                $random_array_value = array_slice($limit_random_array_values ,0,$power[0]->power);
+
+                $value = rand(0, 100);
+                if (in_array($value, $random_array_value)) {
+                    Box::insert([
+                        'id_pokemon' => $id,
+                        'id_user' => $idUser,
+                        'level' => 1,
+                        'hp' => rand(5, 20),
+                        'attack' => rand(5, 20),
+                        'defense' => rand(5, 20),
+                        'xp' => 0,
+                    ]);
+
+                    $this->setMessage($idUser,4,$id);
+
+                } else {
+
+                    $this->setMessage($idUser,5,$id);
+                }
+            }
         }
         else
         {
-            
-            Bag::where('id_item', $idItem)->where('id_user',$idUser)->decrement('count');
-
-            $power = Items::where('id', $idItem)->select('power')->get();
-
-            $limit_random_array_values = range(0, 100);
-            shuffle($limit_random_array_values);
-            $random_array_value = array_slice($limit_random_array_values ,0,$power[0]->power);
-
-            $value = rand(0, 100);
-            if (in_array($value, $random_array_value)) {
-                Box::insert([
-                    'id_pokemon' => $id,
-                    'id_user' => $idUser,
-                    'level' => 1,
-                    'hp' => rand(5, 20),
-                    'attack' => rand(5, 20),
-                    'defense' => rand(5, 20),
-                    'xp' => 0,
-                ]);
-
-                $this->setMessage($idUser,4,$id);
-
-            } else {
-
-                $this->setMessage($idUser,5,$id);
-            }
+            $this->setMessage($idUser,7);
         }
 
         return $this->message;
