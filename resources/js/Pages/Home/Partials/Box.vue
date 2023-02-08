@@ -67,10 +67,10 @@ export default {
                 </template>
             </ul>
         </section>
-        <section class="rounded-lg bg-white text-red-500 w-1/3 p-8 h-full m-5">
-            <h3 class="text-center">Detail</h3>
+        <section class="grid rounded-lg bg-white text-black w-1/3 p-4 h-full m-5 justify-evenly ">
+            <h3 class="text-center font-bold text-4xl">Detail</h3>
             <template v-if="listPokemon.length > 0">
-                <p class=" items-center text-xl hover:underline">Type: {{listPokemon[pick].type }}</p>
+                <p class=" items-center text-xl  hover:underline">Type: {{listPokemon[pick].type }}</p>
                 <p class=" items-center text-xl hover:underline">Level: {{listPokemon[pick].level }}</p>
                 <p class=" items-center text-xl hover:underline">Exp.: {{listPokemon[pick].xp}}</p>
                 <p class=" items-center text-xl hover:underline">Hp: {{listPokemon[pick].hp}}</p>
@@ -81,3 +81,5 @@ export default {
     </MainModal>
 
 </template>
+
+<style> *{ font-family:"pokemonXY";} </style>

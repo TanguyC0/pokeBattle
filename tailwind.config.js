@@ -20,16 +20,13 @@ module.exports = {
                     'raw': '(orientation: landscape)'
                 },
             },
+            fontFamily: {
+                ketchum: ["Ketchum"],
+                pokemon: ["pokemon",...defaultTheme.fontFamily.sans,],
+                unown: ["unown"],
+                pokemonXY: ["PokemonXY"],
         },
-        plugins: [require("@tailwindcss/forms"), require("flowbite/plugin")],
     },
     plugins: [require("@tailwindcss/forms"), require("flowbite/plugin")],
+},
 }
-
-
-// fontFamily: {
-//     ketchum: ["Ketchum"],
-//     pokemon: ["pokemon",...defaultTheme.fontFamily.sans,],
-//     unown: ["unown"],
-//     pokemonXY: ["PokemonXY"],
-// },
