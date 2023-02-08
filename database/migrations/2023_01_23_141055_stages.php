@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->json('pokemons')->nullable();
             $table->json('items')->nullable();
-            $table->jscon('fight')->nullable();
+            $table->json('fight')->nullable();
             // champs for position in the map (x,y)
             $table->json('position')->nullable();
         });
