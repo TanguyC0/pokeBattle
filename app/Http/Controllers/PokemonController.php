@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Models\box;
+use App\Models\User_game;
 
 class PokemonController extends Controller
 {
@@ -63,6 +64,29 @@ class PokemonController extends Controller
 
         return $list;
 
+    }
+
+    public function sell(Request $request)
+    {
+        if($request->user())
+        {
+            $id = $request->user()->id;
+            $pokeId = $request->input('id');
+            // $pokeId = 1;
+            $data = Box::where('id', $pokeId)->where('id_user',$id)->first();
+            if ($data == null)
+                return false;
+            // dd($data);
+            $money = $data->level * 10;
+            // dd($money);
+            $data->delete();
+            $user = User_game::where('id', $id)->first();
+            $user->money = $user->money + $money;
+            $user->save();
+            return true;
+        }
+
+        return false;
     }
 
 }

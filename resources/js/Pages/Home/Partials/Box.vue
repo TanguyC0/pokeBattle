@@ -18,6 +18,13 @@ function chooseFavorite(poke){
         id: poke.id
     });
 }
+
+function sell(poke){
+    axios.post('/api/sell', {
+        id: poke.idTable
+    })
+}
+
 </script>
 <script>
 // import axios from 'axios';
@@ -54,7 +61,7 @@ export default {
             <NormalButton class="w-3/4 h-1/4 m-2">Grid</NormalButton>
             <NormalButton class="w-3/4 h-1/4 m-2 p-2">Filter</NormalButton>
             <NormalButton class="w-3/4 h-1/4 m-2" @click="chooseFavorite(listPokemon[pick])" >Fav</NormalButton>
-            <NormalButton class="w-3/4 h-1/4 m-2 p-2">Sell</NormalButton>
+            <NormalButton class="w-3/4 h-1/4 m-2 p-2" @click="sell(listPokemon[pick])">Sell</NormalButton>
         </nav>
         <section class=" h-full w-2/3 border p-6 rounded-lg overflow-y-scroll my-5">
             <ul class="grid grid-cols-4 gap-4 wrap ">
