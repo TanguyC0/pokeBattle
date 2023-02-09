@@ -11,7 +11,7 @@ const form = useForm({
     email: '',
     password: '',
     password_confirmation: '',
-    terms: false,
+    terms: 1,
 });
 
 const submit = () => {
@@ -87,6 +87,30 @@ const submit = () => {
                 <InputError class="mt-2" :message="form.errors.password_confirmation" />
             </div>
 
+            <div class="flex h-32 mt-5 justify-evenly">
+                <div class="border rounded-full hover:bg-violet-300 flex h-32">
+                    <label for="plante">
+                        <input type="radio" id="plante" name="plante" value="906">
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/155.png" alt="pokemon" class="border rounded-full hover:bg-violet-300 flex h-32"/>
+                        feu
+                    </label>
+                </div>
+                <div class="border rounded-full hover:bg-violet-300 flex h-32">
+                    <label for="plante">
+                        <input type="radio" id="plante" name="plante" value="906">
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/906.png" alt="pokemon" class="border rounded-full hover:bg-violet-300 flex h-32"/>
+                        plante
+                    </label>
+                </div>
+                <div class="border rounded-full hover:bg-violet-300 flex h-32">
+                    <label for="plante">
+                        <input type="radio" id="plante" name="plante" value="906">
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/501.png" alt="pokemon" class="border rounded-full hover:bg-violet-300 flex h-32"/>
+                        eau
+                    </label>
+                </div>
+            </div>
+
             <div class="flex items-center justify-end mt-4">
                 <Link
                     :href="route('login')"
@@ -94,6 +118,8 @@ const submit = () => {
                 >
                     Already registered?
                 </Link>
+
+                
 
                 <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Register
