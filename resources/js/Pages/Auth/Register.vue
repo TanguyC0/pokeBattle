@@ -11,7 +11,7 @@ const form = useForm({
     email: '',
     password: '',
     password_confirmation: '',
-    terms: 1,
+    starter: 'feu',
 });
 
 const submit = () => {
@@ -87,25 +87,25 @@ const submit = () => {
                 <InputError class="mt-2" :message="form.errors.password_confirmation" />
             </div>
 
-            <div class="flex h-32 mt-5 justify-evenly">
+            <div class="flex h-32 mt-4 justify-evenly">
                 <div class="border rounded-full hover:bg-violet-300 flex h-32">
-                    <label for="plante">
-                        <input type="radio" id="plante" name="plante" value="906">
-                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/155.png" alt="pokemon" class="border rounded-full hover:bg-violet-300 flex h-32"/>
+                    <label for="feu">
+                        <input type="radio" id="feu" name="starter" value="feu" class="hidden" v-model="form.starter" required>
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/155.png" alt="pokemon" class=" h-32"/>
                         feu
                     </label>
                 </div>
                 <div class="border rounded-full hover:bg-violet-300 flex h-32">
                     <label for="plante">
-                        <input type="radio" id="plante" name="plante" value="906">
-                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/906.png" alt="pokemon" class="border rounded-full hover:bg-violet-300 flex h-32"/>
+                        <input type="radio" id="plante" name="starter" value="plante" class="hidden" v-model="form.starter" required>
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/906.png" alt="pokemon" class=" h-32"/>
                         plante
                     </label>
                 </div>
                 <div class="border rounded-full hover:bg-violet-300 flex h-32">
-                    <label for="plante">
-                        <input type="radio" id="plante" name="plante" value="906">
-                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/501.png" alt="pokemon" class="border rounded-full hover:bg-violet-300 flex h-32"/>
+                    <label for="eau">
+                        <input type="radio" id="eau" name="starter" value="eau" class="hidden" v-model="form.starter" required>
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/501.png" alt="pokemon" class=" h-32"/>
                         eau
                     </label>
                 </div>
