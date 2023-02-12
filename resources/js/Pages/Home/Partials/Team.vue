@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import NormalButton from '@/Components/Buttons/NormalButton.vue';
 import MainModal from '@/Components/Modals/MainModal.vue';
 import axios from 'axios';
@@ -9,6 +9,11 @@ const props = defineProps(['open']);
 const pick = ref(0);
 const pickTeam = ref(0);
 const display = ref('pokemon');
+const pokemon = ref([]);
+const bag = ref([]);
+const team = ref([]);
+const nbSlotP = ref(0);
+const nbSlotB = ref(0);
 
 function switchPokemon(place, pokemon, team){
     
@@ -39,40 +44,24 @@ function used(place,team,pokemon){
     return "";
 }
 
-</script>
-<script>
-// import axios from 'axios';
+async function getData() {
+    try {
+        const response = await axios.get('/api/team');
+        pokemon.value = response.data.pokemon;
+        nbSlotP.value = Math.ceil(pokemon.value.length / 4) * 4;
+        bag.value = response.data.bag;
+        nbSlotB.value = Math.ceil(bag.value.length / 4) * 4;
+        team.value = response.data.team;
 
-export default {
-    data() {
-        return {
-            pokemon: [],
-            bag: [],
-            team: [],
-            nbSlotP: 0,
-            nbSlotB: 0,
-        };
-    },
-    methods: {
-        async getData() {
-            try {
-                const response = await axios.get('/api/team');
-                this.pokemon = response.data.pokemon;
-                this.nbSlotP = Math.ceil(this.pokemon.length / 4) * 4;
-                this.bag = response.data.bag;
-                this.nbSlotB = Math.ceil(this.bag.length / 4) * 4;
-                this.team = response.data.team;
-
-            } catch (error) {
-                console.error(error);
-            }
-        },
-    },
-    mounted() {
-        this.getData();
+    } catch (error) {
+        console.error(error);
     }
-
 };
+
+onMounted(() => {
+    getData();
+});
+
 </script>
 
 <template>
@@ -83,7 +72,7 @@ export default {
                 <template v-for="n in 6">
                     <li @click="pickTeam = n-1" class="h-32 w-32 hover:bg-violet-300 bg-white border border-gray-300 rounded-lg shadow  active:bg-violet-800 focus:outline-none focus:ring focus:ring-violet-500 "
                         :class="{'bg-violet-300': pickTeam==n-1}" >
-                        <img v-if="n<=team.length" :src="`${team[n-1].image}`" alt="item" class="w-full justify-center">
+                        <img v-if="n<=team.length && team[n-1] != 0" :src="`${team[n-1].image}`" alt="item" class="w-full justify-center">
                     </li>
                 </template>
             </ul>
