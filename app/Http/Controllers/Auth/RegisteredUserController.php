@@ -62,11 +62,11 @@ class RegisteredUserController extends Controller
 
         $user_game = User_game::create([
             'id' => $user->id,
-            'team' => json_encode([$starter,0,0,0,0,0]),
+            'team' => json_encode([0,0,0,0,0,0]),
             'favorite' => $starter,
         ]);
 
-        Box::insert([
+        $pokemon = Box::create([
             'id_pokemon' => $starter,
             'id_user' => $user->id,
             'level' => 1,
@@ -75,6 +75,9 @@ class RegisteredUserController extends Controller
             'defense' => rand(10, 25),
             'xp' => 0,
         ]);
+
+        $user_game->team = json_encode([$pokemon->id,0,0,0,0,0]);
+        $user_game->save();
 
         $request->session()->regenerate();
 
