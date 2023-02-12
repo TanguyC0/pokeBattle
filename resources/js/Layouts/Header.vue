@@ -1,30 +1,28 @@
 <script setup>
 import { Link } from '@inertiajs/inertia-vue3';
+import { onMounted, ref } from 'vue';
 import Jauge from '@/Components/Jauge.vue';
-</script>
-<script>
 import axios from 'axios';
 
-export default {
-    data() {
-        return {
-            dataUser: []
-        };
-    },
-    methods: {
-        async getData() {
-            try {
-                const response = await axios.get('/api/user');
-                this.dataUser = response.data;
-            } catch (error) {
-                console.error(error);
-            }
-        },
-    },
-    mounted() {
-        this.getData();
+const dataUser = ref([]);
+
+async function getData() {
+    try {
+        await axios.get('/api/user')
+        .then(function (response) {
+            dataUser.value = response.data;
+        });
+
+    } catch (error) {
+        console.error(error);
     }
-};
+}
+
+onMounted(() => {
+    setInterval(() => {
+            getData();
+        }, 5000);
+});
 </script>
 
 <template>

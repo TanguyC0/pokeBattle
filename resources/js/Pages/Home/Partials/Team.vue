@@ -18,10 +18,6 @@ const nbSlotB = ref(0);
 
 
 function addTeam(){
-    // pickTeam,pokemon[pick].idTable,team
-
-    console.log(pokemon.value[pick.value]);
-    console.log(team.value[pickTeam.value]);
     
     // Vérifier que la liste `team` n'est pas vide et que l'objet avec la propriété `idTable` égale à `pokemon` 
     // n'existe pas déjà dans la liste `team`

@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import NormalButton from '@/Components/Buttons/NormalButton.vue';
 import MainModal from '@/Components/Modals/MainModal.vue';
 import axios from 'axios';
@@ -12,6 +12,8 @@ const props = defineProps({
 });
 
 const pick = ref(0);
+const listPokemon = ref([]);
+const nbSlot = ref(0);
 
 function chooseFavorite(poke){
     axios.post('/api/favorite', {
@@ -23,36 +25,32 @@ function sell(poke){
     axios.post('/api/sell', {
         id: poke.idTable
     })
+    .then(function (response) {
+        if(response.data)
+        {
+            listPokemon.value.splice(pick.value, 1);
+            nbSlot.value = Math.ceil(listPokemon.value.length / 4) * 4;
+            pick.value = 0;
+        }
+        
+    })
 }
 
-</script>
-<script>
-// import axios from 'axios';
+async function getData() {
+    try {
+        const response = await axios.get('/api/box');
+        listPokemon.value = response.data;
+        nbSlot.value = Math.ceil(listPokemon.value.length / 4) * 4;
 
-export default {
-    data() {
-        return {
-            listPokemon: [],
-            nbSlot: 0,
-        };
-    },
-    methods: {
-        async getData() {
-            try {
-                const response = await axios.get('/api/box');
-                this.listPokemon = response.data;
-                this.nbSlot = Math.ceil(this.listPokemon.length / 4) * 4;
-
-            } catch (error) {
-                console.error(error);
-            }
-        },
-    },
-    mounted() {
-        this.getData();
+    } catch (error) {
+        console.error(error);
     }
+}
 
-};
+onMounted(() => {
+    getData();
+});
+
 </script>
 
 <template>
