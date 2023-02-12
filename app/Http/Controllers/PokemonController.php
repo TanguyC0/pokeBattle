@@ -55,7 +55,20 @@ class PokemonController extends Controller
     {
 
         if(count($value) <= 0)
-            return 0;
+        {
+            return array('idTable' => 0,
+                            'id'=> 0,
+                            'name' => '', 
+                            'type' => ['', ''],
+                            'level' => 0,
+                            'image' => '',
+                            'hp' => 0,
+                            'attack' => 0,
+                            'defense' => 0,
+                            'xp' => 0,
+                            'xpMax' => 0,
+            );
+        }
 
         $value = $value[0];
         $response = Http::get('https://pokeapi.co/api/v2/pokemon/'.$value->id_pokemon);

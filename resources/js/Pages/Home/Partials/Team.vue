@@ -15,17 +15,23 @@ const team = ref([]);
 const nbSlotP = ref(0);
 const nbSlotB = ref(0);
 
-function switchPokemon(place, pokemon, team){
+
+
+function addTeam(){
+    // pickTeam,pokemon[pick].idTable,team
+
+    console.log(pokemon.value[pick.value]);
+    console.log(team.value[pickTeam.value]);
     
-    console.log(team);
     // Vérifier que la liste `team` n'est pas vide et que l'objet avec la propriété `idTable` égale à `pokemon` 
     // n'existe pas déjà dans la liste `team`
-    if(team.length <= 0 && team.find(poke => poke.idTable === pokemon) != null) exit();
+    if(team.value.length <= 0 && team.value.find(poke => poke.idTable === pokemon.value[pick.value].idTable) != null) exit();
 
+    team.value[pickTeam.value] = pokemon.value[pick.value];
     // Si un objet existe, envoyer une requête POST à l'API
     axios.post('/api/updateTeam', {
-        place: place,
-        pokemon: pokemon
+        place: pickTeam.value,
+        pokemon: pokemon.value[pick.value].idTable
     })
     
 }
@@ -68,16 +74,17 @@ onMounted(() => {
     <MainModal :open="open" :name="'Team'">
         <section class="m-1 mx-3 border p-3 rounded-lg">
             <h3 class="text-center text-3xl mb-2">Your team</h3>
-            <ul class="grid grid-cols-3 gap-4 wrap ">
+            <ul class="grid grid-cols-3 gap-4 wrap " >
                 <template v-for="n in 6">
                     <li @click="pickTeam = n-1" class="h-32 w-32 hover:bg-violet-300 bg-white border border-gray-300 rounded-lg shadow  active:bg-violet-800 focus:outline-none focus:ring focus:ring-violet-500 "
                         :class="{'bg-violet-300': pickTeam==n-1}" >
-                        <img v-if="n<=team.length && team[n-1] != 0" :src="`${team[n-1].image}`" alt="item" class="w-full justify-center">
+                        <img v-if="n<=team.length && team[n-1].image != ''" :src="`${team[n-1].image}`" alt="item" class="w-full justify-center">
                     </li>
                 </template>
             </ul>
         </section>
-        <section class="border p-3 rounded-lg overflow-y-scroll w-1/3 m-1 mx-3">
+        <GridScroll />
+        <section class="border p-3 rounded-lg overflow-y-scroll overflow-x-hidden w-1/3 m-1 mx-3">
             {{ display }}
             <ul class="grid grid-cols-4 gap-4 wrap ">
                 <template v-if="display == 'pokemon'" v-for="n in nbSlotP">
@@ -89,7 +96,6 @@ onMounted(() => {
                 </template>
                 <template v-if="display == 'item'" v-for="n in nbSlotB">
                     <li @click="pick = n-1" class="h-32 w-32 hover:bg-violet-300 bg-white border border-gray-300 rounded-lg shadow  active:bg-violet-800 focus:outline-none focus:ring focus:ring-violet-500 " :class="{'bg-violet-300': pick==n-1}">
-                    <!-- :class="used(listPokemon[n-1].idTable,team,n-1)" -->
                         <img v-if="n<=bag.length" :src="`img/items/item${bag[n-1].id_item}.png`" alt="item" class="w-full justify-center">
                     </li>
                 </template>
@@ -98,7 +104,7 @@ onMounted(() => {
         <nav class="flex flex-col justify-evenly content-evenly">
             <NormalButton class="w-full h-1/4" @click="display = 'pokemon', pick = 0">Pokemon</NormalButton>
             <NormalButton class="w-full h-1/4 my-4" @click="display = 'item', pick = 0">Item</NormalButton>
-            <NormalButton class="w-full h-1/4 p-2" v-if="display == 'pokemon'" @click="switchPokemon(pickTeam,pokemon[pick].idTable,team)">Take in team</NormalButton>
+            <NormalButton class="w-full h-1/4 p-2" v-if="display == 'pokemon'" @click="addTeam()">Add in team</NormalButton>
             <NormalButton class="w-full h-1/4" v-if="display == 'item'">Use</NormalButton>
         </nav>
     </MainModal>
