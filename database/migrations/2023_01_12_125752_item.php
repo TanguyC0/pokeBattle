@@ -46,7 +46,55 @@ return new class extends Migration
                 'name' => 'honorball',
                 'description' => 'pokeball',
                 'type' => 'catch',
+                'power' => 11,
+                'grade' => 'commun',
+                'sell' => 10,
+                'buy' => 10,
+                'building' => 'null'
+            )
+        );
+        DB::table('items')->insert(
+            array(
+                'name' => 'superball',
+                'description' => 'pokeball',
+                'type' => 'catch',
+                'power' => 20,
+                'grade' => 'commun',
+                'sell' => 10,
+                'buy' => 10,
+                'building' => 'null'
+            )
+        );
+        DB::table('items')->insert(
+            array(
+                'name' => 'potion',
+                'description' => 'potion +10 hp',
+                'type' => 'heal',
                 'power' => 10,
+                'grade' => 'commun',
+                'sell' => 10,
+                'buy' => 10,
+                'building' => 'null'
+            )
+        );
+        DB::table('items')->insert(
+            array(
+                'name' => 'super potion',
+                'description' => 'potion +20 hp',
+                'type' => 'heal',
+                'power' => 20,
+                'grade' => 'commun',
+                'sell' => 10,
+                'buy' => 10,
+                'building' => 'null'
+            )
+        );
+        DB::table('items')->insert(
+            array(
+                'name' => 'hyper potion',
+                'description' => 'potion +30 hp',
+                'type' => 'heal',
+                'power' => 30,
                 'grade' => 'commun',
                 'sell' => 10,
                 'buy' => 10,
