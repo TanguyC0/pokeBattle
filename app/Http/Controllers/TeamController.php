@@ -23,7 +23,7 @@ class TeamController extends Controller
 
             //box
             $pokemon = new PokemonController();
-            $box = $pokemon->findPokemonUser(Box::all()->where('id_user', $id));
+            $box = $pokemon->findAllPokemon(Box::all()->where('id_user', $id));
             // dd($box);
             // if(count($box)<=0)
             // {
@@ -31,17 +31,14 @@ class TeamController extends Controller
             // }
 
             //team
-            $user = json_decode((User_game::where('id', $id)->get())[0]->team);
-            if(count($user)>0)
+            $user = User_game::where('id', $id)->first();
+
+            foreach(json_decode($user->team) as $key => $value)
             {
-                $team = $pokemon->findPokemonUser(Box::where('id_user', $id)->whereIn('id', $user)->get());
-                $bag = Bag::join('items', 'bags.id_item', '=', 'items.id')->where('id_user', $id)->get();
+                $team[$key] = $pokemon->findPokemon(Box::where('id', $value)->get());
             }
-            else
-            {
-                $team = [];
-                $bag = [];
-            }
+            
+            $bag = Bag::join('items', 'bags.id_item', '=', 'items.id')->where('id_user', $id)->get();
 
             //bag
 

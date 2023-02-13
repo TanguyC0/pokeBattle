@@ -8,31 +8,7 @@ import Bag from '@/Pages/Home/Partials/Bag.vue';
 import Team from '@/Pages/Home/Partials/Team.vue';
 import Box from '@/Pages/Home/Partials/Box.vue';
 
-import { initAccordions, 
-    initCarousels, 
-    initCollapses, 
-    initDials, 
-    initDismisses, 
-    initDrawers, 
-    initDropdowns, 
-    initModals, 
-    initPopovers, 
-    initTabs, 
-    initTooltips} from 'flowbite';
 
-onMounted(() => {
-    initAccordions();
-    initCarousels();
-    initCollapses();
-    initDials();
-    initDismisses();
-    initDrawers();
-    initDropdowns();
-    initModals();
-    initPopovers();
-    initTabs();
-    initTooltips();
-});
 
 const props = defineProps({
     fav: Number,
@@ -49,17 +25,9 @@ const close = () => {
 function setFav(fav) {
     imgfav.value = fav != 0?`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${fav}.png`:'../img/PokeGhost.png';
 }
-const update = () => {
-    // console.log(imgfav.value);
-    imgfav.value = imgfav.value;
-}
+
 setFav(props.fav);
 
-onMounted(() => {
-  setInterval(() => {
-    update();
-  }, 1000);
-});
 </script>
 
 <template>

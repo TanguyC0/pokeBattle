@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Box extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['id', 'id_user', 'id_pokemon', 'level', 'xp', 'hp', 'attack', 'defense'];
 }

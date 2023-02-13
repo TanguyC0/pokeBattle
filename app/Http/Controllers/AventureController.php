@@ -471,7 +471,12 @@ class AventureController extends Controller
         if ($idUser != 0)
         {
             $pokemon = new PokemonController();
-            $this->message['team'] = $pokemon->findPokemonUser(Box::where('id_user', $idUser)->whereIn('id', json_decode((User_game::where('id', $idUser)->get())[0]->team))->get());
+            $user = User_game::where('id', $idUser)->first();
+
+            foreach(json_decode($user->team) as $key => $value)
+            {
+                $this->message['team'][$key] = $pokemon->findPokemon(Box::where('id', $value)->get());
+            }
         }
         
     }

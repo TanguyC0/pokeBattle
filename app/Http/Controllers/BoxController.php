@@ -17,7 +17,7 @@ class BoxController extends Controller
         {
             $id = $request->user()->id;
             $pokemon = new PokemonController();
-            $list = $pokemon->findPokemonUser(Box::all()->where('id_user', $id));
+            $list = $pokemon->findAllPokemon(Box::all()->where('id_user', $id));
         }
         // dd($list);
         return $list;

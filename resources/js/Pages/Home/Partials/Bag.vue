@@ -21,7 +21,8 @@ export default {
         return {
             listitem: [],
             nbSlot: 0,
-            type: 'all'
+            type: 'all',
+            pick: 0,
         };
     },
     methods: {
@@ -42,6 +43,17 @@ export default {
         newType(type) {
             this.type = type;
             this.getData();
+        },
+        sell() {
+            axios.post('/api/item/sell', {
+                id: this.listitem[this.pick].id_item
+            })
+            .then((response) => {
+                if(response.data)
+                    console.log(this.listitem[this.pick].count);
+                    this.listitem[this.pick].count--;
+                    console.log(this.listitem[this.pick].count);
+            })
         }
     },
     mounted() {
@@ -53,10 +65,11 @@ export default {
 
 <template>
     <MainModal :open="open" :name="'Bag'">
-        <nav class="flex flex-col h-full w-1/3">
-            <NormalButton class="p-2 w-3/4 h-1/4" @click="newType('all')">All</NormalButton>
-            <NormalButton class="p-2 w-3/4 h-1/4 my-4" @click="newType('heal')">Heal</NormalButton>
-            <NormalButton class="p-2 w-3/4 h-1/4" @click="newType('catch')">Catch</NormalButton>
+        <nav class="flex flex-col w-1/3">
+            <NormalButton class="w-3/4 h-1/4 m-2" @click="newType('all')">All</NormalButton>
+            <NormalButton class="w-3/4 h-1/4 m-2" @click="newType('heal')">Heal</NormalButton>
+            <NormalButton class="w-3/4 h-1/4 m-2" @click="newType('catch')">Catch</NormalButton>
+            <NormalButton class="w-3/4 h-1/4 m-2" :color="'green'" @click="sell()">sell</NormalButton>
         </nav>
         <section class="flex border h-full w-1/2 p-8 rounded-lg overflow-y-scroll">
             <ul class="grid grid-cols-4 gap-4 wrap ">

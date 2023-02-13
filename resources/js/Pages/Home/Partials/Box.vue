@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import NormalButton from '@/Components/Buttons/NormalButton.vue';
 import MainModal from '@/Components/Modals/MainModal.vue';
 import axios from 'axios';
@@ -12,50 +12,54 @@ const props = defineProps({
 });
 
 const pick = ref(0);
+const listPokemon = ref([]);
+const nbSlot = ref(0);
 
 function chooseFavorite(poke){
     axios.post('/api/favorite', {
         id: poke.id
     });
 }
-</script>
-<script>
-// import axios from 'axios';
 
-export default {
-    data() {
-        return {
-            listPokemon: [],
-            nbSlot: 0,
-        };
-    },
-    methods: {
-        async getData() {
-            try {
-                const response = await axios.get('/api/box');
-                this.listPokemon = response.data;
-                this.nbSlot = Math.ceil(this.listPokemon.length / 4) * 4;
+function sell(poke){
+    axios.post('/api/sell', {
+        id: poke.idTable
+    })
+    .then(function (response) {
+        if(response.data)
+        {
+            listPokemon.value.splice(pick.value, 1);
+            nbSlot.value = Math.ceil(listPokemon.value.length / 4) * 4;
+            pick.value = 0;
+        }
+        
+    })
+}
 
-            } catch (error) {
-                console.error(error);
-            }
-        },
-    },
-    mounted() {
-        this.getData();
+async function getData() {
+    try {
+        const response = await axios.get('/api/box');
+        listPokemon.value = response.data;
+        nbSlot.value = Math.ceil(listPokemon.value.length / 4) * 4;
+
+    } catch (error) {
+        console.error(error);
     }
+}
 
-};
+onMounted(() => {
+    getData();
+});
+
 </script>
 
 <template>
     <MainModal :open="open" :name="'Box'">
-
-        <nav class="flex-col content-evenly w-1/4 m-2">
-            <NormalButton class="p-4 w-full h-1/4 m-2">Grid</NormalButton>
-            <NormalButton class="p-4 w-full h-1/4 my-3 m-2">Filter</NormalButton>
-            <NormalButton class="p-4 w-full h-1/4 my-3 m-2" @click="chooseFavorite(listPokemon[pick])" >Fav</NormalButton>
-            <NormalButton class="p-4 w-full h-1/4 m-2">Sell</NormalButton>
+        <nav class="flex-col justify-evenly content-evenly m-2">
+            <NormalButton class="w-3/4 h-1/4 m-2">Grid</NormalButton>
+            <NormalButton class="w-3/4 h-1/4 m-2 p-2">Filter</NormalButton>
+            <NormalButton class="w-3/4 h-1/4 m-2" @click="chooseFavorite(listPokemon[pick])" >Fav</NormalButton>
+            <NormalButton class="w-3/4 h-1/4 m-2 p-2" @click="sell(listPokemon[pick])">Sell</NormalButton>
         </nav>
         <section class=" h-full w-1/3 border p-6 rounded-lg overflow-y-scroll my-5 ml-2">
             <ul class="grid grid-cols-4 gap-4 wrap ">
