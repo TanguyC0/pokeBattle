@@ -59,7 +59,7 @@ class PokemonController extends Controller
             return array('idTable' => 0,
                             'id'=> 0,
                             'name' => '', 
-                            'type' => ['', ''],
+                            'type' => [],
                             'level' => 0,
                             'image' => '',
                             'hp' => 0,

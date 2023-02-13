@@ -27,365 +27,365 @@ class AventureController extends Controller
         ];
 
         $this->type_chart = [
-            'Normal' => [
-                'Normal' => 1,
-                'Fighting' => 1,
-                'Flying' => 1,
-                'Poison' => 1,
-                'Ground' => 1,
-                'Rock' => 0.5,
-                'Bug' => 1,
-                'Ghost' => 0,
-                'Steel' => 0.5,
-                'Fire' => 1,
-                'Water' => 1,
-                'Grass' => 1,
-                'Electric' => 1,
-                'Psychic' => 1,
-                'Ice' => 1,
-                'Dragon' => 1,
-                'Dark' => 1,
-                'Fairy' => 1
+            'normal' => [
+                'normal' => 1,
+                'fighting' => 1,
+                'flying' => 1,
+                'poison' => 1,
+                'ground' => 1,
+                'rock' => 0.5,
+                'bug' => 1,
+                'ghost' => 0,
+                'steel' => 0.5,
+                'fire' => 1,
+                'water' => 1,
+                'grass' => 1,
+                'electric' => 1,
+                'psychic' => 1,
+                'ice' => 1,
+                'dragon' => 1,
+                'dark' => 1,
+                'fairy' => 1
             ],
-            'Fighting' => [
-                'Normal' => 2,
-                'Fighting' => 1,
-                'Flying' => 0.5,
-                'Poison' => 0.5,
-                'Ground' => 1,
-                'Rock' => 2,
-                'Bug' => 0.5,
-                'Ghost' => 0,
-                'Steel' => 2,
-                'Fire' => 1,
-                'Water' => 1,
-                'Grass' => 1,
-                'Electric' => 1,
-                'Psychic' => 0.5,
-                'Ice' => 2,
-                'Dragon' => 1,
-                'Dark' => 2,
-                'Fairy' => 0.5
+            'fighting' => [
+                'normal' => 2,
+                'fighting' => 1,
+                'flying' => 0.5,
+                'poison' => 0.5,
+                'ground' => 1,
+                'rock' => 2,
+                'bug' => 0.5,
+                'ghost' => 0,
+                'steel' => 2,
+                'fire' => 1,
+                'water' => 1,
+                'grass' => 1,
+                'electric' => 1,
+                'psychic' => 0.5,
+                'ice' => 2,
+                'dragon' => 1,
+                'dark' => 2,
+                'fairy' => 0.5
             ],
-            'Flying' => [
-                'Normal' => 1,
-                'Fighting' => 2,
-                'Flying' => 1,
-                'Poison' => 1,
-                'Ground' => 0,
-                'Rock' => 0.5,
-                'Bug' => 2,
-                'Ghost' => 1,
-                'Steel' => 0.5,
-                'Fire' => 1,
-                'Water' => 1,
-                'Grass' => 2,
-                'Electric' => 0.5,
-                'Psychic' => 1,
-                'Ice' => 1,
-                'Dragon' => 1,
-                'Dark' => 1,
-                'Fairy' => 1
+            'flying' => [
+                'normal' => 1,
+                'fighting' => 2,
+                'flying' => 1,
+                'poison' => 1,
+                'ground' => 0,
+                'rock' => 0.5,
+                'bug' => 2,
+                'ghost' => 1,
+                'steel' => 0.5,
+                'fire' => 1,
+                'water' => 1,
+                'grass' => 2,
+                'electric' => 0.5,
+                'psychic' => 1,
+                'ice' => 1,
+                'dragon' => 1,
+                'dark' => 1,
+                'fairy' => 1
             ],
-            'Poison' => [
-                'Normal' => 1,
-                'Fighting' => 1,
-                'Flying' => 1,
-                'Poison' => 0.5,
-                'Ground' => 0.5,
-                'Rock' => 0.5,
-                'Bug' => 1,
-                'Ghost' => 0.5,
-                'Steel' => 0,
-                'Fire' => 1,
-                'Water' => 1,
-                'Grass' => 2,
-                'Electric' => 1,
-                'Psychic' => 1,
-                'Ice' => 1,
-                'Dragon' => 1,
-                'Dark' => 1,
-                'Fairy' => 2
+            'poison' => [
+                'normal' => 1,
+                'fighting' => 1,
+                'flying' => 1,
+                'poison' => 0.5,
+                'ground' => 0.5,
+                'rock' => 0.5,
+                'bug' => 1,
+                'ghost' => 0.5,
+                'steel' => 0,
+                'fire' => 1,
+                'water' => 1,
+                'grass' => 2,
+                'electric' => 1,
+                'psychic' => 1,
+                'ice' => 1,
+                'dragon' => 1,
+                'dark' => 1,
+                'fairy' => 2
             ],
-            'Ground' => [
-                'Normal' => 1,
-                'Fighting' => 1,
-                'Flying' => 0,
-                'Poison' => 2,
-                'Ground' => 1,
-                'Rock' => 2,
-                'Bug' => 0.5,
-                'Ghost' => 1,
-                'Steel' =>2,
-                'Fire' => 2,
-                'Water' => 1,
-                'Grass' => 0.5,
-                'Electric' => 2,
-                'Psychic' => 1,
-                'Ice' => 1,
-                'Dragon' => 1,
-                'Dark' => 1,
-                'Fairy' => 1
+            'ground' => [
+                'normal' => 1,
+                'fighting' => 1,
+                'flying' => 0,
+                'poison' => 2,
+                'ground' => 1,
+                'rock' => 2,
+                'bug' => 0.5,
+                'ghost' => 1,
+                'steel' =>2,
+                'fire' => 2,
+                'water' => 1,
+                'grass' => 0.5,
+                'electric' => 2,
+                'psychic' => 1,
+                'ice' => 1,
+                'dragon' => 1,
+                'dark' => 1,
+                'fairy' => 1
             ],
-            'Rock' => [
-                'Normal' => 1,
-                'Fighting' => 0.5,
-                'Flying' => 2,
-                'Poison' => 1,
-                'Ground' => 0.5,
-                'Rock' => 1,
-                'Bug' => 2,
-                'Ghost' => 1,
-                'Steel' => 0.5,
-                'Fire' => 2,
-                'Water' => 1,
-                'Grass' => 1,
-                'Electric' => 1,
-                'Psychic' => 1,
-                'Ice' => 2,
-                'Dragon' => 1,
-                'Dark' => 1,
-                'Fairy' => 1
+            'rock' => [
+                'normal' => 1,
+                'fighting' => 0.5,
+                'flying' => 2,
+                'poison' => 1,
+                'ground' => 0.5,
+                'rock' => 1,
+                'bug' => 2,
+                'ghost' => 1,
+                'steel' => 0.5,
+                'fire' => 2,
+                'water' => 1,
+                'grass' => 1,
+                'electric' => 1,
+                'psychic' => 1,
+                'ice' => 2,
+                'dragon' => 1,
+                'dark' => 1,
+                'fairy' => 1
             ],
-            'Bug' => [
-                'Normal' => 1,
-                'Fighting' => 0.5,
-                'Flying' => 0.5,
-                'Poison' => 0.5,
-                'Ground' => 1,
-                'Rock' => 1,
-                'Bug' => 1,
-                'Ghost' => 0.5,
-                'Steel' => 0.5,
-                'Fire' => 0.5,
-                'Water' => 1,
-                'Grass' => 2,
-                'Electric' => 1,
-                'Psychic' => 2,
-                'Ice' => 1,
-                'Dragon' => 1,
-                'Dark' => 2,
-                'Fairy' => 0.5
+            'bug' => [
+                'normal' => 1,
+                'fighting' => 0.5,
+                'flying' => 0.5,
+                'poison' => 0.5,
+                'ground' => 1,
+                'rock' => 1,
+                'bug' => 1,
+                'ghost' => 0.5,
+                'steel' => 0.5,
+                'fire' => 0.5,
+                'water' => 1,
+                'grass' => 2,
+                'electric' => 1,
+                'psychic' => 2,
+                'ice' => 1,
+                'dragon' => 1,
+                'dark' => 2,
+                'fairy' => 0.5
             ],
-            'Ghost' => [
-                'Normal' => 0,
-                'Fighting' => 1,
-                'Flying' => 1,
-                'Poison' => 1,
-                'Ground' => 1,
-                'Rock' => 1,
-                'Bug' => 1,
-                'Ghost' => 2,
-                'Steel' => 1,
-                'Fire' => 1,
-                'Water' => 1,
-                'Grass' => 1,
-                'Electric' => 1,
-                'Psychic' => 2,
-                'Ice' => 1,
-                'Dragon' => 1,
-                'Dark' => 0.5,
-                'Fairy' => 1
+            'ghost' => [
+                'normal' => 0,
+                'fighting' => 1,
+                'flying' => 1,
+                'poison' => 1,
+                'ground' => 1,
+                'rock' => 1,
+                'bug' => 1,
+                'ghost' => 2,
+                'steel' => 1,
+                'fire' => 1,
+                'water' => 1,
+                'grass' => 1,
+                'electric' => 1,
+                'psychic' => 2,
+                'ice' => 1,
+                'dragon' => 1,
+                'dark' => 0.5,
+                'fairy' => 1
             ],
-            'Steel' => [
-                'Normal' => 1,
-                'Fighting' => 1,
-                'Flying' => 1,
-                'Poison' => 1,
-                'Ground' => 1,
-                'Rock' => 2,
-                'Bug' => 1,
-                'Ghost' => 1,
-                'Steel' => 0.5,
-                'Fire' => 0.5,
-                'Water' => 0.5,
-                'Grass' => 1,
-                'Electric' => 0.5,
-                'Psychic' => 1,
-                'Ice' => 2,
-                'Dragon' => 1,
-                'Dark' => 1,
-                'Fairy' => 2
+            'steel' => [
+                'normal' => 1,
+                'fighting' => 1,
+                'flying' => 1,
+                'poison' => 1,
+                'ground' => 1,
+                'rock' => 2,
+                'bug' => 1,
+                'ghost' => 1,
+                'steel' => 0.5,
+                'fire' => 0.5,
+                'water' => 0.5,
+                'grass' => 1,
+                'electric' => 0.5,
+                'psychic' => 1,
+                'ice' => 2,
+                'dragon' => 1,
+                'dark' => 1,
+                'fairy' => 2
             ],
-            'Fire' => [
-                'Normal' => 1,
-                'Fighting' => 1,
-                'Flying'=> 1,
-                'Poison' => 1,
-                'Ground' => 1,
-                'Rock' => 0.5,
-                'Bug' => 2,
-                'Ghost' => 1,
-                'Steel' => 2,
-                'Fire' => 0.5,
-                'Water' => 0.5,
-                'Grass' => 2,
-                'Electric' => 1,
-                'Psychic' => 1,
-                'Ice' => 2,
-                'Dragon' => 0.5,
-                'Dark' => 1,
-                'Fairy' => 0.5
+            'fire' => [
+                'normal' => 1,
+                'fighting' => 1,
+                'flying'=> 1,
+                'poison' => 1,
+                'ground' => 1,
+                'rock' => 0.5,
+                'bug' => 2,
+                'ghost' => 1,
+                'steel' => 2,
+                'fire' => 0.5,
+                'water' => 0.5,
+                'grass' => 2,
+                'electric' => 1,
+                'psychic' => 1,
+                'ice' => 2,
+                'dragon' => 0.5,
+                'dark' => 1,
+                'fairy' => 0.5
             ],
-            'Water' => [
-                'Normal' => 1,
-                'Fighting' => 1,
-                'Flying' => 1,
-                'Poison' => 1,
-                'Ground' => 2,
-                'Rock' => 2,
-                'Bug' => 1,
-                'Ghost' => 1,
-                'Steel' => 1,
-                'Fire' => 2,
-                'Water' => 0.5,
-                'Grass' => 0.5,
-                'Electric' => 1,
-                'Psychic' => 1,
-                'Ice' => 1,
-                'Dragon' => 0.5,
-                'Dark' => 1,
-                'Fairy' => 1
+            'water' => [
+                'normal' => 1,
+                'fighting' => 1,
+                'flying' => 1,
+                'poison' => 1,
+                'ground' => 2,
+                'rock' => 2,
+                'bug' => 1,
+                'ghost' => 1,
+                'steel' => 1,
+                'fire' => 2,
+                'water' => 0.5,
+                'grass' => 0.5,
+                'electric' => 1,
+                'psychic' => 1,
+                'ice' => 1,
+                'dragon' => 0.5,
+                'dark' => 1,
+                'fairy' => 1
             ],
-            'Grass' => [
-                'Normal' => 1,
-                'Fighting' => 1,
-                'Flying' => 0.5,
-                'Poison' => 0.5,
-                'Ground' => 2,
-                'Rock' => 2,
-                'Bug' => 0.5,
-                'Ghost' => 1,
-                'Steel' => 0.5,
-                'Fire' => 0.5,
-                'Water' => 2,
-                'Grass' => 0.5,
-                'Electric' => 1,
-                'Psychic' => 1,
-                'Ice' => 1,
-                'Dragon' => 0.5,
-                'Dark' => 1,
-                'Fairy' => 1
+            'grass' => [
+                'normal' => 1,
+                'fighting' => 1,
+                'flying' => 0.5,
+                'poison' => 0.5,
+                'ground' => 2,
+                'rock' => 2,
+                'bug' => 0.5,
+                'ghost' => 1,
+                'steel' => 0.5,
+                'fire' => 0.5,
+                'water' => 2,
+                'grass' => 0.5,
+                'electric' => 1,
+                'psychic' => 1,
+                'ice' => 1,
+                'dragon' => 0.5,
+                'dark' => 1,
+                'fairy' => 1
             ],
-            'Electric' => [
-                'Normal' => 1,
-                'Fighting' => 1,
-                'Flying' => 2,
-                'Poison' => 1,
-                'Ground' => 0,
-                'Rock' => 1,
-                'Bug' => 1,
-                'Ghost' => 1,
-                'Steel' => 1,
-                'Fire' => 1,
-                'Water' => 2,
-                'Grass' => 0.5,
-                'Electric' => 0.5,
-                'Psychic' => 1,
-                'Ice' => 1,
-                'Dragon' => 0.5,
-                'Dark' => 1,
-                'Fairy' => 1
+            'electric' => [
+                'normal' => 1,
+                'fighting' => 1,
+                'flying' => 2,
+                'poison' => 1,
+                'ground' => 0,
+                'rock' => 1,
+                'bug' => 1,
+                'ghost' => 1,
+                'steel' => 1,
+                'fire' => 1,
+                'water' => 2,
+                'grass' => 0.5,
+                'electric' => 0.5,
+                'psychic' => 1,
+                'ice' => 1,
+                'dragon' => 0.5,
+                'dark' => 1,
+                'fairy' => 1
             ],
-            'Psychic' => [
-                'Normal' => 1,
-                'Fighting' => 2,
-                'Flying' => 1,
-                'Poison' => 2,
-                'Ground' => 1,
-                'Rock' => 1,
-                'Bug' => 1,
-                'Ghost' => 1,
-                'Steel' => 0.5,
-                'Fire' => 1,
-                'Water' => 1,
-                'Grass' => 1,
-                'Electric' => 1,
-                'Psychic' => 0.5,
-                'Ice' => 1,
-                'Dragon' => 1,
-                'Dark' => 0,
-                'Fairy' => 1
+            'psychic' => [
+                'normal' => 1,
+                'fighting' => 2,
+                'flying' => 1,
+                'poison' => 2,
+                'ground' => 1,
+                'rock' => 1,
+                'bug' => 1,
+                'ghost' => 1,
+                'steel' => 0.5,
+                'fire' => 1,
+                'water' => 1,
+                'grass' => 1,
+                'electric' => 1,
+                'psychic' => 0.5,
+                'ice' => 1,
+                'dragon' => 1,
+                'dark' => 0,
+                'fairy' => 1
             ],
-            'Ice' => [
-                'Normal' => 1,
-                'Fighting' => 1,
-                'Flying' => 2,
-                'Poison' => 1,
-                'Ground' => 2,
-                'Rock' => 1,
-                'Bug' => 1,
-                'Ghost' => 1,
-                'Steel' => 0.5,
-                'Fire' => 0.5,
-                'Water' => 0.5,
-                'Grass' => 2,
-                'Electric' => 1,
-                'Psychic' => 1,
-                'Ice' => 0.5,
-                'Dragon' => 2,
-                'Dark' => 1,
-                'Fairy' => 1
+            'ice' => [
+                'normal' => 1,
+                'fighting' => 1,
+                'flying' => 2,
+                'poison' => 1,
+                'ground' => 2,
+                'rock' => 1,
+                'bug' => 1,
+                'ghost' => 1,
+                'steel' => 0.5,
+                'fire' => 0.5,
+                'water' => 0.5,
+                'grass' => 2,
+                'electric' => 1,
+                'psychic' => 1,
+                'ice' => 0.5,
+                'dragon' => 2,
+                'dark' => 1,
+                'fairy' => 1
             ],
-            'Dragon' => [
-                'Normal' => 1,
-                'Fighting' => 1,
-                'Flying' => 1,
-                'Poison' => 1,
-                'Ground' => 1,
-                'Rock' => 1,
-                'Bug' => 1,
-                'Ghost' => 1,
-                'Steel' => 0.5,
-                'Fire' => 1,
-                'Water' => 1,
-                'Grass' => 1,
-                'Electric' => 1,
-                'Psychic' => 1,
-                'Ice' => 1,
-                'Dragon' => 2,
-                'Dark' => 1,
-                'Fairy' => 0
+            'dragon' => [
+                'normal' => 1,
+                'fighting' => 1,
+                'flying' => 1,
+                'poison' => 1,
+                'ground' => 1,
+                'rock' => 1,
+                'bug' => 1,
+                'ghost' => 1,
+                'steel' => 0.5,
+                'fire' => 1,
+                'water' => 1,
+                'grass' => 1,
+                'electric' => 1,
+                'psychic' => 1,
+                'ice' => 1,
+                'dragon' => 2,
+                'dark' => 1,
+                'fairy' => 0
             ],
-            'Dark' => [
-                'Normal' => 1,
-                'Fighting' => 0.5,
-                'Flying' => 1,
-                'Poison' => 1,
-                'Ground' => 1,
-                'Rock' => 1,
-                'Bug' => 1,
-                'Ghost' => 2,
-                'Steel' => 1,
-                'Fire' => 1,
-                'Water' => 1,
-                'Grass' => 1,
-                'Electric' => 1,
-                'Psychic' => 2,
-                'Ice' => 1,
-                'Dragon' => 1,
-                'Dark' => 0.5,
-                'Fairy' => 0.5
+            'dark' => [
+                'normal' => 1,
+                'fighting' => 0.5,
+                'flying' => 1,
+                'poison' => 1,
+                'ground' => 1,
+                'rock' => 1,
+                'bug' => 1,
+                'ghost' => 2,
+                'steel' => 1,
+                'fire' => 1,
+                'water' => 1,
+                'grass' => 1,
+                'electric' => 1,
+                'psychic' => 2,
+                'ice' => 1,
+                'dragon' => 1,
+                'dark' => 0.5,
+                'fairy' => 0.5
             ],
-            'Fairy' => [
-                'Normal' => 1,
-                'Fighting' => 2,
-                'Flying' => 1,
-                'Poison' => 0.5,
-                'Ground' => 1,
-                'Rock' => 1,
-                'Bug' => 1,
-                'Ghost' => 1,
-                'Steel' => 0.5,
-                'Fire' => 0.5,
-                'Water' => 1,
-                'Grass' => 1,
-                'Electric' => 1,
-                'Psychic' => 1,
-                'Ice' => 1,
-                'Dragon' => 2,
-                'Dark' => 2,
-                'Fairy' => 0.5
+            'fairy' => [
+                'normal' => 1,
+                'fighting' => 2,
+                'flying' => 1,
+                'poison' => 0.5,
+                'ground' => 1,
+                'rock' => 1,
+                'bug' => 1,
+                'ghost' => 1,
+                'steel' => 0.5,
+                'fire' => 0.5,
+                'water' => 1,
+                'grass' => 1,
+                'electric' => 1,
+                'psychic' => 1,
+                'ice' => 1,
+                'dragon' => 2,
+                'dark' => 2,
+                'fairy' => 0.5
             ],
         ];
         
@@ -510,15 +510,15 @@ class AventureController extends Controller
             
 
             $value = rand(1, 20);
-            if ($value <= 5) //item
+            if ($value <= 0) //item
             { 
                 $this->addItem($idUser,$stage);
             } 
-            elseif ($value <= 10) //pokemon
+            elseif ($value <= 0) //pokemon
             { 
                 $this->choosePokemon($idUser,$stage);
             }
-            elseif ($value <= 15) //fight
+            elseif ($value <= 20) //fight
             {
                 $this->setMessage($idUser,8);
             }
@@ -669,60 +669,68 @@ class AventureController extends Controller
             $idUser = $request->user()->id;
 
             // get the team of the user_game
-            $team = User_game::select('team')->where('id_user', $idUser)->get()->toArray()[0]['team'];
+            $user = User_game::where('id', $idUser)->first();
+            $pokemon = new PokemonController;
 
-            if ($team != null) {
-                $id = json_decode($team, true);
-            }
-            else
+            foreach(json_decode($user->team) as $key => $value)
             {
-                $this->setMessage($idUser,11);
-                return $this->message;
+                $userPokemon[$key] = $pokemon->findPokemon(Box::where('id', $value)->get());
             }
             
-            // get the team of the user
-            $userPokemon = Box::all()->whereIn('id', json_decode($team, true))
-                                    ->orderByRaw(DB::raw("field(id, ".implode(',', $id).")"))
-                                    ->get();
+            
 
             // get the pokemon of the enemy
 
-            $pv = 100;
+            $pv = 10;
             $attack = 10;
             $defense = 10;
             $attack_type = 'normal';
 
             $typePLAYER = [];
             $typeNPC = [];
-            while ($pv > 0) {
-                if($typePLAYER == [])
+            $numberTeam = -1;
+            while ($pv > 0 && $numberTeam < 6) {
+                while($typePLAYER == [])
                 {
-                    $response = Http::get('https://pokeapi.co/api/v2/pokemon/'.$userPokemon[0]->id_pokemon);
-                    $posts = $response->json();
-                    $typePLAYER = [$posts['types'][0]['type']['name'], isset($posts['types'][1]['type']['name']) ? $posts['types'][1]['type']['name'] : ''];
+                    $numberTeam++;
+                    if($numberTeam >= 6)
+                    {
+                        break;
+                    }
+                    $typePLAYER = $userPokemon[$numberTeam]['type'];
                 }
-                if($typeNPC == [])
+                while($typeNPC == [])
                 {
-                    $response = Http::get('https://pokeapi.co/api/v2/pokemon/1');
-                    $posts = $response->json();
-                    $typeNPC = [$posts['types'][0]['type']['name'], isset($posts['types'][1]['type']['name']) ? $posts['types'][1]['type']['name'] : ''];
+                    // $response = Http::get('https://pokeapi.co/api/v2/pokemon/1');
+                    // $posts = $response->json();
+                    // $typeNPC = [$posts['types'][0]['type']['name'], isset($posts['types'][1]['type']['name']) ? $posts['types'][1]['type']['name'] : ''];
+                    $typeNPC = ['normal',''];
                 }
 
-                if($userPokemon[0]->hp < 0)
+                if($userPokemon[$numberTeam]['hp'] > 0 && $numberTeam < 6)
                 {
-                    $damage = $this->calculate_damage($attack, $defense, $this->calculateTypeModifier($attack_type, $typeNPC));
+                    $damage = $this->calculate_damage($userPokemon[$numberTeam]['attack'], $defense, $this->calculateTypeModifier($attack_type, $typeNPC));
                     $pv = $pv - $damage;
                     if ($pv <= 0) {
                         $typeNPC = [];
+                        // dd(intval($userPokemon[$numberTeam]['hp']));
+                        $tmp = Box::where('id', $userPokemon[$numberTeam]['idTable'])->first();
+                        $tmp->hp = intval($userPokemon[$numberTeam]['hp']);
+                        $tmp->save();
                     }
                 }
-                if ($pv > 0) {
-                    $damage = $this->calculate_damage($attack, $defense, $this->calculateTypeModifier($attack_type, $typePLAYER));
-                    $userPokemon[0]->hp = $userPokemon[0]->hp - $damage;
-                    if ($userPokemon[0]->hp <= 0) {
+                if ($pv > 0 && $numberTeam < 6) {
+                    $damage = $this->calculate_damage($attack, $userPokemon[$numberTeam]['defense'], $this->calculateTypeModifier($attack_type, $typePLAYER));
+                    $userPokemon[$numberTeam]['hp'] = $userPokemon[$numberTeam]['hp'] - $damage;
+                    if ($userPokemon[$numberTeam]['hp'] <= 0) {
                         $typePLAYER = [];
                     }
                 }
+            }
+            if ($pv <= 0) {
+                $this->setMessage($idUser,9);
+            } else {
+                $this->setMessage($idUser,10);
             }
 
 
@@ -733,21 +741,29 @@ class AventureController extends Controller
             $this->setMessage($idUser,7);
         }
 
+
         return $this->message;
     }
 
     function calculateTypeModifier($attack_type, $defend_type) {
     
         $modifier = 0;
+        $nb = 0;
         foreach ($defend_type as $value) {
-            $modifier += $this->type_chart[$attack_type][$value];
+            if($value != '')
+            {
+                $modifier += $this->type_chart[$attack_type][$value];
+                $nb++;
+            }
+                
         }
-        return $modifier / count($defend_type);
+        return $modifier / $nb;
     }
 
     function calculate_damage($attack, $defense, $modifier) {
 
-        return ceil(((((2 * Niveau / 5 + 2) * $attack / $defense) / 50) + 2) * $modifier * random(0.85,1.15));
+        $niveau = 1;
+        return ceil(((((2 * $niveau / 5 + 2) * $attack / $defense) / 50) + 2) * $modifier * rand(0.85,1.15));
     }
 }
 
