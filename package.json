@@ -2,7 +2,8 @@
     "private": true,
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "up": "./vendor/bin/sail up"
     },
     "devDependencies": {
         "@inertiajs/inertia": "^0.11.0",
