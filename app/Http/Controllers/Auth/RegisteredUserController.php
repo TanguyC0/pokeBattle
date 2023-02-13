@@ -66,11 +66,13 @@ class RegisteredUserController extends Controller
             'favorite' => $starter,
         ]);
 
+        $valueHP = rand(10, 25);
         $pokemon = Box::create([
             'id_pokemon' => $starter,
             'id_user' => $user->id,
             'level' => 1,
-            'hp' => rand(10, 25),
+            'hp' => $valueHP,
+            'hpMax' => $valueHP,
             'attack' => rand(10, 25),
             'defense' => rand(10, 25),
             'xp' => 0,

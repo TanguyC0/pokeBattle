@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('level')->default(1);
             $table->integer('xp')->default(0);
             $table->integer('hp')->default(1);
+            $table->integer('hpMax')->default(1);
             $table->integer('attack')->default(1);
             $table->integer('defense')->default(1);
             $table->timestamps();

@@ -510,15 +510,15 @@ class AventureController extends Controller
             
 
             $value = rand(1, 20);
-            if ($value <= 0) //item
+            if ($value <= 5) //item
             { 
                 $this->addItem($idUser,$stage);
             } 
-            elseif ($value <= 0) //pokemon
+            elseif ($value <= 10) //pokemon
             { 
                 $this->choosePokemon($idUser,$stage);
             }
-            elseif ($value <= 20) //fight
+            elseif ($value <= 15) //fight
             {
                 $this->setMessage($idUser,8);
             }
@@ -633,11 +633,13 @@ class AventureController extends Controller
 
                 $value = rand(0, 100);
                 if (in_array($value, $random_array_value)) {
+                    $valueHP = rand(5, 20);
                     Box::insert([
                         'id_pokemon' => $id,
                         'id_user' => $idUser,
                         'level' => 1,
-                        'hp' => rand(5, 20),
+                        'hp' => $valueHP,
+                        'hpMax' => $valueHP,
                         'attack' => rand(5, 20),
                         'defense' => rand(5, 20),
                         'xp' => 0,

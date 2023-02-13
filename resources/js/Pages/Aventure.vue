@@ -45,6 +45,7 @@ function walk(){
         if(message.value.status == 2){
             use.value = message.value.items[0].id;
         }
+        console.log(message.value);
     })
 }
 
@@ -96,8 +97,9 @@ function fight(){
                 <h2 class="text-center text-5xl mb-10">TEAM</h2>
                 <ul class="grid grid-cols-3 gap-4 wrap">
                     <template v-for="n in 6">
-                        <li class="bg-white w-40 h-40">
-                            <img v-if="n<=message.team.length" :src="`${message.team[n-1].image}`" alt="">
+                        <li class="bg-white w-40 h-40 relative">
+                            <img v-if="n<=message.team.length" :src="`${message.team[n-1].image}`" alt="" class="absolute">
+                            <em class="absolute bg-red-300 w-8 h-8 rounded-full flex items-center justify-center">{{ message.team[n-1].hp }}/{{ message.team[n-1].hpMax }}</em>
                         </li>
                     </template>
                 </ul>
