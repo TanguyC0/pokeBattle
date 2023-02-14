@@ -7,7 +7,7 @@
 
 <template>
     <NormalButton :color="color">
-        <Link :href="href" class="w-full h-full flex items-center justify-center" >
+        <Link :href="href" class="w-full h-full flex items-center bg-gradient justify-center" >
             <slot/>
         </Link>
     </NormalButton>
