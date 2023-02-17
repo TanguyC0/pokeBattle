@@ -95,9 +95,9 @@ function fight(){
 
             <Glass>
                 <h2 class="text-center text-5xl mb-10">TEAM</h2>
-                <ul class="grid grid-cols-3 gap-4 wrap">
+                <ul class="grid grid-cols-3 gap-2 wrap">
                     <template v-for="n in 6">
-                        <li class="bg-white w-40 h-40 relative">
+                        <li class="bg-white w-32 h-32 rounded relative">
                             <img v-if="n<=message.team.length" :src="`${message.team[n-1].image}`" alt="" class="absolute">
                             <em class="absolute bg-red-300 w-8 h-8 rounded-full flex items-center justify-center">{{ message.team[n-1].hp }}/{{ message.team[n-1].hpMax }}</em>
                         </li>

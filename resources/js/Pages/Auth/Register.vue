@@ -90,7 +90,8 @@ const submit = () => {
             <div class="flex h-32 mt-4 justify-evenly justify-items text-white">
                 <div class="border rounded-full  bg-violet-200 hover:bg-violet-300 flex h-32">
                     <label for="feu">
-                        <input type="radio" id="feu" name="starter" value="feu" class="hidden" v-model="form.starter" required >
+                        <input type="radio" id="feu" name="starter" value="feu" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+    <label for="disabled-radio-1" class="ml-2 text-sm font-medium text-gray-400 dark:text-gray-500">Disabled radio</label> v-model="form.starter" required >
                         <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/155.png" alt="pokemon" class="cursor-pointer h-32"/>
                         <figcaption class="flex justify-center">Fire</figcaption>
                     </label>
