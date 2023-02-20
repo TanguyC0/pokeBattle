@@ -101,6 +101,42 @@ return new class extends Migration
                 'building' => 'null'
             )
         );
+        DB::table('items')->insert(
+            array(
+                'name' => 'small exp bonbon',
+                'description' => ' +10 exp',
+                'type' => 'exp',
+                'power' => 10,
+                'grade' => 'commun',
+                'sell' => 10,
+                'buy' => 10,
+                'building' => 'null'
+            )
+        );
+        DB::table('items')->insert(
+            array(
+                'name' => 'medium exp bonbon',
+                'description' => ' +20 exp',
+                'type' => 'exp',
+                'power' => 20,
+                'grade' => 'commun',
+                'sell' => 10,
+                'buy' => 10,
+                'building' => 'null'
+            )
+        );
+        DB::table('items')->insert(
+            array(
+                'name' => 'large exp bonbon',
+                'description' => ' +30 exp',
+                'type' => 'exp',
+                'power' => 30,
+                'grade' => 'commun',
+                'sell' => 10,
+                'buy' => 10,
+                'building' => 'null'
+            )
+        );
     }
 
     /**

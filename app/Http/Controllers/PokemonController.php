@@ -9,35 +9,43 @@ use App\Models\User_game;
 
 class PokemonController extends Controller
 {
-    public function xpUP($quantity, $id)
+    public function xpUP($idPokemon, $addXP, $idUser)
     {
-        $data = Box::where('id', $id)->first();
-        $xp = $data->xp+$quantity;
-        $xpMax = ($data->level * 100)+ceil($data->level ** 2 * 10.5);
+        $pokemon = Box::where('id', $idPokemon)->where('id_user', $idUser)->first();
 
-        if($data->level >= 100)
-            $xp = 0;
+        if($pokemon == null)
+            return false;
 
-        while($xp >= $xpMax){
-            $data= $this->levelUP($data);
-            $xp = $xp - $xpMax;
-            $xpMax = ($data->level * 100)+ceil($data->level ** 2 * 10.5);
+        $xp = $pokemon->xp+$addXP;
+
+        if($pokemon->level >= 100)
+        {
+            $pokemon->xp = 0;
+            $pokemon->save();
+            return true;
         }
 
-        $data->xp = $xp;
-        $data->save();
+        $xpMax = ($pokemon->level * 100)+ceil($pokemon->level ** 2 * 10.5);
+        while ($xp >= $xpMax) {
+            $xp = $xp - $xpMax;
+            $pokemon = $this->levelUP($pokemon);
+            $xpMax = ($pokemon->level * 100)+ceil($pokemon->level ** 2 * 10.5);
+        }
 
-        return redirect()->route('box');
+        $pokemon->xp = $xp;
+        $pokemon->save();
 
+        return true;
     }
 
-    private function levelUP($data)
+    private function levelUP($pokemon)
     {
-        $data->level = $data->level + 1;
-        $data->hp = $data->hp + 10;
-        $data->attack = $data->attack + 5;
-        $data->defense = $data->defense + 5;
-        return $data;
+        $pokemon->level = $pokemon->level + 1;
+        $pokemon->hpMax = $pokemon->hpMax + 10;
+        $pokemon->hp = $pokemon->hpMax;
+        $pokemon->attack = $pokemon->attack + 5;
+        $pokemon->defense = $pokemon->defense + 5;
+        return $pokemon;
     }
 
     public function findAllPokemon($data)
@@ -115,4 +123,29 @@ class PokemonController extends Controller
         return false;
     }
 
+    public function heal($idPokemon, $addHP, $idUser)
+    {
+        // take the pokemon
+        $Pokemon = Box::where('id', $idPokemon)->where('id_user',$idUser)->first();
+
+        // id the pokemon exist
+        if ($Pokemon == null)
+            return false;
+
+        // verify if the pokemon is not already at max hp
+        if ($Pokemon->hp == $Pokemon->hpMax)
+            return false;
+
+        // add hp
+        $Pokemon->hp = $Pokemon->hp + $addHP;
+
+        // verify if the pokemon is not over max hp
+        if ($Pokemon->hp > $Pokemon->hpMax)
+            $Pokemon->hp = $Pokemon->hpMax;
+
+        // save the pokemon
+        $Pokemon->save();
+
+        return true;
+    }
 }

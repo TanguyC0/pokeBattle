@@ -38,7 +38,7 @@ class TeamController extends Controller
                 $team[$key] = $pokemon->findPokemon(Box::where('id', $value)->get());
             }
             
-            $bag = Bag::join('items', 'bags.id_item', '=', 'items.id')->where('id_user', $id)->get();
+            $bag = Bag::join('items', 'bags.id_item', '=', 'items.id')->where('id_user', $id)->whereIN('type', ['heal', 'exp'])->get();
 
             //bag
 

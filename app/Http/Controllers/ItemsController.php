@@ -39,4 +39,52 @@ class ItemsController extends Controller
         }
         return false;
     }
+
+    public function useItem(Request $request)
+    {
+        // TODO
+        // verify if user have item
+        // if have, verify if item is heal or other
+        // if heal, verify if hp is full
+        // if not full, use item
+
+        if($request->user())
+        {
+            $userId = $request->user()->id;
+            $idItem = $request->input('idItem');
+            // $id = 1;
+            
+            $item = Bag::join('items', 'items.id', '=', 'bags.id_item')
+                ->where('bags.id_user', $userId)
+                ->where('bags.id_item', $idItem )
+                ->select('bags.*', 'items.type', 'items.power')
+                ->first();
+
+            // dd($item);
+            // if item exist, if count > 0
+            if($item && $item->count > 0)
+            {
+                $idPokemon = $request->input('idPokemon');
+                $pokemon = new PokemonController();
+
+                switch ($item->type) {
+                    case 'heal':
+                        $response = $pokemon->heal($idPokemon, $item->power, $userId);
+                        break;
+                    case 'exp':
+                        $response = $pokemon->xpUP($idPokemon, $item->power, $userId);
+                        break;
+                }
+
+                if($response)
+                {
+                    $item->count--;
+                    $item->save();
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
 }
