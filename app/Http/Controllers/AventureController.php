@@ -730,7 +730,15 @@ class AventureController extends Controller
                 }
             }
             if ($pv <= 0) {
+                
+
+                // add xp to user (1 - 20)
+                $xp = rand(1, 20);
+                $user->exp += $xp;
+                $user->save();
+
                 $this->setMessage($idUser,9);
+
             } else {
                 $this->setMessage($idUser,10);
             }
