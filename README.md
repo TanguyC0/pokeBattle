@@ -83,9 +83,11 @@ This page is divided in two sides: the actual team selected by the player on the
 
 The team will be displayed under a table form with the images of your pokemons and their health. One easy click on the image will take you to the Team modals, to show the data about the selected pokemon or to simply modify the player's build.
 
+## Contributor
 
-
-Realised by[Tanguy](https://github.com/TanguyC) & [Aurélie](https://github.com/Elhya13)
+[TanguyC0](https://github.com/TanguyC) for the Backend and front logic 
+[Aurélie](https://github.com/Elhya13) for the disagn v1 and v2
+[Lauranne](https://github.com/l4ur4nn3) for logo of disagn v3
 
 
 
